@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GoogleBooks.Application\GoogleBooks.Application.csproj" />
+    <ProjectReference Include="..\GoogleBooks.Domain\GoogleBooks.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
