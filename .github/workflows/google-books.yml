@@ -18,10 +18,10 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Restore
-        run: dotnet restore GoogleBooks.sln
+        run: dotnet restore src/GoogleBooks.sln
 
       - name: Build
-        run: dotnet build GoogleBooks.sln --configuration Release --no-restore
+        run: dotnet build src/GoogleBooks.sln --configuration Release --no-restore
 
       - name: Test
-        run: dotnet test GoogleBooks.sln --configuration Release --no-build --verbosity normal
+        run: dotnet test src/GoogleBooks.sln --configuration Release --no-build --verbosity normal
