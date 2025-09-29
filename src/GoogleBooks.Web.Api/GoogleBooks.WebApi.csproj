@@ -12,6 +12,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GoogleBooks.Application\GoogleBooks.Application.csproj" />
+    <ProjectReference Include="..\GoogleBooks.Infrastructure\GoogleBooks.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="appsettings.Development.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
