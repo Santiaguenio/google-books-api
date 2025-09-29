@@ -130,7 +130,7 @@ public class GetBookByIdIntegrationTests
                .ReturnsAsync(new HttpResponseMessage
                {
                    StatusCode = HttpStatusCode.ServiceUnavailable,
-                   Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/ServiceUnavailable/MockedGoogleBooksServiceUnavailableContent.json"))
+                   Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/ServiceUnavailable/MockedUnavailableContent.json"))
                });
 
         // act

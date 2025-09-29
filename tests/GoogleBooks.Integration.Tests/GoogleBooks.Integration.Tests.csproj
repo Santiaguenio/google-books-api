@@ -31,7 +31,7 @@
     <Content Include="Books\GetByIdIntegrationTests\Should\MockedGetBookByIdResponse.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Books\GetByIdIntegrationTests\ServiceUnavailable\MockedGoogleBooksServiceUnavailableContent.json">
+    <Content Include="Books\GetByIdIntegrationTests\ServiceUnavailable\MockedUnavailableContent.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
