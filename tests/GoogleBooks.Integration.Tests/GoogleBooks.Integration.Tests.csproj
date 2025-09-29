@@ -10,6 +10,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Books\GetByIdIntegrationTests\ExpectedGetBookByIdContent.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Books\GetByIdIntegrationTests\ExpectedGetBookByIdContent.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Books\GetByIdIntegrationTests\MockedGetBookByIdResponse.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -22,6 +35,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\GoogleBooks.Web.Api\GoogleBooks.WebApi.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿namespace GoogleBooks.Integration.Tests;
+﻿namespace GoogleBooks.Integration.Tests.Books;
 
 internal class ListBooksByCriteriaIntegrationTests
 {
