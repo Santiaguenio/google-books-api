@@ -1,5 +1,6 @@
 using GoogleBooks.Application;
 using GoogleBooks.Infrastructure;
+using GoogleBooks.WebApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.RegisterApplicationServices();
 builder.Services.RegisterInfrastructureServices(builder.Configuration);
+builder.Services.RegisterExceptionHandlers();
 
 var app = builder.Build();
 
@@ -32,6 +34,8 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.MapHealthChecks("/healthz");
+
+app.UseExceptionHandler();
 
 app.Run();
 

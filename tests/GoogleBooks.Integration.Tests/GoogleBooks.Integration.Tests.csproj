@@ -11,13 +11,27 @@
 
   <ItemGroup>
     <None Remove="Books\GetByIdIntegrationTests\ExpectedGetBookByIdContent.json" />
+    <None Remove="Books\GetByIdIntegrationTests\ExpectedServiceUnavailableContent.json" />
+    <None Remove="Books\GetByIdIntegrationTests\MockedGoogleBooksServiceUnavailableContent.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Books\GetByIdIntegrationTests\ExpectedGetBookByIdContent.json">
+    <Content Include="Books\GetByIdIntegrationTests\ExternalServerError\ExpectedExternalServerErrorResult.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Books\GetByIdIntegrationTests\MockedGetBookByIdResponse.json">
+    <Content Include="Books\GetByIdIntegrationTests\InternalServerError\ExpectedInternalServerErrorResult.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Books\GetByIdIntegrationTests\Should\ExpectedGetBookByIdContent.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Books\GetByIdIntegrationTests\ServiceUnavailable\ExpectedServiceUnavailableContent.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Books\GetByIdIntegrationTests\Should\MockedGetBookByIdResponse.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Books\GetByIdIntegrationTests\ServiceUnavailable\MockedGoogleBooksServiceUnavailableContent.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

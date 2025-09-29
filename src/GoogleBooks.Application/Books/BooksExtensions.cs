@@ -4,9 +4,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace GoogleBooks.Application.Books;
 
-public static class BooksExtensions
+internal static class BooksExtensions
 {
-    public static void RegisterBooksUseCases(this IServiceCollection services)
+    internal static void RegisterBooksUseCases(this IServiceCollection services)
     {
         services.AddScoped<IGetById<string>, GetBookById>();
     }
