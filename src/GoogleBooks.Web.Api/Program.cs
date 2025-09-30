@@ -1,3 +1,7 @@
+using GoogleBooks.Application;
+using GoogleBooks.Infrastructure;
+using GoogleBooks.WebApi.Middleware;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHealthChecks();
@@ -9,6 +13,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.RegisterApplicationServices();
+builder.Services.RegisterInfrastructureServices(builder.Configuration);
+builder.Services.RegisterExceptionHandlers();
 
 var app = builder.Build();
 
@@ -27,4 +35,8 @@ app.MapControllers();
 
 app.MapHealthChecks("/healthz");
 
+app.UseExceptionHandler();
+
 app.Run();
+
+public partial class Program { }

@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleBooks.Infrastructure"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleBooks.Integration.Tests", "..\tests\GoogleBooks.Integration.Tests\GoogleBooks.Integration.Tests.csproj", "{F9038A5E-F594-4441-80C3-B2997F4D1488}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleBooks.Contracts", "GoogleBooks.Contracts\GoogleBooks.Contracts.csproj", "{881BACE8-8F19-4110-86F1-24E31E24B35F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{F9038A5E-F594-4441-80C3-B2997F4D1488}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9038A5E-F594-4441-80C3-B2997F4D1488}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9038A5E-F594-4441-80C3-B2997F4D1488}.Release|Any CPU.Build.0 = Release|Any CPU
+		{881BACE8-8F19-4110-86F1-24E31E24B35F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{881BACE8-8F19-4110-86F1-24E31E24B35F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{881BACE8-8F19-4110-86F1-24E31E24B35F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{881BACE8-8F19-4110-86F1-24E31E24B35F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +59,7 @@ Global
 		{34B39D70-3CD3-42B1-B228-DDDD98DBF648} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{F7571BE3-B071-4EF1-A472-BE04055F6001} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{F9038A5E-F594-4441-80C3-B2997F4D1488} = {AAB98BE4-CD83-4541-8345-ABE4884A6E45}
+		{881BACE8-8F19-4110-86F1-24E31E24B35F} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4B70BB29-952E-45C9-8B81-D81D6DE610A5}

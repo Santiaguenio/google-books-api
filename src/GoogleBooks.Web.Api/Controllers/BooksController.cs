@@ -1,14 +1,18 @@
+using GoogleBooks.Application.Common.UseCases;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GoogleBooks.Web.Api.Controllers;
+namespace GoogleBooks.WebApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
 public class BooksController : ControllerBase
 {
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetByIdAsync(string id)
+    public async Task<IActionResult> GetByIdAsync(
+        [FromServices] IGetById<string> getById,
+        string id,
+        CancellationToken cancellationToken)
     {
-        return Ok(id);
+        return Ok(await getById.DoAsync(id, cancellationToken));
     }
 }

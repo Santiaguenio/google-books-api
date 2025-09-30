@@ -1,0 +1,34 @@
+{
+  "etag": "A+LbBwTvSqk",
+  "id": "s1gVAAAAYAAJ",
+  "selfLink": "https://www.googleapis.com/books/v1/volumes/s1gVAAAAYAAJ",
+  "saleInfo": {
+    "buyLink": "https://play.google.com/store/books/details?id=s1gVAAAAYAAJ&rdid=book-s1gVAAAAYAAJ&rdot=1&source=gbs_api",
+    "country": "FR",
+    "saleability": "FREE",
+    "isEbook": true
+  },
+  "volumeInfo": {
+    "canonicalVolumeLink": "https://play.google.com/store/books/details?id=s1gVAAAAYAAJ",
+    "description": "Austen’s most celebrated novel tells the story of Elizabeth Bennet, a bright, lively young woman with four sisters, and a mother determined to marry them to wealthy men. At a party near the Bennets’ home in the English countryside, Elizabeth meets the wealthy, proud Fitzwilliam Darcy. Elizabeth initially finds Darcy haughty and intolerable, but circumstances continue to unite the pair. Mr. Darcy finds himself captivated by Elizabeth’s wit and candor, while her reservations about his character slowly vanish. The story is as much a social critique as it is a love story, and the prose crackles with Austen’s wry wit.",
+    "infoLink": "https://play.google.com/store/books/details?id=s1gVAAAAYAAJ&source=gbs_api",
+    "language": "en",
+    "previewLink": "http://books.google.fr/books?id=s1gVAAAAYAAJ&hl=&source=gbs_api",
+    "publishedDate": "1918",
+    "publisher": "C. Scribner's sons",
+    "title": "Pride and Prejudice",
+    "pageCount": 401,
+    "ratingsCount": 373,
+    "authors": [
+      "Jane Austen"
+    ],
+    "imageLinks": {
+      "extraLarge": "http://books.google.com/books/content?id=s1gVAAAAYAAJ&printsec=frontcover&img=1&zoom=6&edge=curl&imgtk=AFLRE72rlmBDW2wB38Igkm7z1QSuwIFVgxQiABfa9P9BtbkhGxwitxOnqZlvw9bZkfFS03BBFq-HtolGYB5B7rGEKFNn1CltcOBbBPOs56cc0Bzj_lvRa9QugXMhwetjUcZBvZ18AbqT&source=gbs_api",
+      "medium": "http://books.google.com/books/content?id=s1gVAAAAYAAJ&printsec=frontcover&img=1&zoom=3&edge=curl&imgtk=AFLRE72LwCl0l423f10HLG1uS_IWxcTzU-hUjwQ18oSFdoQBAFR7qpsZ1XFZabBB16Ncow_TYbHRv8vOuAMMGm6NdRv82HiRozEvfcD8Jvvm4g7ANUqW9MqmngUjXNInIUUlL9qV2um5&source=gbs_api",
+      "large": "http://books.google.com/books/content?id=s1gVAAAAYAAJ&printsec=frontcover&img=1&zoom=4&edge=curl&imgtk=AFLRE711DNe7fsQPbbFzHF8U1rvS3wReiN4qyxi02Kjzz_EGqRMf8RDuVhIdUFIicDz2UD3TXjTNQnND9bLcO2bKhzP-Lr6OipExxC0wdShJCEIcRiyFZFEFaANFrbiLexLKz5yy0ZSe&source=gbs_api",
+      "small": "http://books.google.com/books/content?id=s1gVAAAAYAAJ&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE72rFiJ5hFfpCnj_WS-CTJelfb2dQZn0QmRIyAE4nnhoDu-S6_NBBbq53GNMnjCt31ZKSESlQub6j26_AnsNy_KwJsYmiRGuWPgni0KOCu6JQaYP3Sgu3YUl_1VKRrj-qbBoIzt-&source=gbs_api",
+      "smallThumbnail": "http://books.google.com/books/content?id=s1gVAAAAYAAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE73sr2Ij86797VnB80ssPcyUtc-8e5pV1lGulW5XaaClk1p1I0mqSI2oCoB-oHWdDHHzSzLmwHD2eLsbwfQ_3ZM-yeAGA85Ja8XzJ_gpsWJeVuE1ssZsghHl9M6UIITdBRpTo-py&source=gbs_api",
+      "thumbnail": "http://books.google.com/books/content?id=s1gVAAAAYAAJ&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE723XADQG4a1icv3kP7kML80rnP1tQ9Jeb0TKzy5UHs7k3bqNGe6e9rotPGv8Ne6ZfKTJFT4-1gUt6V_bB6ROKf_1d0bcqO_RENmoXpZfChBbqSBxGHCwWcyQAZ_vEdBtcxUMnLS&source=gbs_api"
+    }
+  }
+}
