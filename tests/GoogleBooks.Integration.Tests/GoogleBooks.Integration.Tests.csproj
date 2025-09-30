@@ -52,7 +52,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\GoogleBooks.Web.Api\GoogleBooks.WebApi.csproj" />
+    <ProjectReference Include="..\..\src\GoogleBooks.WebApi\GoogleBooks.WebApi.csproj" />
   </ItemGroup>
 
   <ItemGroup>
