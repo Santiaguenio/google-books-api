@@ -20,7 +20,7 @@ public class TestFactory : WebApplicationFactory<Program>
         });
     }
 
-    internal string GetGoogleBooksUrl => "https://www.googleapis.com/books/v1/";
+    internal string GoogleBooksUrl = "https://www.googleapis.com/books/v1/";
     internal Mock<IHttpClientFactory> MockedHttpClientFactory { get; private set; } = new();
     internal Mock<HttpMessageHandler> MockedHttpMessageHandler { get; private set; } = new();
 

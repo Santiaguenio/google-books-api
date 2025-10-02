@@ -33,12 +33,12 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
             Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/Should/ExpectedGetBookByIdContent.json"))
         };
 
-        testFactory.SetMockedHttpClientFactory(testFactory.GetGoogleBooksUrl);
+        testFactory.SetMockedHttpClientFactory(testFactory.GoogleBooksUrl);
         testFactory.MockedHttpMessageHandler
             .Protected()
             .Setup<Task<HttpResponseMessage>>(
                 "SendAsync",
-                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GetGoogleBooksUrl}volumes/{bookId}")),
+                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes/{bookId}")),
                 ItExpr.IsAny<CancellationToken>())
             .ReturnsAsync(new HttpResponseMessage
             {
@@ -57,7 +57,7 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
             .Protected().Verify(
                 "SendAsync",
                 Times.Once(),
-                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GetGoogleBooksUrl}volumes/{bookId}")),
+                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes/{bookId}")),
                 ItExpr.IsAny<CancellationToken>()
             );
     }
@@ -94,12 +94,12 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
             Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/ExternalServerError/ExpectedExternalServerErrorResult.json"))
         };
 
-        testFactory.SetMockedHttpClientFactory(testFactory.GetGoogleBooksUrl);
+        testFactory.SetMockedHttpClientFactory(testFactory.GoogleBooksUrl);
         testFactory.MockedHttpMessageHandler
             .Protected()
             .Setup<Task<HttpResponseMessage>>(
                 "SendAsync",
-                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GetGoogleBooksUrl}volumes/{bookId}")),
+                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes/{bookId}")),
                 ItExpr.IsAny<CancellationToken>())
             .ReturnsAsync(new HttpResponseMessage
             {
@@ -118,7 +118,7 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
             .Protected().Verify(
                 "SendAsync",
                 Times.Once(),
-                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GetGoogleBooksUrl}volumes/{bookId}")),
+                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes/{bookId}")),
                 ItExpr.IsAny<CancellationToken>()
             );
     }
@@ -134,12 +134,12 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
             Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/ExternalServerError/ExpectedExternalServerErrorResult.json"))
         };
 
-        testFactory.SetMockedHttpClientFactory(testFactory.GetGoogleBooksUrl);
+        testFactory.SetMockedHttpClientFactory(testFactory.GoogleBooksUrl);
         testFactory.MockedHttpMessageHandler
             .Protected()
             .Setup<Task<HttpResponseMessage>>(
                 "SendAsync",
-                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GetGoogleBooksUrl}volumes/{bookId}")),
+                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes/{bookId}")),
                 ItExpr.IsAny<CancellationToken>())
             .ThrowsAsync(new TaskCanceledException());
 
@@ -156,7 +156,7 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
             .Protected().Verify(
                 "SendAsync",
                 Times.Once(),
-                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GetGoogleBooksUrl}volumes/{bookId}")),
+                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes/{bookId}")),
                 ItExpr.IsAny<CancellationToken>()
             );
     }
@@ -172,12 +172,12 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
             Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/InternalServerError/ExpectedInternalServerErrorResult.json"))
         };
 
-        testFactory.SetMockedHttpClientFactory(testFactory.GetGoogleBooksUrl);
+        testFactory.SetMockedHttpClientFactory(testFactory.GoogleBooksUrl);
         testFactory.MockedHttpMessageHandler
             .Protected()
             .Setup<Task<HttpResponseMessage>>(
                 "SendAsync",
-                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GetGoogleBooksUrl}volumes/{bookId}")),
+                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes/{bookId}")),
                 ItExpr.IsAny<CancellationToken>())
             .ThrowsAsync(new Exception("This is a mocked exception message"));
 
@@ -192,7 +192,7 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
             .Protected().Verify(
                 "SendAsync",
                 Times.Once(),
-                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GetGoogleBooksUrl}volumes/{bookId}")),
+                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes/{bookId}")),
                 ItExpr.IsAny<CancellationToken>()
             );
     }
@@ -208,12 +208,12 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
             Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/ServiceUnavailable/ExpectedServiceUnavailableContent.json"))
         };
 
-        testFactory.SetMockedHttpClientFactory(testFactory.GetGoogleBooksUrl);
+        testFactory.SetMockedHttpClientFactory(testFactory.GoogleBooksUrl);
         testFactory.MockedHttpMessageHandler
             .Protected()
             .Setup<Task<HttpResponseMessage>>(
                 "SendAsync",
-                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GetGoogleBooksUrl}volumes/{unknownId}")),
+                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes/{unknownId}")),
                 ItExpr.IsAny<CancellationToken>())
             .ReturnsAsync(new HttpResponseMessage
             {
@@ -232,7 +232,7 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
             .Protected().Verify(
                 "SendAsync",
                 Times.Once(),
-                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GetGoogleBooksUrl}volumes/{unknownId}")),
+                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes/{unknownId}")),
                 ItExpr.IsAny<CancellationToken>()
             );
     }

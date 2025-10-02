@@ -27,17 +27,18 @@ public class ListBooksByCriteriaIntegrationTests(TestFactory testFactory) : IAsy
     {
         // arrange
         var keyWords = "federer";
+
         var expectedHttpResult = new HttpResponseMessage(HttpStatusCode.OK)
         {
             Content = new StringContent(await File.ReadAllTextAsync("Books/ListBooksByCriteriaIntegrationTests/Should/ExpectedGetBooksByKeyWordContent.json"))
         };
 
-        testFactory.SetMockedHttpClientFactory(testFactory.GetGoogleBooksUrl);
+        testFactory.SetMockedHttpClientFactory(testFactory.GoogleBooksUrl);
         testFactory.MockedHttpMessageHandler
             .Protected()
             .Setup<Task<HttpResponseMessage>>(
                 "SendAsync",
-                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GetGoogleBooksUrl}volumes?q={keyWords}&maxResults={40}&startIndex={0}")),
+                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes?q={keyWords}&maxResults={40}&startIndex={0}")),
                 ItExpr.IsAny<CancellationToken>())
             .ReturnsAsync(new HttpResponseMessage
             {
@@ -56,7 +57,7 @@ public class ListBooksByCriteriaIntegrationTests(TestFactory testFactory) : IAsy
             .Protected().Verify(
                 "SendAsync",
                 Times.Once(),
-                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GetGoogleBooksUrl}volumes?q={keyWords}&maxResults={40}&startIndex={0}")),
+                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes?q={keyWords}&maxResults={40}&startIndex={0}")),
                 ItExpr.IsAny<CancellationToken>()
             );
     }
