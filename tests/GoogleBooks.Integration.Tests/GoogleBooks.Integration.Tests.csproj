@@ -13,8 +13,8 @@
     <None Remove="Books\GetByIdIntegrationTests\ExpectedGetBookByIdContent.json" />
     <None Remove="Books\GetByIdIntegrationTests\ExpectedServiceUnavailableContent.json" />
     <None Remove="Books\GetByIdIntegrationTests\MockedGoogleBooksServiceUnavailableContent.json" />
-    <None Remove="Books\ListBooksByCriteriaIntegrationTests\Should\ExpectedGetBooksByKeyWordContent.json" />
-    <None Remove="Books\ListBooksByCriteriaIntegrationTests\Should\MockedGetBooksByKeyWordResponse.json" />
+    <None Remove="Books\ListByCriteriaIntegrationTests\Should\ExpectedGetBooksByKeyWordContent.json" />
+    <None Remove="Books\ListByCriteriaIntegrationTests\Should\MockedGetBooksByKeyWordResponse.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,10 +36,10 @@
     <Content Include="Books\GetByIdIntegrationTests\ServiceUnavailable\MockedUnavailableContent.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Books\ListBooksByCriteriaIntegrationTests\Should\ExpectedGetBooksByKeyWordContent.json">
+    <Content Include="Books\ListByCriteriaIntegrationTests\Should\ExpectedGetBooksByKeyWordContent.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Books\ListBooksByCriteriaIntegrationTests\Should\MockedGetBooksByKeyWordResponse.json">
+    <Content Include="Books\ListByCriteriaIntegrationTests\Should\MockedGetBooksByKeyWordResponse.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

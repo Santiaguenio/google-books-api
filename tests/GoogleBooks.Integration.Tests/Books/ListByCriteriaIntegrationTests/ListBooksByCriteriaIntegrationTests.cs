@@ -1,10 +1,11 @@
-﻿using GoogleBooks.Contracts.Responses;
+﻿using GoogleBooks.Contracts.Requests;
+using GoogleBooks.Contracts.Responses;
 using Moq;
 using Moq.Protected;
 using System.Net;
 using System.Net.Http.Json;
 
-namespace GoogleBooks.Integration.Tests.Books.ListBooksByCriteriaIntegrationTests;
+namespace GoogleBooks.Integration.Tests.Books.ListByCriteriaIntegrationTests;
 
 [Collection("Integration tests")]
 public class ListBooksByCriteriaIntegrationTests(TestFactory testFactory) : IAsyncLifetime
@@ -22,15 +23,14 @@ public class ListBooksByCriteriaIntegrationTests(TestFactory testFactory) : IAsy
         return Task.CompletedTask;
     }
 
-    [Fact]
-    public async Task Should()
+    [Theory]
+    [MemberData(nameof(GetEntryDataAndExpectedResult))]
+    public async Task Should(PageParams pageParams)
     {
         // arrange
-        var keyWords = "federer";
-
         var expectedHttpResult = new HttpResponseMessage(HttpStatusCode.OK)
         {
-            Content = new StringContent(await File.ReadAllTextAsync("Books/ListBooksByCriteriaIntegrationTests/Should/ExpectedGetBooksByKeyWordContent.json"))
+            Content = new StringContent(await File.ReadAllTextAsync("Books/ListByCriteriaIntegrationTests/Should/ExpectedGetBooksByKeyWordContent.json"))
         };
 
         testFactory.SetMockedHttpClientFactory(testFactory.GoogleBooksUrl);
@@ -38,16 +38,16 @@ public class ListBooksByCriteriaIntegrationTests(TestFactory testFactory) : IAsy
             .Protected()
             .Setup<Task<HttpResponseMessage>>(
                 "SendAsync",
-                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes?q={keyWords}&maxResults={40}&startIndex={0}")),
+                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes?q={pageParams.KeyWords}&maxResults={pageParams.PageSize}&startIndex={pageParams.Page}")),
                 ItExpr.IsAny<CancellationToken>())
             .ReturnsAsync(new HttpResponseMessage
             {
                 StatusCode = HttpStatusCode.OK,
-                Content = new StringContent(await File.ReadAllTextAsync("Books/ListBooksByCriteriaIntegrationTests/Should/MockedGetBooksByKeyWordResponse.json"))
+                Content = new StringContent(await File.ReadAllTextAsync("Books/ListByCriteriaIntegrationTests/Should/MockedGetBooksByKeyWordResponse.json"))
             });
 
         // act
-        var actualHttpResult = await _client.GetAsync($"books?keyWords={keyWords}");
+        var actualHttpResult = await _client.GetAsync($"books?keyWords={pageParams.KeyWords}&page={pageParams.Page}&pageSize={pageParams.PageSize}");
 
         // assert
         Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
@@ -57,7 +57,7 @@ public class ListBooksByCriteriaIntegrationTests(TestFactory testFactory) : IAsy
             .Protected().Verify(
                 "SendAsync",
                 Times.Once(),
-                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes?q={keyWords}&maxResults={40}&startIndex={0}")),
+                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes?q={pageParams.KeyWords}&maxResults={pageParams.PageSize}&startIndex={pageParams.Page}")),
                 ItExpr.IsAny<CancellationToken>()
             );
     }
@@ -81,5 +81,15 @@ public class ListBooksByCriteriaIntegrationTests(TestFactory testFactory) : IAsy
                 ItExpr.Is<HttpRequestMessage>(_ => _.Method == It.IsAny<HttpMethod>() && _.RequestUri!.AbsoluteUri.Equals(It.IsAny<string>())),
                 ItExpr.IsAny<CancellationToken>()
             );
+    }
+
+    public static IEnumerable<object[]> GetEntryDataAndExpectedResult()
+    {
+        // 1 - Max page size and first page
+        yield return new object[]
+        {
+            new PageParams { KeyWords = "federer", Page = 0, PageSize = 40 },
+
+        };
     }
 }
