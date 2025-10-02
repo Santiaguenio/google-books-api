@@ -3,6 +3,7 @@ using Moq;
 using Moq.Protected;
 using System.Net;
 using System.Net.Http.Json;
+using System.Text.Json;
 
 namespace GoogleBooks.Integration.Tests.Books.GetByIdIntegrationTests;
 
@@ -58,6 +59,27 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
                 "SendAsync",
                 Times.Once(),
                 ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GetGoogleBooksUrl}volumes/{bookId}")),
+                ItExpr.IsAny<CancellationToken>()
+            );
+    }
+
+    [Fact]
+    public async Task Should_ReturnBadRequest_When_IdIsNullOrWhiteSpace()
+    {
+        // arrange
+        var expectedHttpResult = new HttpResponseMessage(HttpStatusCode.BadRequest);
+
+        // act
+        var actualHttpResult = await _client.GetAsync($"books/{string.Empty}");
+
+        // assert
+        Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
+
+        testFactory.MockedHttpMessageHandler
+            .Protected().Verify(
+                "SendAsync",
+                Times.Never(),
+                ItExpr.Is<HttpRequestMessage>(_ => _.Method == It.IsAny<HttpMethod>() && _.RequestUri!.AbsoluteUri.Equals(It.IsAny<string>())),
                 ItExpr.IsAny<CancellationToken>()
             );
     }

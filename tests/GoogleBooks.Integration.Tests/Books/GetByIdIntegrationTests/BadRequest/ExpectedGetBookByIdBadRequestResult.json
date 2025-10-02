@@ -1,0 +1,11 @@
+{
+  "type": "https://tools.ietf.org/html/rfc9110#section-15.5.1",
+  "title": "One or more validation errors occurred.",
+  "status": 400,
+  "errors": {
+    "id": [
+      "The id field is required."
+    ]
+  },
+  "traceId": "00-ffe27f4d9b5b0e2ce6c4a0741ce993eb-1a7305f4fd6096af-00"
+}

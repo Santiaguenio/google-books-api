@@ -8,6 +8,7 @@ internal static class BooksExtensions
 {
     internal static void RegisterBooksUseCases(this IServiceCollection services)
     {
-        services.AddScoped<IGetById<string>, GetBookById>();
+        services.AddScoped<IGetById<string>, GetById>();
+        services.AddScoped(typeof(IListByCriteria<>), typeof(ListByKeyWords<>));
     }
 }

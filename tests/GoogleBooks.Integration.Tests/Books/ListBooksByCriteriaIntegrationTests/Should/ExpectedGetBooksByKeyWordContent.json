@@ -1,0 +1,341 @@
+{
+  "TotalItems": 1000000,
+  "Items": [
+    {
+      "Etag": "54Ni3TdEFV4",
+      "Id": "X9fL0AEACAAJ",
+      "SelfLink": "https://www.googleapis.com/books/v1/volumes/X9fL0AEACAAJ",
+      "SaleInfo": {
+        "BuyLink": null,
+        "Country": "FR",
+        "Saleability": "NOT_FOR_SALE",
+        "IsEbook": false
+      },
+      "VolumeInfo": {
+        "CanonicalVolumeLink": "https://books.google.com/books/about/Roger_Federer.html?hl=\u0026id=X9fL0AEACAAJ",
+        "Description": null,
+        "InfoLink": "http://books.google.fr/books?id=X9fL0AEACAAJ\u0026dq=federer\u0026hl=\u0026source=gbs_api",
+        "Language": "fr",
+        "PreviewLink": "http://books.google.fr/books?id=X9fL0AEACAAJ\u0026dq=federer\u0026hl=\u0026cd=1\u0026source=gbs_api",
+        "PublishedDate": "2024-06-26",
+        "Publisher": null,
+        "Title": "Roger Federer",
+        "PageCount": 0,
+        "RatingsCount": null,
+        "Authors": [
+          "Mark Hodgkinson"
+        ],
+        "ImageLinks": null
+      }
+    },
+    {
+      "Etag": "fh0K1Z\u002B5fOg",
+      "Id": "lA4oCQAAQBAJ",
+      "SelfLink": "https://www.googleapis.com/books/v1/volumes/lA4oCQAAQBAJ",
+      "SaleInfo": {
+        "BuyLink": "https://play.google.com/store/books/details?id=lA4oCQAAQBAJ\u0026rdid=book-lA4oCQAAQBAJ\u0026rdot=1\u0026source=gbs_api",
+        "Country": "FR",
+        "Saleability": "FOR_SALE",
+        "IsEbook": true
+      },
+      "VolumeInfo": {
+        "CanonicalVolumeLink": "https://play.google.com/store/books/details?id=lA4oCQAAQBAJ",
+        "Description": "Roger Federer est un sportif qu\u0027on ne pr\u00E9sente plus. Multiple vainqueur des plus grands tournois de tennis, ic\u00F4ne plan\u00E9taire, objet de toutes les attentions, il est unanimement salu\u00E9 comme une l\u00E9gende \u00E0 part enti\u00E8re. Mais au fond, qu\u0027est-ce qui a construit sa notori\u00E9t\u00E9 ? Pourquoi est-il autant adul\u00E9 ? Qu\u0027 y a-t-il de si remarquable dans la trajectoire qui est la sienne ? Pourquoi m\u00EAme ses adversaires les plus coriaces ne tarissent pas d\u0027\u00E9loges \u00E0 son \u00E9gard ? Ce livre, fruit du travail d\u0027un fan qui le suit depuis des ann\u00E9es, revient sur le parcours du Suisse, sur tous ces moments qui ont fait de lui le champion incontest\u00E9 qu\u0027il est aujourd\u0027hui. \u00C0 travers ce r\u00E9cit original, revivez avec passion l\u0027\u00E9pop\u00E9e de ce joueur que beaucoup consid\u00E8rent comme le plus grand champion de tennis de tous les temps.",
+        "InfoLink": "https://play.google.com/store/books/details?id=lA4oCQAAQBAJ\u0026source=gbs_api",
+        "Language": "fr",
+        "PreviewLink": "http://books.google.fr/books?id=lA4oCQAAQBAJ\u0026pg=RA1-PT24\u0026dq=federer\u0026hl=\u0026cd=2\u0026source=gbs_api",
+        "PublishedDate": "2015-05-10",
+        "Publisher": "Jiva Bahati",
+        "Title": "L\u0027\u00E9pop\u00E9e Federer",
+        "PageCount": 179,
+        "RatingsCount": null,
+        "Authors": [
+          "Jiva Bahati"
+        ],
+        "ImageLinks": {
+          "ExtraLarge": null,
+          "Medium": null,
+          "Large": null,
+          "Small": null,
+          "SmallThumbnail": "http://books.google.com/books/content?id=lA4oCQAAQBAJ\u0026printsec=frontcover\u0026img=1\u0026zoom=5\u0026edge=curl\u0026source=gbs_api",
+          "Thumbnail": "http://books.google.com/books/content?id=lA4oCQAAQBAJ\u0026printsec=frontcover\u0026img=1\u0026zoom=1\u0026edge=curl\u0026source=gbs_api"
+        }
+      }
+    },
+    {
+      "Etag": "kYSzOMEuhSg",
+      "Id": "enYVEQAAQBAJ",
+      "SelfLink": "https://www.googleapis.com/books/v1/volumes/enYVEQAAQBAJ",
+      "SaleInfo": {
+        "BuyLink": "https://play.google.com/store/books/details?id=enYVEQAAQBAJ\u0026rdid=book-enYVEQAAQBAJ\u0026rdot=1\u0026source=gbs_api",
+        "Country": "FR",
+        "Saleability": "FOR_SALE",
+        "IsEbook": true
+      },
+      "VolumeInfo": {
+        "CanonicalVolumeLink": "https://play.google.com/store/books/details?id=enYVEQAAQBAJ",
+        "Description": "Roger Federer est une v\u00E9ritable l\u00E9gende du tennis. Au cours des deux derni\u00E8res d\u00E9cennies, il a profond\u00E9ment marqu\u00E9 l\u2019histoire de son sport. Il a impressionn\u00E9 par la long\u00E9vit\u00E9 de sa carri\u00E8re et par ses nombreux records dont certains tiennent encore. L\u2019homme aux 103 troph\u00E9es soulev\u00E9s a remport\u00E9 la Coupe Davis et vingt Grands Chelems, dont huit titres \u00E0 Wimbledon, six Open d\u2019Australie et cinq US Open d\u2019affil\u00E9e. \u00C9nigmatique et montrant peu ses \u00E9motions, Federer poss\u00E8de un jeu \u00E9l\u00E9gant et ultra-complet que ce livre propose de d\u00E9crypter. D\u00E9sormais en retrait des courts, \u00AB le Ma\u00EEtre \u00BB n\u2019a, pour autant, pas fini de nous d\u00E9voiler tous ses secrets...",
+        "InfoLink": "https://play.google.com/store/books/details?id=enYVEQAAQBAJ\u0026source=gbs_api",
+        "Language": "fr",
+        "PreviewLink": "http://books.google.fr/books?id=enYVEQAAQBAJ\u0026pg=PA1995\u0026dq=federer\u0026hl=\u0026cd=3\u0026source=gbs_api",
+        "PublishedDate": "2024-06-26",
+        "Publisher": "Marabout",
+        "Title": "Roger Federer - Le ma\u00EEtre",
+        "PageCount": 197,
+        "RatingsCount": null,
+        "Authors": [
+          "Mark Hodgkinson"
+        ],
+        "ImageLinks": {
+          "ExtraLarge": null,
+          "Medium": null,
+          "Large": null,
+          "Small": null,
+          "SmallThumbnail": "http://books.google.com/books/content?id=enYVEQAAQBAJ\u0026printsec=frontcover\u0026img=1\u0026zoom=5\u0026edge=curl\u0026source=gbs_api",
+          "Thumbnail": "http://books.google.com/books/content?id=enYVEQAAQBAJ\u0026printsec=frontcover\u0026img=1\u0026zoom=1\u0026edge=curl\u0026source=gbs_api"
+        }
+      }
+    },
+    {
+      "Etag": "KmDbdxDyIoU",
+      "Id": "fH8qEAAAQBAJ",
+      "SelfLink": "https://www.googleapis.com/books/v1/volumes/fH8qEAAAQBAJ",
+      "SaleInfo": {
+        "BuyLink": "https://play.google.com/store/books/details?id=fH8qEAAAQBAJ\u0026rdid=book-fH8qEAAAQBAJ\u0026rdot=1\u0026source=gbs_api",
+        "Country": "FR",
+        "Saleability": "FOR_SALE",
+        "IsEbook": true
+      },
+      "VolumeInfo": {
+        "CanonicalVolumeLink": "https://play.google.com/store/books/details?id=fH8qEAAAQBAJ",
+        "Description": "La popularit\u00E9 du plus grand tennisman de l\u0027histoire enfin d\u00E9crypt\u00E9e En 2011, un sondage r\u00E9alis\u00E9 aupr\u00E8s de 50 000 personnes dans 25 pays r\u00E9v\u00E9lait que Roger Federer \u00E9tait la personne la plus respect\u00E9e au monde apr\u00E8s Nelson Mandela. Comment expliquer une popularit\u00E9 aussi extraordinaire ? Bien s\u00FBr, il y a le palmar\u00E8s incroyable : recordman du nombre de titres du Grand Chelem et du nombre de semaines \u00E0 la place de num\u00E9ro 1 mondial, Federer a laiss\u00E9 une trace ind\u00E9l\u00E9bile sur le tennis. Mais cette fascination exerc\u00E9e par Federer sur le public va bien au-del\u00E0 des simples performances sportives. Depuis son apparition sur le circuit professionnel en 1998, Federer est devenu \u00E0 la fois une ic\u00F4ne de mode, un philanthrope reconnu, un businessman, et m\u00EAme un objet de r\u00E9cit (John le Carr\u00E9 n\u0027h\u00E9sitant pas \u00E0 faire de la finale de Roland Garros de 2009 l\u0027\u00E9v\u00E8nement cl\u00E9 de son roman d\u0027espionnage Un tra\u00EEtre \u00E0 notre go\u00FBt), voire de d\u00E9sir (un roman paru en 2012 s\u0027intitule m\u00EAme Comment j\u0027ai couch\u00E9 avec Roger Federer ?). Comment expliquer qu\u0027un simple tennisman, aussi dou\u00E9 soit-il, soit parvenu \u00E0 \u00EAtre qualifi\u00E9 tour \u00E0 tour de \u0022 l\u00E9gende \u0022, de \u0022 demi-dieu \u0022 voire \u0022 d\u0027exp\u00E9rience religieuse \u0022 ? Ce livre vise \u00E0 diss\u00E9quer le mythe Roger Federer. \u00C0 essayer de comprendre les ressorts qui se cachent derri\u00E8re le joueur et le r\u00E9cit qui s\u0027est construit autour de sa personnalit\u00E9. Des r\u00E9f\u00E9rences \u00E0 la mythologie, au cin\u00E9ma, \u00E0 la religion, \u00E0 la philosophie, \u00E0 la litt\u00E9rature, \u00E0 la peinture ou \u00E0 la psychologie permettront d\u0027apporter de nouveaux \u00E9clairages sur le sportif le plus adul\u00E9 de tous les temps.",
+        "InfoLink": "https://play.google.com/store/books/details?id=fH8qEAAAQBAJ\u0026source=gbs_api",
+        "Language": "fr",
+        "PreviewLink": "http://books.google.fr/books?id=fH8qEAAAQBAJ\u0026pg=RA1-PT32\u0026dq=federer\u0026hl=\u0026cd=4\u0026source=gbs_api",
+        "PublishedDate": "2021-05-12",
+        "Publisher": "Solar",
+        "Title": "Federer, un mythe contemporain",
+        "PageCount": 118,
+        "RatingsCount": null,
+        "Authors": [
+          "Frederic Vallois",
+          "Charles Haroche"
+        ],
+        "ImageLinks": {
+          "ExtraLarge": null,
+          "Medium": null,
+          "Large": null,
+          "Small": null,
+          "SmallThumbnail": "http://books.google.com/books/content?id=fH8qEAAAQBAJ\u0026printsec=frontcover\u0026img=1\u0026zoom=5\u0026edge=curl\u0026source=gbs_api",
+          "Thumbnail": "http://books.google.com/books/content?id=fH8qEAAAQBAJ\u0026printsec=frontcover\u0026img=1\u0026zoom=1\u0026edge=curl\u0026source=gbs_api"
+        }
+      }
+    },
+    {
+      "Etag": "3R0CPPjoXxQ",
+      "Id": "asSVEAAAQBAJ",
+      "SelfLink": "https://www.googleapis.com/books/v1/volumes/asSVEAAAQBAJ",
+      "SaleInfo": {
+        "BuyLink": "https://play.google.com/store/books/details?id=asSVEAAAQBAJ\u0026rdid=book-asSVEAAAQBAJ\u0026rdot=1\u0026source=gbs_api",
+        "Country": "FR",
+        "Saleability": "FOR_SALE",
+        "IsEbook": true
+      },
+      "VolumeInfo": {
+        "CanonicalVolumeLink": "https://play.google.com/store/books/details?id=asSVEAAAQBAJ",
+        "Description": "Ils sont les trois plus grands joueurs masculins de tennis de tous les temps, mais les connaissez-vous vraiment ? LE PREMIER LIVRE SUR LES 3 L\u00C9GENDES DU TENNIS MONDIAL Ils sont peut-\u00EAtre les trois plus grands joueurs de tous les temps. 21 titres en grand chelem pour Nadal, 20 pour Federer et Djokovic : les trois titans du tennis mondial \u00E9crivent la l\u00E9gende de leur sport \u00E0 chaque confrontation, ne laissant que des miettes \u00E0 leurs adversaires, tous ces grands joueurs qui auront eu la malchance d\u0027\u00E9voluer sous leur r\u00E8gne. Leur histoire commune, pourtant, restait \u00E0 \u00E9crire. On conna\u00EEt leur empreinte, leur emprise, leur h\u00E9g\u00E9monie, mais on conna\u00EEt moins les anecdotes, les p\u00E9rip\u00E9ties, les histoires qui ont jalonn\u00E9 ces vingt ans de carri\u00E8re commune. Elles sont pourtant nombreuses, souvent impressionnantes, parfois cocasses. Les voici racont\u00E9es en 50 chapitres de 3 pages environ qui porteront chacun sur un th\u00E8me original reliant soit les 3 joueurs, soit 2 d\u0027entre eux. Matchs l\u00E9gendaires, anecdotes (d\u00E9cal\u00E9es parfois), d\u00E9bats, statistiques... en voici quelques exemples : Le jour o\u00F9 le \u00ABBig 3\u00BB a \u00E9t\u00E9 invent\u00E9 Le jour o\u00F9 Nadal et Djokovic ont repouss\u00E9 le couvre-feu gr\u00E2ce \u00E0 leur tennis (Roland-Garros 2021) : Le plus beau coup de leur vieDjokovic imite Nadal \u00E0 Rome 2009 20 records du Big 3 qui ne seront jamais battus La g\u00E9n\u00E9ration perdue (leurs adversaires) Leur rapport \u00E0 la France C\u0027est qui, le GOAT ? Et Serena Williams, alors ? Test : quel \u00ABBig 3\u00BB \u00EAtes-vous ?",
+        "InfoLink": "https://play.google.com/store/books/details?id=asSVEAAAQBAJ\u0026source=gbs_api",
+        "Language": "fr",
+        "PreviewLink": "http://books.google.fr/books?id=asSVEAAAQBAJ\u0026pg=PT106\u0026dq=federer\u0026hl=\u0026cd=5\u0026source=gbs_api",
+        "PublishedDate": "2022-11-03",
+        "Publisher": "Hugo Sport",
+        "Title": "Federer, Nadal, Djokovic, l\u0027histoire du Big 3",
+        "PageCount": 324,
+        "RatingsCount": null,
+        "Authors": [
+          "Bastien Fachan",
+          "Stephanos Tsitsipas"
+        ],
+        "ImageLinks": {
+          "ExtraLarge": null,
+          "Medium": null,
+          "Large": null,
+          "Small": null,
+          "SmallThumbnail": "http://books.google.com/books/content?id=asSVEAAAQBAJ\u0026printsec=frontcover\u0026img=1\u0026zoom=5\u0026edge=curl\u0026source=gbs_api",
+          "Thumbnail": "http://books.google.com/books/content?id=asSVEAAAQBAJ\u0026printsec=frontcover\u0026img=1\u0026zoom=1\u0026edge=curl\u0026source=gbs_api"
+        }
+      }
+    },
+    {
+      "Etag": "lBKTYppjMLc",
+      "Id": "qgRfEQAAQBAJ",
+      "SelfLink": "https://www.googleapis.com/books/v1/volumes/qgRfEQAAQBAJ",
+      "SaleInfo": {
+        "BuyLink": "https://play.google.com/store/books/details?id=qgRfEQAAQBAJ\u0026rdid=book-qgRfEQAAQBAJ\u0026rdot=1\u0026source=gbs_api",
+        "Country": "FR",
+        "Saleability": "FOR_SALE",
+        "IsEbook": true
+      },
+      "VolumeInfo": {
+        "CanonicalVolumeLink": "https://play.google.com/store/books/details?id=qgRfEQAAQBAJ",
+        "Description": "D\u00E9couvrez l\u2019essence d\u2019une ic\u00F4ne qui a transcend\u00E9 les courts de tennis pour devenir une source d\u2019inspiration in\u00E9puisable, tant dans le sport qu\u2019en dehors. Ce livre est une invitation \u00E0 entrer dans l\u2019univers de l\u2019un des plus grands athl\u00E8tes de tous les temps, un homme dont le parcours est rempli de le\u00E7ons pr\u00E9cieuses, de d\u00E9fis surmont\u00E9s et de moments qui ont d\u00E9fini une \u00E9poque. D\u00E8s les premiers accords de sa carri\u00E8re \u00E0 B\u00E2le, Federer s\u2019est montr\u00E9 non seulement comme un prodige du tennis, mais aussi comme un artiste dont la raquette \u00E9tait le pinceau et chaque match, une toile. Son style, fluide et gracieux, contraste avec l\u2019intensit\u00E9 farouche de sa d\u00E9termination, une combinaison qui l\u2019\u00E9l\u00E8ve rapidement au panth\u00E9on des grands. Mais comme toute histoire qui vaut la peine d\u2019\u00EAtre racont\u00E9e, celle de Federer est remplie de hauts et de bas, de triomphes et de d\u00E9faites glorieux qui, bien que douloureux, n\u2019ont jamais terni son lustre. Dans ce livre, nous d\u00E9m\u00EAlons l\u2019homme derri\u00E8re l\u2019idole. Chaque chapitre r\u00E9v\u00E8le des facettes de Federer qui vont au-del\u00E0 de la star des courts : le p\u00E8re d\u00E9vou\u00E9, le mari aimant, l\u2019ami fid\u00E8le et le philanthrope engag\u00E9. Sa vie, bien qu\u2019orn\u00E9e de la gloire du succ\u00E8s, n\u2019a jamais \u00E9t\u00E9 exempte des obstacles inh\u00E9rents \u00E0 la condition humaine. Pr\u00E9parez-vous \u00E0 une lecture qui fera vibrer, motivera et, surtout, montrera que les vrais champions sont ceux qui, avec passion et perfection, laissent une marque ind\u00E9l\u00E9bile non seulement sur leur terrain, mais dans le c\u0153ur de millions de personnes \u00E0 travers le monde.",
+        "InfoLink": "https://play.google.com/store/books/details?id=qgRfEQAAQBAJ\u0026source=gbs_api",
+        "Language": "fr",
+        "PreviewLink": "http://books.google.fr/books?id=qgRfEQAAQBAJ\u0026pg=PA176\u0026dq=federer\u0026hl=\u0026cd=6\u0026source=gbs_api",
+        "PublishedDate": "2025-05-20",
+        "Publisher": "Fabricio Sales Silva",
+        "Title": "Roger Federer: Passion et perfection",
+        "PageCount": 199,
+        "RatingsCount": null,
+        "Authors": [
+          "Fabricio Sales Silva"
+        ],
+        "ImageLinks": {
+          "ExtraLarge": null,
+          "Medium": null,
+          "Large": null,
+          "Small": null,
+          "SmallThumbnail": "http://books.google.com/books/content?id=qgRfEQAAQBAJ\u0026printsec=frontcover\u0026img=1\u0026zoom=5\u0026edge=curl\u0026source=gbs_api",
+          "Thumbnail": "http://books.google.com/books/content?id=qgRfEQAAQBAJ\u0026printsec=frontcover\u0026img=1\u0026zoom=1\u0026edge=curl\u0026source=gbs_api"
+        }
+      }
+    },
+    {
+      "Etag": "MiMT8iWWm\u002Bg",
+      "Id": "dj1VEAAAQBAJ",
+      "SelfLink": "https://www.googleapis.com/books/v1/volumes/dj1VEAAAQBAJ",
+      "SaleInfo": {
+        "BuyLink": "https://play.google.com/store/books/details?id=dj1VEAAAQBAJ\u0026rdid=book-dj1VEAAAQBAJ\u0026rdot=1\u0026source=gbs_api",
+        "Country": "FR",
+        "Saleability": "FOR_SALE",
+        "IsEbook": true
+      },
+      "VolumeInfo": {
+        "CanonicalVolumeLink": "https://play.google.com/store/books/details?id=dj1VEAAAQBAJ",
+        "Description": "Et si, vous aussi, vous deveniez une ic\u00F4ne... Monstre sacr\u00E9 du tennis, Roger Federer collectionne les titres, les records et les superlatifs ! Celui qui a tout gagn\u00E9 cultive une passion du tennis rare qui lui permet d\u2019accomplir des exploits extraordinaires. Le champion suisse a su, tout au long de sa carri\u00E8re, fa\u00E7onner sa l\u00E9gende en \u00E9vitant les fautes directes et en multipliant les prouesses ! Si tout le monde n\u2019est pas un champion comme \u00AB RF \u00BB, chacun peut s\u2019inspirer au quotidien des qualit\u00E9s d\u00E9velopp\u00E9es par \u00AB Rodger \u00BB depuis plus de 20 ans sur les courts de tennis et en dehors. Agir et penser comme Roger Federer, c\u2019est apprendre \u00E0 se conna\u00EEtre en profondeur, corriger ses d\u00E9fauts (il en a tout de m\u00EAme !), savoir s\u2019entourer, faire preuve d\u2019assurance mais aussi d\u2019autod\u00E9rision, assumer pleinement ses forces et travailler dur.Authentique, g\u00E9n\u00E9reux, confiant, blagueur, sensible, curieux, passionn\u00E9, rigoureux, volontaire, strat\u00E8ge.... Roger Federer est un monument qui met tout le monde d\u2019accord bien au-del\u00E0 du monde du tennis !Sa carri\u00E8re et sa vie sont de puissantes sources d\u2019inspiration. Dans ce livre, le \u00AB ma\u00EEtre \u00BB est \u00E0 vos c\u00F4t\u00E9s et devient votre coach pour faire \u00E9clore la meilleure version de vous-m\u00EAme. Mathieu Aeschmann, journaliste suisse, fut le partenaire d\u0027entra\u00EEnement de Roger Federer en \u00E9quipe de Suisse juniors avant de couvrir sa carri\u00E8re pour plusieurs quotidiens romands. Le regard transversal qu\u0027il porte sur le champion lui permet de d\u00E9crypter - pour vous - ses facettes les plus insoup\u00E7onn\u00E9es.",
+        "InfoLink": "https://play.google.com/store/books/details?id=dj1VEAAAQBAJ\u0026source=gbs_api",
+        "Language": "fr",
+        "PreviewLink": "http://books.google.fr/books?id=dj1VEAAAQBAJ\u0026pg=PT7\u0026dq=federer\u0026hl=\u0026cd=7\u0026source=gbs_api",
+        "PublishedDate": "2021-04-15",
+        "Publisher": "Les \u00C9ditions de l\u0027Opportun",
+        "Title": "Agir et penser comme Roger Federer",
+        "PageCount": 113,
+        "RatingsCount": null,
+        "Authors": [
+          "Mathieu Aeschmann"
+        ],
+        "ImageLinks": {
+          "ExtraLarge": null,
+          "Medium": null,
+          "Large": null,
+          "Small": null,
+          "SmallThumbnail": "http://books.google.com/books/content?id=dj1VEAAAQBAJ\u0026printsec=frontcover\u0026img=1\u0026zoom=5\u0026edge=curl\u0026source=gbs_api",
+          "Thumbnail": "http://books.google.com/books/content?id=dj1VEAAAQBAJ\u0026printsec=frontcover\u0026img=1\u0026zoom=1\u0026edge=curl\u0026source=gbs_api"
+        }
+      }
+    },
+    {
+      "Etag": "SOlfAuIffI4",
+      "Id": "85uJCgAAQBAJ",
+      "SelfLink": "https://www.googleapis.com/books/v1/volumes/85uJCgAAQBAJ",
+      "SaleInfo": {
+        "BuyLink": "https://play.google.com/store/books/details?id=85uJCgAAQBAJ\u0026rdid=book-85uJCgAAQBAJ\u0026rdot=1\u0026source=gbs_api",
+        "Country": "FR",
+        "Saleability": "FOR_SALE",
+        "IsEbook": true
+      },
+      "VolumeInfo": {
+        "CanonicalVolumeLink": "https://play.google.com/store/books/details?id=85uJCgAAQBAJ",
+        "Description": "C\u2019est avec trop de facilit\u00E9, h\u00E9las, qu\u2019on se laisse bercer par les gens qu\u2019on a le malheur d\u2019aimer. Il s\u0027agit d\u0027une longue lettre d\u0027amour tr\u00E8s po\u00E9tique, r\u00E9dig\u00E9e par un narrateur au sexe indistinct plong\u00E9 dans une m\u00E9lancolie terrible et qui d\u00E9couvre \u00E0 travers le personnage de Roger Federer une envie de se battre. Comment j\u0027ai couch\u00E9 avec Roger Federer est un roman au titre volontairement provocateur. Le narrateur est d\u00E9pressif et m\u00E9lancolique. Une amie lui propose de l\u0027accompagner \u00E0 un match \u00E0 Roland-Garros. \u00AB Arriv\u00E9 au stade, je l\u0027ai vu \u00BB. C\u0027est la r\u00E9v\u00E9lation. Il fantasme sur Federer et oublie sa d\u00E9pression. Ce roman se d\u00E9roule comme un match de tennis. \u00C0 la fin, \u00AB Jeu, set et match, Roger Federer \u00BB. EXTRAIT On dit souvent d\u2019accord, comme \u00E7a, sans savoir o\u00F9 \u00E7a va nous mener. Je me suis assis et j\u2019ai longuement r\u00E9fl\u00E9chi. Il me fallait trouver un nouveau sens, une nouvelle direction, adopter une nouvelle forme d\u2019existence. C\u2019est \u00E0 ce moment que Julia m\u2019a appel\u00E9. \u2014 \u00C7a te dirait d\u2019aller voir un match cette apr\u00E8m ? M\u2019a-t-elle demand\u00E9. J\u2019\u00E9tais surpris : \u2014 Un match de quoi ? J\u2019ai dit. \u2014 Un match de tennis ! Tout \u00E9tait compliqu\u00E9 pour moi depuis quelques mois. J\u2019\u00E9tais en arr\u00EAt depuis un moment, une vilaine d\u00E9pression qui ne voulait pas partir, qui s\u2019\u00E9tait install\u00E9e doucement. J\u2019ai dit OK. Il faut dire que Roland Garros, m\u00EAme quand on n\u2019y entend rien, \u00E7a ne se refuse pas. Le m\u00E9decin m\u2019avait dit : \u00AB \u00E7a arrive \u00E0 tout le monde, ne vous inqui\u00E9tez pas, prenez soin de vous. \u00BB CE QU\u0027EN PENSE LA CRITIQUE \u00AB Comment j\u2019ai couch\u00E9 avec Roger Federer ? est un premier roman au titre volontairement provocateur, ouvert, via l\u2019interrogative, dans le suspens du fantasme. Le narrateur est en proie \u00E0 une d\u00E9pression qu\u2019il nomme m\u00E9lancolie s\u00E9v\u00E8re. Une amie lui propose de l\u2019accompagner \u00E0 un match \u00E0 Roland-Garros. \u00AB Arriv\u00E9 au stade, je l\u2019ai vu \u00BB. R\u00E9v\u00E9lation. Fixation sensuelle, plus que pornographique, sur sa beaut\u00E9, ses bonds de tigre, \u00AB son regard noir \u00BB, \u00AB sa masculinit\u00E9, \u00E9l\u00E9gante, douce \u00BB, les langues qu\u2019il pratique, son palmar\u00E8s, bien s\u00FBr, et surtout \u00AB ses jambes, \u00E9lanc\u00E9es, muscl\u00E9es \u00BB. Fantasmer sur Federer, c\u2019est oublier la m\u00E9lancolie pour entrer dans le vague des passions. \u00BB (Christine Marcandier, Mediapart, 13 ao\u00FBt 2012) A PROPOS DE L\u2019AUTEUR Philippe Roi est enseignant, photographe et \u00E9crivain. Il est n\u00E9 le 6 novembre 1969. Quand il \u00E9tait enfant, les murs de sa chambre \u00E9taient tapiss\u00E9s de photos de Romy Schneider dans L\u2019enfer de Clouzot.",
+        "InfoLink": "https://play.google.com/store/books/details?id=85uJCgAAQBAJ\u0026source=gbs_api",
+        "Language": "fr",
+        "PreviewLink": "http://books.google.fr/books?id=85uJCgAAQBAJ\u0026pg=PP2\u0026dq=federer\u0026hl=\u0026cd=8\u0026source=gbs_api",
+        "PublishedDate": "2015-09-11",
+        "Publisher": "Christophe Lucquin \u00C9diteur",
+        "Title": "Comment j\u0027ai couch\u00E9 avec Roger Federer",
+        "PageCount": 39,
+        "RatingsCount": null,
+        "Authors": [
+          "Philippe Roi"
+        ],
+        "ImageLinks": {
+          "ExtraLarge": null,
+          "Medium": null,
+          "Large": null,
+          "Small": null,
+          "SmallThumbnail": "http://books.google.com/books/content?id=85uJCgAAQBAJ\u0026printsec=frontcover\u0026img=1\u0026zoom=5\u0026edge=curl\u0026source=gbs_api",
+          "Thumbnail": "http://books.google.com/books/content?id=85uJCgAAQBAJ\u0026printsec=frontcover\u0026img=1\u0026zoom=1\u0026edge=curl\u0026source=gbs_api"
+        }
+      }
+    },
+    {
+      "Etag": "mKRfUfz7j4Q",
+      "Id": "lcWWDwAAQBAJ",
+      "SelfLink": "https://www.googleapis.com/books/v1/volumes/lcWWDwAAQBAJ",
+      "SaleInfo": {
+        "BuyLink": "https://play.google.com/store/books/details?id=lcWWDwAAQBAJ\u0026rdid=book-lcWWDwAAQBAJ\u0026rdot=1\u0026source=gbs_api",
+        "Country": "FR",
+        "Saleability": "FOR_SALE",
+        "IsEbook": true
+      },
+      "VolumeInfo": {
+        "CanonicalVolumeLink": "https://play.google.com/store/books/details?id=lcWWDwAAQBAJ",
+        "Description": "Depuis deux d\u00E9cennies, Roger Federer \u00E9clabousse les courts de tennis de sa classe, de sa gr\u00E2ce, de son g\u00E9nie. Aussi ses fans \u00E0 travers le monde se comptent-ils par millions. Mais il y en a un qui n\u2019est pas tout \u00E0 fait comme les autres : Arnaud Ca\u00EBl. Ce journaliste sportif (n\u00E9 en 1986 \u00E0 Nancy) voue une admiration sans bornes \u00E0 son Rodgeur et livre ici un portrait aussi d\u00E9licieux qu\u2019inattendu. De leur rencontre manqu\u00E9e dans les vestiaires du tournoi de Monte-Carlo aux nuits blanches pass\u00E9es \u00E0 encourager le maestro par fuseaux horaires interpos\u00E9s, cela frise l\u2019obsession. Et ce n\u2019est pas sa femme qui d\u00E9mentira : Arnaud l\u2019a demand\u00E9e en mariage le jour de l\u2019anniversaire de son idole ! Voici donc un vibrant hommage au plus grand tennisman de la plan\u00E8te. Un hommage vif comme une vol\u00E9e, tendu comme une balle de match. Ca\u00EBl nous emm\u00E8ne dans l\u2019odyss\u00E9e du Suisse. Les pieds sur terre et la t\u00EAte dans les \u00E9toiles... [Photos int\u00E9rieures] [Arnaud Ca\u00EBl, n\u00E9 en 1986 \u00E0 Nancy, dipl\u00F4m\u00E9 de l\u2019\u00E9cole de journalisme de Nice, a travaill\u00E9 pour les r\u00E9dactions de L\u2019\u00C9quipe.fr et d\u2019Infosport\u002B avant de devenir l\u2019un des pr\u00E9sentateurs vedettes de Mirabelle TV pendant une d\u00E9cennie. Il fut aussi r\u00E9dacteur en chef adjoint de la cha\u00EEne lorraine. Il r\u00E9alise aujourd\u2019hui des documentaires sportifs pour la t\u00E9l\u00E9vision nationale.]",
+        "InfoLink": "https://play.google.com/store/books/details?id=lcWWDwAAQBAJ\u0026source=gbs_api",
+        "Language": "fr",
+        "PreviewLink": "http://books.google.fr/books?id=lcWWDwAAQBAJ\u0026pg=PA47\u0026dq=federer\u0026hl=\u0026cd=9\u0026source=gbs_api",
+        "PublishedDate": "2019-05-09",
+        "Publisher": "Andersen \u00E9ditions",
+        "Title": "Roger Federer jusqu\u2019au bout de la nuit",
+        "PageCount": 80,
+        "RatingsCount": null,
+        "Authors": [
+          "Arnaud Ca\u00EBl"
+        ],
+        "ImageLinks": {
+          "ExtraLarge": null,
+          "Medium": null,
+          "Large": null,
+          "Small": null,
+          "SmallThumbnail": "http://books.google.com/books/content?id=lcWWDwAAQBAJ\u0026printsec=frontcover\u0026img=1\u0026zoom=5\u0026edge=curl\u0026source=gbs_api",
+          "Thumbnail": "http://books.google.com/books/content?id=lcWWDwAAQBAJ\u0026printsec=frontcover\u0026img=1\u0026zoom=1\u0026edge=curl\u0026source=gbs_api"
+        }
+      }
+    },
+    {
+      "Etag": "8U3wXGkKhZU",
+      "Id": "8yO1EAAAQBAJ",
+      "SelfLink": "https://www.googleapis.com/books/v1/volumes/8yO1EAAAQBAJ",
+      "SaleInfo": {
+        "BuyLink": "https://play.google.com/store/books/details?id=8yO1EAAAQBAJ\u0026rdid=book-8yO1EAAAQBAJ\u0026rdot=1\u0026source=gbs_api",
+        "Country": "FR",
+        "Saleability": "FOR_SALE",
+        "IsEbook": true
+      },
+      "VolumeInfo": {
+        "CanonicalVolumeLink": "https://play.google.com/store/books/details?id=8yO1EAAAQBAJ",
+        "Description": "Soyez coach\u00E9 par le seul psychiatre qui a disput\u00E9 Roland-Garros ! Christophe Bernelle, 59 ans, est le seul psychiatre qui a disput\u00E9 Roland-Garros ! En 1983, l\u0027ann\u00E9e du sacre de Yannick Noah, il s\u0027incline au deuxi\u00E8me tour contre Mats Wilander, le futur finaliste. Il a 20 ans, il est 9e fran\u00E7ais et 170e joueur mondial mais il n\u0027\u00E9tait pas pr\u00E9par\u00E9 psychologiquement. Dans la foul\u00E9e des qualifications pour Wimbledon, le feu sacr\u00E9 perdu, il rompt avec le tennis. Il entame des \u00E9tudes de m\u00E9decine, se sp\u00E9cialise dans la sant\u00E9 mentale. Le docteur Bernelle devient th\u00E9rapeute. La passion du tennis revenue (il continue de le pratiquer \u00E0 un bon niveau), il exerce dans divers cabinets en particulier aupr\u00E8s du jeune public. Il a aussi \u00E9t\u00E9 responsable de la cellule mentale \u00E0 la DTN au sein de la F\u00E9d\u00E9ration fran\u00E7aise de tennis. Il est, comme tout le monde, fascin\u00E9 par ceux qu\u0027il appelle les trois monstres : Roger Federer, Novak Djokovic et Rafael Nadal, 61 titres du Grand Chelem \u00E0 eux trois depuis 2003 quand, chez les hommes, aucun Fran\u00E7ais n\u0027en a gagn\u00E9 un depuis Noah en 1983. Avant de remporter l\u0027Open d\u0027Australie en 2020, Djokovic a eu cette phrase, \u00E0 laquelle il souscrit : \u0022 Maintenant, pour gagner un Grand Chelem et \u00EAtre constant au plus haut niveau pendant de nombreuses ann\u00E9es, il faut acqu\u00E9rir une maturit\u00E9 mentale et \u00E9motionnelle, une exp\u00E9rience pour comprendre ses forces et combattre ses faiblesses. Rafa, Roger et moi, tout au long de ces dix, quinze ans, on a su ce qu\u0027il fallait faire mentalement dans certaines situations particuli\u00E8res. Cela nous donne probablement un petit avantage.\u0022 Dans cet ouvrage ludique, pratique et p\u00E9dagogique, Christophe Bernelle, apr\u00E8s avoir racont\u00E9 son parcours de tennisman \u00E0 psychiatre, va d\u00E9cortiquer ce qui constitue la force du merveilleux trio, notamment au niveau mental. Il va analyser leurs ressorts, les m\u00E9canismes qui les habitent et constituent comme des vade-mecum \u00E0 d\u00E9ployer pour le tennisman amateur comme pour tout un chacun. Il va entrer dans leur psychisme et diss\u00E9quer une quarantaine de matches mettant aux prises Federer, Nadal ou bien Djokovic pour en dresser des arch\u00E9types. Exemple : Anticiper la situation Dimanche 14 juillet 2019. Finale de Wimbledon. Djokovic bat Federer 7-6, 1-6, 7-6, 4-6, 13-12. 4h57 de jeu. L\u0027analyse : \u0022 Dans cette finale d\u0027anthologie, la plus longue de l\u0027histoire du tournoi, le Serbe a obtenu son 16e titre du Grand Chelem, malgr\u00E9 la ferveur du public pour le Suisse. Trois quart d\u0027heure plus t\u00F4t, Federer m\u00E8ne 8 jeux \u00E0 7 au 5e set et 40-15, s\u0027offrant deux balles de match. Federer sert une superbe premi\u00E8re balle sur le coup droit de Djokovic, qui sort un retour gagnant crois\u00E9. Djoko a senti le coup, a anticip\u00E9, comme lors d\u0027une s\u00E9ance de tir au but. Tout \u00E9tait programm\u00E9 dans sa t\u00EAte. La balle est arriv\u00E9e exactement o\u00F9 il le pensait et boum... Si tu attends ce que l\u0027autre va faire, tu r\u00E9agis au lieu d\u0027agir... Les tr\u00E8s grands anticipent toujours, ils visualisent avant. Il a contre-attaqu\u00E9 et gagn\u00E9 son pari. Il n\u0027est pas anodin non plus qu\u0027il ait remport\u00E9 les trois tie-breaks du match (le dernier \u00E0 12 jeux partout, pour la premi\u00E8re fois de l\u0027histoire) alors que, objectivement, sur ce match, il est moins fort que Federer ; il n\u0027est d\u0027ailleurs qu\u0027\u00E0 voir la \u0022 facilit\u00E9 \u0022 avec laquelle le Suisse a remport\u00E9 ses deux sets. Djokovic n\u0027a pas \u00E9t\u00E9 intimid\u00E9 par le public qui encourageait Federer, il a m\u00EAme jou\u00E9 de cet amour du public pour son adversaire en s\u0027imaginant qu\u0027il criait \u0022 Djoko Djoko \u0022 plut\u00F4t que \u0022 Come on Rodger ! \u0022 Il s\u0027est conditionn\u00E9, a r\u00E9ussi \u00E0 prendre cette \u00E9nergie qui la galvaniser. Il \u00E9tait heureux d\u0027\u00EAtre l\u00E0, sur le court, se pr\u00E9parant \u00E0 battre la l\u00E9gende. Il ne s\u0027est pas crisp\u00E9 au moment de conclure, gr\u00E2ce \u00E0 tout le travail entrepris sur lui-m\u00EAme depuis des ann\u00E9es. Comme pour un entretien d\u0027embauche, il est entr\u00E9 positivement sur le terrain, sans se pr\u00E9parer au pire, pour mieux diminuer la pression et se concentrer sur son jeu et uniquement sur son jeu. Cette victoire \u00E0 Wimbledon est d\u0027abord une victoire mentale. \u0022 Autres exemples de th\u00E9matiques qui seront illustr\u00E9es par des matches, de la victoire de Nadal \u00E0 Wimbledon en 2008 \u00E0 l\u0027\u00E9limination du m\u00EAme Nadal en 8e de finale du tournoi en cinq sets contre l\u0027obscur Gilles Muller, du triomphe de Daniil Medvedev au dernier US Open contre Djokovic \u00E0 la d\u00E9faite d\u0027un Federer diminu\u00E9 en trois sets contre Ga\u00EBl Monfils en finale de la Coupe Davis 2014 avant de balayer Richard Gasquet deux jours plus tard pour offrir la premier sceptre en Coupe Davis \u00E0 la Suisse : Vivre l\u0027instant pr\u00E9sent, L\u0027esprit plus fort que le corps, Mieux penser pour mieux jouer, Apprendre \u00E0 perdre, Le plaisir et l\u0027amour du jeu, Savoir accepter la d\u00E9faite, etc. En fin d\u0027ouvrage, Christophe Bernelle expliquera pourquoi les Fran\u00E7ais, malgr\u00E9 de bons joueurs et un million de licenci\u00E9s, ne parviennent pas \u00E0 s\u0027inspirer de ces mod\u00E8les. \u0022 L\u0027\u00E9tat d\u0027esprit et donc le mental ont une part importante dans cet \u00E9tat de fait. Chez nous, quand les joueurs arrivent \u00E0 un bon classement, souvent ils explosent en vol ... \u0022, d\u00E9plore-t-il. Il donnera des pistes pour progresser \u00E0 ce niveau.",
+        "InfoLink": "https://play.google.com/store/books/details?id=8yO1EAAAQBAJ\u0026source=gbs_api",
+        "Language": "fr",
+        "PreviewLink": "http://books.google.fr/books?id=8yO1EAAAQBAJ\u0026pg=PT148\u0026dq=federer\u0026hl=\u0026cd=10\u0026source=gbs_api",
+        "PublishedDate": "2023-04-13",
+        "Publisher": "Solar",
+        "Title": "Nadal, Federer, Djokovic",
+        "PageCount": 180,
+        "RatingsCount": null,
+        "Authors": [
+          "Christophe Bernelle",
+          "Arnaud Ramsay"
+        ],
+        "ImageLinks": {
+          "ExtraLarge": null,
+          "Medium": null,
+          "Large": null,
+          "Small": null,
+          "SmallThumbnail": "http://books.google.com/books/content?id=8yO1EAAAQBAJ\u0026printsec=frontcover\u0026img=1\u0026zoom=5\u0026edge=curl\u0026source=gbs_api",
+          "Thumbnail": "http://books.google.com/books/content?id=8yO1EAAAQBAJ\u0026printsec=frontcover\u0026img=1\u0026zoom=1\u0026edge=curl\u0026source=gbs_api"
+        }
+      }
+    }
+  ]
+}
