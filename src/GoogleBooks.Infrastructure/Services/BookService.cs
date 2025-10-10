@@ -21,8 +21,9 @@ internal class BookService(
     public async Task<BooksByKeyWordsDto> ListByKeyWordsAsync(PageParams pageParams, CancellationToken cancellationToken)
     {
         return mapper.Map<BooksByKeyWordsDto>(await httpClient.GetFromJsonAsync<Volumes>($"volumes?" +
-            $"q={pageParams.KeyWords}" +
-            $"&maxResults={pageParams.PageSize}" +
-            $"&startIndex={pageParams.PageSize * pageParams.Page}", cancellationToken));
+                 $"q={pageParams.KeyWords}" +
+                 $"&maxResults={pageParams.PageSize}" +
+                 $"&startIndex={pageParams.PageSize * pageParams.Page}",
+             cancellationToken));
     }
 }

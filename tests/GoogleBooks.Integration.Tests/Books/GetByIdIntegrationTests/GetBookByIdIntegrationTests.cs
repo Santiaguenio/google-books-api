@@ -11,15 +11,15 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
 {
     private readonly HttpClient _client = testFactory.CreateClient();
 
-    public Task DisposeAsync()
+    async ValueTask IAsyncDisposable.DisposeAsync()
     {
         testFactory.ResetMocks();
-        return Task.CompletedTask;
+        await Task.CompletedTask;
     }
 
-    public Task InitializeAsync()
+    async ValueTask IAsyncLifetime.InitializeAsync()
     {
-        return Task.CompletedTask;
+        await Task.CompletedTask;
     }
 
     [Fact]
@@ -30,7 +30,7 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
 
         var expectedHttpResult = new HttpResponseMessage(HttpStatusCode.OK)
         {
-            Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/Should/ExpectedGetBookByIdContent.json"))
+            Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/Should/ExpectedGetBookByIdContent.json", TestContext.Current.CancellationToken))
         };
 
         testFactory.SetMockedHttpClientFactory(testFactory.GoogleBooksUrl);
@@ -43,15 +43,15 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
             .ReturnsAsync(new HttpResponseMessage
             {
                 StatusCode = HttpStatusCode.OK,
-                Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/Should/MockedGetBookByIdResponse.json"))
+                Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/Should/MockedGetBookByIdResponse.json", TestContext.Current.CancellationToken))
             });
 
         // act
-        var actualHttpResult = await _client.GetAsync($"books/{bookId}");
+        var actualHttpResult = await _client.GetAsync($"books/{bookId}", TestContext.Current.CancellationToken);
 
         // assert
         Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
-        Assert.Equivalent(await expectedHttpResult.Content.ReadFromJsonAsync<BookFullDto>(), await actualHttpResult.Content.ReadFromJsonAsync<BookFullDto>());
+        Assert.Equivalent(await expectedHttpResult.Content.ReadFromJsonAsync<BookFullDto>(TestContext.Current.CancellationToken), await actualHttpResult.Content.ReadFromJsonAsync<BookFullDto>(TestContext.Current.CancellationToken));
 
         testFactory.MockedHttpMessageHandler
             .Protected().Verify(
@@ -69,7 +69,7 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
         var expectedHttpResult = new HttpResponseMessage(HttpStatusCode.BadRequest);
 
         // act
-        var actualHttpResult = await _client.GetAsync($"books/{string.Empty}");
+        var actualHttpResult = await _client.GetAsync($"books/{string.Empty}", TestContext.Current.CancellationToken);
 
         // assert
         Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
@@ -91,7 +91,7 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
 
         var expectedHttpResult = new HttpResponseMessage(HttpStatusCode.InternalServerError)
         {
-            Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/ExternalServerError/ExpectedExternalServerErrorResult.json"))
+            Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/ExternalServerError/ExpectedExternalServerErrorResult.json", TestContext.Current.CancellationToken))
         };
 
         testFactory.SetMockedHttpClientFactory(testFactory.GoogleBooksUrl);
@@ -108,11 +108,11 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
             });
 
         // act
-        var actualHttpResult = await _client.GetAsync($"books/{bookId}");
+        var actualHttpResult = await _client.GetAsync($"books/{bookId}", TestContext.Current.CancellationToken);
 
         // assert
         Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
-        Assert.Equivalent(await expectedHttpResult.Content.ReadFromJsonAsync<BookFullDto>(), await actualHttpResult.Content.ReadFromJsonAsync<BookFullDto>());
+        Assert.Equivalent(await expectedHttpResult.Content.ReadFromJsonAsync<BookFullDto>(TestContext.Current.CancellationToken), await actualHttpResult.Content.ReadFromJsonAsync<BookFullDto>(TestContext.Current.CancellationToken));
 
         testFactory.MockedHttpMessageHandler
             .Protected().Verify(
@@ -131,7 +131,7 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
 
         var expectedHttpResult = new HttpResponseMessage(HttpStatusCode.InternalServerError)
         {
-            Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/ExternalServerError/ExpectedExternalServerErrorResult.json"))
+            Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/ExternalServerError/ExpectedExternalServerErrorResult.json", TestContext.Current.CancellationToken))
         };
 
         testFactory.SetMockedHttpClientFactory(testFactory.GoogleBooksUrl);
@@ -146,11 +146,11 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
         _client.Timeout = TimeSpan.FromMilliseconds(1500);
 
         // act
-        var actualHttpResult = await _client.GetAsync($"books/{bookId}");
+        var actualHttpResult = await _client.GetAsync($"books/{bookId}", TestContext.Current.CancellationToken);
 
         // assert
         Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
-        Assert.Equivalent(await expectedHttpResult.Content.ReadFromJsonAsync<BookFullDto>(), await actualHttpResult.Content.ReadFromJsonAsync<BookFullDto>());
+        Assert.Equivalent(await expectedHttpResult.Content.ReadFromJsonAsync<BookFullDto>(TestContext.Current.CancellationToken), await actualHttpResult.Content.ReadFromJsonAsync<BookFullDto>(TestContext.Current.CancellationToken));
 
         testFactory.MockedHttpMessageHandler
             .Protected().Verify(
@@ -169,7 +169,7 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
 
         var expectedHttpResult = new HttpResponseMessage(HttpStatusCode.InternalServerError)
         {
-            Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/InternalServerError/ExpectedInternalServerErrorResult.json"))
+            Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/InternalServerError/ExpectedInternalServerErrorResult.json", TestContext.Current.CancellationToken))
         };
 
         testFactory.SetMockedHttpClientFactory(testFactory.GoogleBooksUrl);
@@ -182,11 +182,11 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
             .ThrowsAsync(new Exception("This is a mocked exception message"));
 
         // act
-        var actualHttpResult = await _client.GetAsync($"books/{bookId}");
+        var actualHttpResult = await _client.GetAsync($"books/{bookId}", TestContext.Current.CancellationToken);
 
         // assert
         Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
-        Assert.Equivalent(await expectedHttpResult.Content.ReadFromJsonAsync<BookFullDto>(), await actualHttpResult.Content.ReadFromJsonAsync<BookFullDto>());
+        Assert.Equivalent(await expectedHttpResult.Content.ReadFromJsonAsync<BookFullDto>(TestContext.Current.CancellationToken), await actualHttpResult.Content.ReadFromJsonAsync<BookFullDto>(TestContext.Current.CancellationToken));
 
         testFactory.MockedHttpMessageHandler
             .Protected().Verify(
@@ -205,7 +205,7 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
 
         var expectedHttpResult = new HttpResponseMessage(HttpStatusCode.ServiceUnavailable)
         {
-            Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/ServiceUnavailable/ExpectedServiceUnavailableContent.json"))
+            Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/ServiceUnavailable/ExpectedServiceUnavailableContent.json", TestContext.Current.CancellationToken))
         };
 
         testFactory.SetMockedHttpClientFactory(testFactory.GoogleBooksUrl);
@@ -218,15 +218,15 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
             .ReturnsAsync(new HttpResponseMessage
             {
                 StatusCode = HttpStatusCode.ServiceUnavailable,
-                Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/ServiceUnavailable/MockedUnavailableContent.json"))
+                Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/ServiceUnavailable/MockedUnavailableContent.json", TestContext.Current.CancellationToken))
             });
 
         // act
-        var actualHttpResult = await _client.GetAsync($"books/{unknownId}");
+        var actualHttpResult = await _client.GetAsync($"books/{unknownId}", TestContext.Current.CancellationToken);
 
         // assert
         Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
-        Assert.Equivalent(await expectedHttpResult.Content.ReadFromJsonAsync<BookFullDto>(), await actualHttpResult.Content.ReadFromJsonAsync<BookFullDto>());
+        Assert.Equivalent(await expectedHttpResult.Content.ReadFromJsonAsync<BookFullDto>(TestContext.Current.CancellationToken), await actualHttpResult.Content.ReadFromJsonAsync<BookFullDto>(TestContext.Current.CancellationToken));
 
         testFactory.MockedHttpMessageHandler
             .Protected().Verify(
