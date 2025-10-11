@@ -7,15 +7,19 @@ using System.Net.Http.Json;
 namespace GoogleBooks.Integration.Tests.Books.GetByIdIntegrationTests;
 
 [Collection("Integration tests")]
-public class GetBookByIdIntegrationTests
+public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifetime
 {
-    private readonly TestFactory _testFactory;
-    private readonly HttpClient _client;
+    private readonly HttpClient _client = testFactory.CreateClient();
 
-    public GetBookByIdIntegrationTests(TestFactory testFactory)
+    async ValueTask IAsyncDisposable.DisposeAsync()
     {
-        _testFactory = testFactory;
-        _client = _testFactory.CreateClient();
+        testFactory.ResetMocks();
+        await Task.CompletedTask;
+    }
+
+    async ValueTask IAsyncLifetime.InitializeAsync()
+    {
+        await Task.CompletedTask;
     }
 
     [Fact]
@@ -26,148 +30,210 @@ public class GetBookByIdIntegrationTests
 
         var expectedHttpResult = new HttpResponseMessage(HttpStatusCode.OK)
         {
-            Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/Should/ExpectedGetBookByIdContent.json"))
+            Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/Should/ExpectedGetBookByIdContent.json", TestContext.Current.CancellationToken))
         };
 
-        _testFactory.SetMockedHttpClientFactory(_testFactory.GetGoogleBooksUrl);
-        _testFactory.MockedHttpMessageHandler
-               .Protected()
-               .Setup<Task<HttpResponseMessage>>(
-                    "SendAsync",
-                    ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{_testFactory.GetGoogleBooksUrl}volumes/{bookId}")),
-                    ItExpr.IsAny<CancellationToken>())
-               .ReturnsAsync(new HttpResponseMessage
-               {
-                   StatusCode = HttpStatusCode.OK,
-                   Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/Should/MockedGetBookByIdResponse.json"))
-               });
+        testFactory.SetMockedHttpClientFactory(testFactory.GoogleBooksUrl);
+        testFactory.MockedHttpMessageHandler
+            .Protected()
+            .Setup<Task<HttpResponseMessage>>(
+                "SendAsync",
+                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes/{bookId}")),
+                ItExpr.IsAny<CancellationToken>())
+            .ReturnsAsync(new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/Should/MockedGetBookByIdResponse.json", TestContext.Current.CancellationToken))
+            });
 
         // act
-        var actualHttpResult = await _client.GetAsync($"books/{bookId}");
+        var actualHttpResult = await _client.GetAsync($"books/{bookId}", TestContext.Current.CancellationToken);
 
         // assert
         Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
-        Assert.Equivalent(await expectedHttpResult.Content.ReadFromJsonAsync<BookFullDto>(), await actualHttpResult.Content.ReadFromJsonAsync<BookFullDto>());
+        Assert.Equivalent(await expectedHttpResult.Content.ReadFromJsonAsync<BookFullDto>(TestContext.Current.CancellationToken), await actualHttpResult.Content.ReadFromJsonAsync<BookFullDto>(TestContext.Current.CancellationToken));
+
+        testFactory.MockedHttpMessageHandler
+            .Protected().Verify(
+                "SendAsync",
+                Times.Once(),
+                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes/{bookId}")),
+                ItExpr.IsAny<CancellationToken>()
+            );
     }
 
     [Fact]
-    public async Task Should_ReturnInternalServerError_WhenExternalServerErrorOccurs()
+    public async Task Should_ReturnBadRequest_When_IdIsNullOrWhiteSpace()
+    {
+        // arrange
+        var expectedHttpResult = new HttpResponseMessage(HttpStatusCode.BadRequest);
+
+        // act
+        var actualHttpResult = await _client.GetAsync($"books/{string.Empty}", TestContext.Current.CancellationToken);
+
+        // assert
+        Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
+
+        testFactory.MockedHttpMessageHandler
+            .Protected().Verify(
+                "SendAsync",
+                Times.Never(),
+                ItExpr.Is<HttpRequestMessage>(_ => _.Method == It.IsAny<HttpMethod>() && _.RequestUri!.AbsoluteUri.Equals(It.IsAny<string>())),
+                ItExpr.IsAny<CancellationToken>()
+            );
+    }
+
+    [Fact]
+    public async Task Should_ReturnInternalServerError_When_ExternalServerErrorOccurs()
     {
         // arrange
         var bookId = "s1gVAAAAYAAJ";
 
         var expectedHttpResult = new HttpResponseMessage(HttpStatusCode.InternalServerError)
         {
-            Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/ExternalServerError/ExpectedExternalServerErrorResult.json"))
+            Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/ExternalServerError/ExpectedExternalServerErrorResult.json", TestContext.Current.CancellationToken))
         };
 
-        _testFactory.SetMockedHttpClientFactory(_testFactory.GetGoogleBooksUrl);
-        _testFactory.MockedHttpMessageHandler
-               .Protected()
-               .Setup<Task<HttpResponseMessage>>(
-                    "SendAsync",
-                    ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{_testFactory.GetGoogleBooksUrl}volumes/{bookId}")),
-                    ItExpr.IsAny<CancellationToken>())
-                .ReturnsAsync(new HttpResponseMessage
-                {
-                    StatusCode = HttpStatusCode.InternalServerError,
-                    Content = new StringContent("This is a mocked exception message")
-                });
+        testFactory.SetMockedHttpClientFactory(testFactory.GoogleBooksUrl);
+        testFactory.MockedHttpMessageHandler
+            .Protected()
+            .Setup<Task<HttpResponseMessage>>(
+                "SendAsync",
+                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes/{bookId}")),
+                ItExpr.IsAny<CancellationToken>())
+            .ReturnsAsync(new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.InternalServerError,
+                Content = new StringContent("This is a mocked exception message")
+            });
+
         // act
-        var actualHttpResult = await _client.GetAsync($"books/{bookId}");
+        var actualHttpResult = await _client.GetAsync($"books/{bookId}", TestContext.Current.CancellationToken);
 
         // assert
         Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
-        Assert.Equivalent(await expectedHttpResult.Content.ReadFromJsonAsync<BookFullDto>(), await actualHttpResult.Content.ReadFromJsonAsync<BookFullDto>());
+        Assert.Equivalent(await expectedHttpResult.Content.ReadFromJsonAsync<BookFullDto>(TestContext.Current.CancellationToken), await actualHttpResult.Content.ReadFromJsonAsync<BookFullDto>(TestContext.Current.CancellationToken));
+
+        testFactory.MockedHttpMessageHandler
+            .Protected().Verify(
+                "SendAsync",
+                Times.Once(),
+                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes/{bookId}")),
+                ItExpr.IsAny<CancellationToken>()
+            );
     }
 
     [Fact]
-    public async Task Should_ReturnInternalServerError_WhenExternalServerTimeoutOccurs()
+    public async Task Should_ReturnInternalServerError_When_ExternalServerTimeoutOccurs()
     {
         // arrange
         var bookId = "s1gVAAAAYAAJ";
 
         var expectedHttpResult = new HttpResponseMessage(HttpStatusCode.InternalServerError)
         {
-            Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/ExternalServerError/ExpectedExternalServerErrorResult.json"))
+            Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/ExternalServerError/ExpectedExternalServerErrorResult.json", TestContext.Current.CancellationToken))
         };
 
-        _testFactory.SetMockedHttpClientFactory(_testFactory.GetGoogleBooksUrl);
-        _testFactory.MockedHttpMessageHandler
-               .Protected()
-               .Setup<Task<HttpResponseMessage>>(
-                    "SendAsync",
-                    ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{_testFactory.GetGoogleBooksUrl}volumes/{bookId}")),
-                    ItExpr.IsAny<CancellationToken>())
-                .ThrowsAsync(new TaskCanceledException());
+        testFactory.SetMockedHttpClientFactory(testFactory.GoogleBooksUrl);
+        testFactory.MockedHttpMessageHandler
+            .Protected()
+            .Setup<Task<HttpResponseMessage>>(
+                "SendAsync",
+                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes/{bookId}")),
+                ItExpr.IsAny<CancellationToken>())
+            .ThrowsAsync(new TaskCanceledException());
 
         _client.Timeout = TimeSpan.FromMilliseconds(1500);
 
         // act
-        var actualHttpResult = await _client.GetAsync($"books/{bookId}");
+        var actualHttpResult = await _client.GetAsync($"books/{bookId}", TestContext.Current.CancellationToken);
 
         // assert
         Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
-        Assert.Equivalent(await expectedHttpResult.Content.ReadFromJsonAsync<BookFullDto>(), await actualHttpResult.Content.ReadFromJsonAsync<BookFullDto>());
+        Assert.Equivalent(await expectedHttpResult.Content.ReadFromJsonAsync<BookFullDto>(TestContext.Current.CancellationToken), await actualHttpResult.Content.ReadFromJsonAsync<BookFullDto>(TestContext.Current.CancellationToken));
+
+        testFactory.MockedHttpMessageHandler
+            .Protected().Verify(
+                "SendAsync",
+                Times.Once(),
+                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes/{bookId}")),
+                ItExpr.IsAny<CancellationToken>()
+            );
     }
 
     [Fact]
-    public async Task Should_ReturnInternalServerError_WhenHttpClientThrowsException()
+    public async Task Should_ReturnInternalServerError_When_HttpClientThrowsException()
     {
         // arrange
         var bookId = "s1gVAAAAYAAJ";
 
         var expectedHttpResult = new HttpResponseMessage(HttpStatusCode.InternalServerError)
         {
-            Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/InternalServerError/ExpectedInternalServerErrorResult.json"))
+            Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/InternalServerError/ExpectedInternalServerErrorResult.json", TestContext.Current.CancellationToken))
         };
 
-        _testFactory.SetMockedHttpClientFactory(_testFactory.GetGoogleBooksUrl);
-        _testFactory.MockedHttpMessageHandler
-               .Protected()
-               .Setup<Task<HttpResponseMessage>>(
-                    "SendAsync",
-                    ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{_testFactory.GetGoogleBooksUrl}volumes/{bookId}")),
-                    ItExpr.IsAny<CancellationToken>())
-               .ThrowsAsync(new Exception("This is a mocked exception message"));
+        testFactory.SetMockedHttpClientFactory(testFactory.GoogleBooksUrl);
+        testFactory.MockedHttpMessageHandler
+            .Protected()
+            .Setup<Task<HttpResponseMessage>>(
+                "SendAsync",
+                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes/{bookId}")),
+                ItExpr.IsAny<CancellationToken>())
+            .ThrowsAsync(new Exception("This is a mocked exception message"));
 
         // act
-        var actualHttpResult = await _client.GetAsync($"books/{bookId}");
+        var actualHttpResult = await _client.GetAsync($"books/{bookId}", TestContext.Current.CancellationToken);
 
         // assert
         Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
-        Assert.Equivalent(await expectedHttpResult.Content.ReadFromJsonAsync<BookFullDto>(), await actualHttpResult.Content.ReadFromJsonAsync<BookFullDto>());
+        Assert.Equivalent(await expectedHttpResult.Content.ReadFromJsonAsync<BookFullDto>(TestContext.Current.CancellationToken), await actualHttpResult.Content.ReadFromJsonAsync<BookFullDto>(TestContext.Current.CancellationToken));
+
+        testFactory.MockedHttpMessageHandler
+            .Protected().Verify(
+                "SendAsync",
+                Times.Once(),
+                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes/{bookId}")),
+                ItExpr.IsAny<CancellationToken>()
+            );
     }
 
     [Fact]
-    public async Task Should_ReturnServiceUnavailableException()
+    public async Task Should_ReturnServiceUnavailableError()
     {
         // arrange
         var unknownId = "unknownId";
 
         var expectedHttpResult = new HttpResponseMessage(HttpStatusCode.ServiceUnavailable)
         {
-            Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/ServiceUnavailable/ExpectedServiceUnavailableContent.json"))
+            Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/ServiceUnavailable/ExpectedServiceUnavailableContent.json", TestContext.Current.CancellationToken))
         };
 
-        _testFactory.SetMockedHttpClientFactory(_testFactory.GetGoogleBooksUrl);
-        _testFactory.MockedHttpMessageHandler
-               .Protected()
-               .Setup<Task<HttpResponseMessage>>(
-                    "SendAsync",
-                    ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{_testFactory.GetGoogleBooksUrl}volumes/{unknownId}")),
-                    ItExpr.IsAny<CancellationToken>())
-               .ReturnsAsync(new HttpResponseMessage
-               {
-                   StatusCode = HttpStatusCode.ServiceUnavailable,
-                   Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/ServiceUnavailable/MockedUnavailableContent.json"))
-               });
+        testFactory.SetMockedHttpClientFactory(testFactory.GoogleBooksUrl);
+        testFactory.MockedHttpMessageHandler
+            .Protected()
+            .Setup<Task<HttpResponseMessage>>(
+                "SendAsync",
+                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes/{unknownId}")),
+                ItExpr.IsAny<CancellationToken>())
+            .ReturnsAsync(new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.ServiceUnavailable,
+                Content = new StringContent(await File.ReadAllTextAsync("Books/GetByIdIntegrationTests/ServiceUnavailable/MockedUnavailableContent.json", TestContext.Current.CancellationToken))
+            });
 
         // act
-        var actualHttpResult = await _client.GetAsync($"books/{unknownId}");
+        var actualHttpResult = await _client.GetAsync($"books/{unknownId}", TestContext.Current.CancellationToken);
 
         // assert
         Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
-        Assert.Equivalent(await expectedHttpResult.Content.ReadFromJsonAsync<BookFullDto>(), await actualHttpResult.Content.ReadFromJsonAsync<BookFullDto>());
+        Assert.Equivalent(await expectedHttpResult.Content.ReadFromJsonAsync<BookFullDto>(TestContext.Current.CancellationToken), await actualHttpResult.Content.ReadFromJsonAsync<BookFullDto>(TestContext.Current.CancellationToken));
+
+        testFactory.MockedHttpMessageHandler
+            .Protected().Verify(
+                "SendAsync",
+                Times.Once(),
+                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes/{unknownId}")),
+                ItExpr.IsAny<CancellationToken>()
+            );
     }
 }
