@@ -23,7 +23,7 @@ internal class BookService(
         return mapper.Map<BooksByKeyWordsDto>(await httpClient.GetFromJsonAsync<Volumes>($"volumes?" +
                  $"q={pageParams.KeyWords}" +
                  $"&maxResults={pageParams.PageSize}" +
-                 $"&startIndex={pageParams.PageSize * pageParams.Page}",
+                 $"&startIndex={(pageParams.Page - 1) * pageParams.PageSize}",
              cancellationToken));
     }
 }

@@ -13,6 +13,7 @@
     <None Remove="Books\GetByIdIntegrationTests\ExpectedGetBookByIdContent.json" />
     <None Remove="Books\GetByIdIntegrationTests\ExpectedServiceUnavailableContent.json" />
     <None Remove="Books\GetByIdIntegrationTests\MockedGoogleBooksServiceUnavailableContent.json" />
+    <None Remove="Books\ListByKeyWordsIntegrationTests\Should\ExpectedListBooksByKeyWordsResult.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,10 +35,10 @@
     <Content Include="Books\GetByIdIntegrationTests\ServiceUnavailable\MockedUnavailableContent.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Books\ListByCriteriaIntegrationTests\Should\ExpectedListBooksByKeyWordsResult.json">
+    <Content Include="Books\ListByKeyWordsIntegrationTests\Should\ExpectedListBooksByKeyWordsResult.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Books\ListByCriteriaIntegrationTests\Should\MockedListBooksByKeyWordsResponse.json">
+    <Content Include="Books\ListByKeyWordsIntegrationTests\Should\MockedListBooksByKeyWordsResponse.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

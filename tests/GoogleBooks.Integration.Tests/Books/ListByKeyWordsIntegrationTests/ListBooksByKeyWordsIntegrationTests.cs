@@ -7,7 +7,7 @@ using System.Net;
 using System.Net.Http.Json;
 using System.Text.Json;
 
-namespace GoogleBooks.Integration.Tests.Books.ListByCriteriaIntegrationTests;
+namespace GoogleBooks.Integration.Tests.Books.ListByKeyWordsIntegrationTests;
 
 [Collection("Integration tests")]
 public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsyncLifetime
@@ -40,7 +40,7 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
             .Protected()
             .Setup<Task<HttpResponseMessage>>(
                 "SendAsync",
-                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes?q={pageParams.KeyWords}&maxResults={pageParams.PageSize}&startIndex={pageParams.Page}")),
+                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes?q={pageParams.KeyWords}&maxResults={pageParams.PageSize}&startIndex={(pageParams.Page - 1) * pageParams.PageSize}")),
                 ItExpr.IsAny<CancellationToken>())
             .ReturnsAsync(new HttpResponseMessage
             {
@@ -66,7 +66,7 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
             .Protected().Verify(
                 "SendAsync",
                 Times.Once(),
-                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes?q={pageParams.KeyWords}&maxResults={pageParams.PageSize}&startIndex={pageParams.Page}")),
+                ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes?q={pageParams.KeyWords}&maxResults={pageParams.PageSize}&startIndex={(pageParams.Page - 1) * pageParams.PageSize}")),
                 ItExpr.IsAny<CancellationToken>()
             );
     }
@@ -95,26 +95,27 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
     public static IEnumerable<object[]> GetEntryDataAndExpectedResult()
     {
         // Google client response
-        using var mockedListBooksByKeyWordsResponse = JsonDocument.Parse(File.ReadAllText("Books/ListByCriteriaIntegrationTests/Should/MockedListBooksByKeyWordsResponse.json"));
+        using var mockedListBooksByKeyWordsResponse = JsonDocument.Parse(File.ReadAllText("Books/ListByKeyWordsIntegrationTests/Should/MockedListBooksByKeyWordsResponse.json"));
         int mockedTotalItems = mockedListBooksByKeyWordsResponse.RootElement.GetProperty("totalItems").GetInt32();
         var mockedExpectedItems = mockedListBooksByKeyWordsResponse.RootElement.GetProperty("items");
 
         // Expected result
-        using var listBooksByKeyWordsExpectedJsonResult = JsonDocument.Parse(File.ReadAllText("Books/ListByCriteriaIntegrationTests/Should/ExpectedListBooksByKeyWordsResult.json"));
+        using var listBooksByKeyWordsExpectedJsonResult = JsonDocument.Parse(File.ReadAllText("Books/ListByKeyWordsIntegrationTests/Should/ExpectedListBooksByKeyWordsResult.json"));
         int expectedTotalItems = listBooksByKeyWordsExpectedJsonResult.RootElement.GetProperty("totalItems").GetInt32();
         var expectedItemsResult = listBooksByKeyWordsExpectedJsonResult.RootElement.GetProperty("items");
 
         // 1 - First page with max page size
+        var firstPage = 1;
         yield return new object[]
         {
-            new PageParams { KeyWords = "federer", Page = 0, PageSize = BookConstants.MaximalItemsPerPage },
+            new PageParams { KeyWords = "federer", Page = firstPage * BookConstants.MaximalItemsPerPage, PageSize = BookConstants.MaximalItemsPerPage },
 
             new StringContent(JsonSerializer.Serialize(
                 new
                 {
                     totalItems = mockedTotalItems,
                     items =  mockedExpectedItems.EnumerateArray()
-                        .Skip(0 * BookConstants.MaximalItemsPerPage)
+                        .Skip(firstPage * BookConstants.MaximalItemsPerPage)
                         .Take(BookConstants.MaximalItemsPerPage)
                 })),
 
@@ -123,7 +124,32 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
                 {
                     totalItems = expectedTotalItems,
                     items =  expectedItemsResult.EnumerateArray()
-                        .Skip(0 * BookConstants.MaximalItemsPerPage)
+                        .Skip(firstPage * BookConstants.MaximalItemsPerPage)
+                        .Take(BookConstants.MaximalItemsPerPage)
+                }))
+        };
+
+        // 2 - Seconds page with max page size
+        var secondPage = 2;
+        yield return new object[]
+        {
+            new PageParams { KeyWords = "federer", Page = secondPage, PageSize = BookConstants.MaximalItemsPerPage },
+
+            new StringContent(JsonSerializer.Serialize(
+                new
+                {
+                    totalItems = mockedTotalItems,
+                    items =  mockedExpectedItems.EnumerateArray()
+                        .Skip(secondPage * BookConstants.MaximalItemsPerPage)
+                        .Take(BookConstants.MaximalItemsPerPage)
+                })),
+
+            new StringContent(JsonSerializer.Serialize(
+                new
+                {
+                    totalItems = expectedTotalItems,
+                    items =  expectedItemsResult.EnumerateArray()
+                        .Skip(secondPage * BookConstants.MaximalItemsPerPage)
                         .Take(BookConstants.MaximalItemsPerPage)
                 }))
         };
