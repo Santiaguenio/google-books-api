@@ -153,5 +153,56 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
                         .Take(BookConstants.MaximalItemsPerPage)
                 }))
         };
+
+        // 3 - Final page with max page size
+        var thirdPage = 3;
+        yield return new object[]
+        {
+            new PageParams { KeyWords = "federer", Page = thirdPage, PageSize = BookConstants.MaximalItemsPerPage },
+
+            new StringContent(JsonSerializer.Serialize(
+                new
+                {
+                    totalItems = mockedTotalItems,
+                    items =  mockedExpectedItems.EnumerateArray()
+                        .Skip(thirdPage * BookConstants.MaximalItemsPerPage)
+                        .Take(BookConstants.MaximalItemsPerPage)
+                })),
+
+            new StringContent(JsonSerializer.Serialize(
+                new
+                {
+                    totalItems = expectedTotalItems,
+                    items =  expectedItemsResult.EnumerateArray()
+                        .Skip(thirdPage * BookConstants.MaximalItemsPerPage)
+                        .Take(BookConstants.MaximalItemsPerPage)
+                }))
+        };
+
+        // 3 - In between page with smaller size
+        var intermediatePage = 5;
+        var pageSize = 2;
+        yield return new object[]
+        {
+            new PageParams { KeyWords = "federer", Page = intermediatePage, PageSize = pageSize },
+
+            new StringContent(JsonSerializer.Serialize(
+                new
+                {
+                    totalItems = mockedTotalItems,
+                    items =  mockedExpectedItems.EnumerateArray()
+                        .Skip(intermediatePage * pageSize)
+                        .Take(pageSize)
+                })),
+
+            new StringContent(JsonSerializer.Serialize(
+                new
+                {
+                    totalItems = expectedTotalItems,
+                    items =  expectedItemsResult.EnumerateArray()
+                        .Skip(intermediatePage * pageSize)
+                        .Take(pageSize)
+                }))
+        };
     }
 }
