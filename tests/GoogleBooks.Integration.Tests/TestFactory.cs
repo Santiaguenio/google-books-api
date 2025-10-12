@@ -1,4 +1,4 @@
-﻿using GoogleBooks.Infrastructure.Services;
+﻿using GoogleBooks.Infrastructure.Books.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;

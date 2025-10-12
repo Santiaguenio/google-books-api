@@ -2,11 +2,11 @@
 using Google.Apis.Books.v1.Data;
 using GoogleBooks.Contracts.Responses;
 
-namespace GoogleBooks.Infrastructure.Mappers;
+namespace GoogleBooks.Infrastructure.Books.Mappers;
 
-internal class BooksByCriteriaProfile : Profile
+internal class BooksByKeyWordsProfile : Profile
 {
-    public BooksByCriteriaProfile()
+    public BooksByKeyWordsProfile()
     {
         CreateMap<Volumes, BooksByKeyWordsDto>();
     }

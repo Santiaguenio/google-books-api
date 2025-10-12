@@ -1,5 +1,6 @@
 ﻿using GoogleBooks.Application.Books.UseCases;
 using GoogleBooks.Application.Common.UseCases;
+using GoogleBooks.Contracts.Requests;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GoogleBooks.Application.Books;
@@ -8,7 +9,7 @@ internal static class BooksExtensions
 {
     internal static void RegisterBooksUseCases(this IServiceCollection services)
     {
-        services.AddScoped<IGetById<string>, GetById>();
-        services.AddScoped(typeof(IListByCriteria<>), typeof(ListByKeyWords<>));
+        services.AddScoped<IGetById<string>, GetBookById>();
+        services.AddScoped<IListByCriteria<PageParams>, ListBooksByKeyWords>();
     }
 }

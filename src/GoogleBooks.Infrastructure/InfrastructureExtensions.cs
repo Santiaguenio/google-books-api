@@ -1,5 +1,5 @@
-﻿using GoogleBooks.Infrastructure.Mappers;
-using GoogleBooks.Infrastructure.Services;
+﻿using GoogleBooks.Infrastructure.Books.Mappers;
+using GoogleBooks.Infrastructure.Books.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

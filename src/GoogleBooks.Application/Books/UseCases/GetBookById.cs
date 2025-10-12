@@ -4,7 +4,7 @@ using GoogleBooks.Domain.Exceptions;
 
 namespace GoogleBooks.Application.Books.UseCases
 {
-    internal class GetById(IBookService bookService) : IGetById<string>
+    internal class GetBookById(IBookService bookService) : IGetById<string>
     {
         public async Task<IGoogleBooksResponse> DoAsync(string id, CancellationToken cancellationToken)
         {

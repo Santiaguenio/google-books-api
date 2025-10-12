@@ -1,6 +1,6 @@
 ﻿namespace GoogleBooks.Contracts.Responses;
 
-public class BooksByKeyWordsDto
+public class BooksByKeyWordsDto : IGoogleBooksResponse
 {
     public int TotalItems { get; set; }
 

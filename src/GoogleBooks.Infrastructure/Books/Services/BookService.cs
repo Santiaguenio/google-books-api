@@ -5,7 +5,7 @@ using GoogleBooks.Contracts.Requests;
 using GoogleBooks.Contracts.Responses;
 using System.Net.Http.Json;
 
-namespace GoogleBooks.Infrastructure.Services;
+namespace GoogleBooks.Infrastructure.Books.Services;
 
 internal class BookService(
     IHttpClientFactory httpClientFactory,

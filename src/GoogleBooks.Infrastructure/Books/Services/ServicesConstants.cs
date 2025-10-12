@@ -1,4 +1,4 @@
-﻿namespace GoogleBooks.Infrastructure.Services
+﻿namespace GoogleBooks.Infrastructure.Books.Services
 {
     internal class ServicesConstants
     {

@@ -1,7 +1,7 @@
 ﻿using GoogleBooks.Application.Books;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace GoogleBooks.Infrastructure.Services;
+namespace GoogleBooks.Infrastructure.Books.Services;
 
 internal static class ServicesExtensions
 {
