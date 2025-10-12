@@ -1,5 +1,5 @@
 ﻿using GoogleBooks.Contracts.Requests;
-using GoogleBooks.Contracts.Responses;
+using GoogleBooks.Contracts.Responses.Books;
 
 namespace GoogleBooks.Application.Common.UseCases;
 

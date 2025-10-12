@@ -1,6 +1,7 @@
 using GoogleBooks.Application.Common.UseCases;
+using GoogleBooks.Contracts;
 using GoogleBooks.Contracts.Requests;
-using GoogleBooks.Contracts.Responses;
+using GoogleBooks.Contracts.Responses.Books;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GoogleBooks.WebApi.Controllers;
@@ -24,7 +25,7 @@ public class BooksController : ControllerBase
 
     [HttpGet()]
     [Produces("application/json")]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BooksByKeyWordsDto))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(EntitiesByCriteriaDto<>))]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> ListByKeyWordsAsync(

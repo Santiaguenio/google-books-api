@@ -1,5 +1,6 @@
-﻿using GoogleBooks.Contracts.Requests;
-using GoogleBooks.Contracts.Responses;
+﻿using GoogleBooks.Contracts;
+using GoogleBooks.Contracts.Requests;
+using GoogleBooks.Contracts.Responses.Books;
 using GoogleBooks.Domain.Books;
 using Moq;
 using Moq.Protected;
@@ -59,8 +60,8 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
         // assert
         Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
         Assert.Equivalent(
-            await expectedHttpResult.Content.ReadFromJsonAsync<BooksByKeyWordsDto>(TestContext.Current.CancellationToken),
-            await actualHttpResult.Content.ReadFromJsonAsync<BooksByKeyWordsDto>(TestContext.Current.CancellationToken));
+            await expectedHttpResult.Content.ReadFromJsonAsync<EntitiesByCriteriaDto<BookFullDto>>(TestContext.Current.CancellationToken),
+            await actualHttpResult.Content.ReadFromJsonAsync<EntitiesByCriteriaDto<BookFullDto>>(TestContext.Current.CancellationToken));
 
         testFactory.MockedHttpMessageHandler
             .Protected().Verify(

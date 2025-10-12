@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Google.Apis.Books.v1.Data;
-using GoogleBooks.Contracts.Responses;
+using GoogleBooks.Contracts.Responses.Books;
 
 namespace GoogleBooks.Infrastructure.Books.Mappers;
 
