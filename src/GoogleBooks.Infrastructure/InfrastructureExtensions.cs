@@ -20,7 +20,7 @@ public static class InfrastructureExtensions
         IServiceCollection services,
         IConfiguration configuration)
     {
-        services.AddHttpClient(ServicesConstants.GoogleClientName)
+        services.AddHttpClient(ServicesConstants.GOOGLE_CLIENT_NAME)
             .ConfigureHttpClient(_ => _.BaseAddress = new(configuration.GetValue<string>("GoogleBooks:BaseUrl")!))
             .AddStandardResilienceHandler();
     }

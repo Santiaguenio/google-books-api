@@ -11,7 +11,7 @@ internal class BookService(
     IHttpClientFactory httpClientFactory,
     IMapper mapper) : IBookService
 {
-    private readonly HttpClient httpClient = httpClientFactory.CreateClient(ServicesConstants.GoogleClientName);
+    private readonly HttpClient httpClient = httpClientFactory.CreateClient(ServicesConstants.GOOGLE_CLIENT_NAME);
 
     public async Task<BookFullDto> GetByIdAsync<TKey>(TKey id, CancellationToken cancellationToken)
     {

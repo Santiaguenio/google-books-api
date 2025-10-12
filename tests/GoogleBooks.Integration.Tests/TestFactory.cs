@@ -37,7 +37,7 @@ public class TestFactory : WebApplicationFactory<Program>
         };
 
         MockedHttpClientFactory
-            .Setup(_ => _.CreateClient(ServicesConstants.GoogleClientName))
+            .Setup(_ => _.CreateClient(ServicesConstants.GOOGLE_CLIENT_NAME))
             .Returns(httpClient);
     }
 }

@@ -2,6 +2,6 @@
 {
     internal class ServicesConstants
     {
-        internal const string GoogleClientName = "google-client";
+        internal const string GOOGLE_CLIENT_NAME = "google-client";
     }
 }
