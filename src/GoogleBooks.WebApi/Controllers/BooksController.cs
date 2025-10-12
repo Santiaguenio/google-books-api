@@ -25,7 +25,7 @@ public class BooksController : ControllerBase
 
     [HttpGet()]
     [Produces("application/json")]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(EntitiesByCriteriaDto<>))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(EntitiesByCriteriaDto<BookFullDto>))]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> ListByKeyWordsAsync(

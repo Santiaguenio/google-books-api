@@ -105,55 +105,55 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
         int expectedTotalItems = listBooksByKeyWordsExpectedJsonResult.RootElement.GetProperty("totalItems").GetInt32();
         var expectedItemsResult = listBooksByKeyWordsExpectedJsonResult.RootElement.GetProperty("items");
 
-        //// 1 - First page with max page size
-        //var firstPage = 1;
-        //yield return new object[]
-        //{
-        //    new PageParams { KeyWords = "federer", Page = firstPage * BookConstants.MaximalItemsPerPage, PageSize = BookConstants.MaximalItemsPerPage },
+        // 1 - First page with max page size
+        var firstPage = 1;
+        yield return new object[]
+        {
+            new PageParams { KeyWords = "federer", Page = firstPage * BookConstants.MaximalItemsPerPage, PageSize = BookConstants.MaximalItemsPerPage },
 
-        //    new StringContent(JsonSerializer.Serialize(
-        //        new
-        //        {
-        //            totalItems = mockedTotalItems,
-        //            items =  mockedExpectedItems.EnumerateArray()
-        //                .Skip((firstPage - 1) * BookConstants.MaximalItemsPerPage)
-        //                .Take(BookConstants.MaximalItemsPerPage)
-        //        })),
+            new StringContent(JsonSerializer.Serialize(
+                new
+                {
+                    totalItems = mockedTotalItems,
+                    items =  mockedExpectedItems.EnumerateArray()
+                        .Skip((firstPage - 1) * BookConstants.MaximalItemsPerPage)
+                        .Take(BookConstants.MaximalItemsPerPage)
+                })),
 
-        //    new StringContent(JsonSerializer.Serialize(
-        //        new
-        //        {
-        //            totalItems = expectedTotalItems,
-        //            items =  expectedItemsResult.EnumerateArray()
-        //                .Skip((firstPage - 1) * BookConstants.MaximalItemsPerPage)
-        //                .Take(BookConstants.MaximalItemsPerPage)
-        //        }))
-        //};
+            new StringContent(JsonSerializer.Serialize(
+                new
+                {
+                    totalItems = expectedTotalItems,
+                    items =  expectedItemsResult.EnumerateArray()
+                        .Skip((firstPage - 1) * BookConstants.MaximalItemsPerPage)
+                        .Take(BookConstants.MaximalItemsPerPage)
+                }))
+        };
 
-        //// 2 - Seconds page with max page size
-        //var secondPage = 2;
-        //yield return new object[]
-        //{
-        //    new PageParams { KeyWords = "federer", Page = secondPage, PageSize = BookConstants.MaximalItemsPerPage },
+        // 2 - Seconds page with max page size
+        var secondPage = 2;
+        yield return new object[]
+        {
+            new PageParams { KeyWords = "federer", Page = secondPage, PageSize = BookConstants.MaximalItemsPerPage },
 
-        //    new StringContent(JsonSerializer.Serialize(
-        //        new
-        //        {
-        //            totalItems = mockedTotalItems,
-        //            items =  mockedExpectedItems.EnumerateArray()
-        //                .Skip((secondPage - 1) * BookConstants.MaximalItemsPerPage)
-        //                .Take(BookConstants.MaximalItemsPerPage)
-        //        })),
+            new StringContent(JsonSerializer.Serialize(
+                new
+                {
+                    totalItems = mockedTotalItems,
+                    items =  mockedExpectedItems.EnumerateArray()
+                        .Skip((secondPage - 1) * BookConstants.MaximalItemsPerPage)
+                        .Take(BookConstants.MaximalItemsPerPage)
+                })),
 
-        //    new StringContent(JsonSerializer.Serialize(
-        //        new
-        //        {
-        //            totalItems = expectedTotalItems,
-        //            items =  expectedItemsResult.EnumerateArray()
-        //                .Skip((secondPage - 1) * BookConstants.MaximalItemsPerPage)
-        //                .Take(BookConstants.MaximalItemsPerPage)
-        //        }))
-        //};
+            new StringContent(JsonSerializer.Serialize(
+                new
+                {
+                    totalItems = expectedTotalItems,
+                    items =  expectedItemsResult.EnumerateArray()
+                        .Skip((secondPage - 1) * BookConstants.MaximalItemsPerPage)
+                        .Take(BookConstants.MaximalItemsPerPage)
+                }))
+        };
 
         // 3 - Final page with max page size -- NOT WORKING
         var thirdPage = 3;
