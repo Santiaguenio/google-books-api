@@ -109,7 +109,7 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
         var firstPage = 1;
         yield return new object[]
         {
-            new PageParams { KeyWords = "federer", Page = firstPage * BookConstants.MaximalItemsPerPage, PageSize = BookConstants.MaximalItemsPerPage },
+            new PageParams { KeyWords = "federer", Page = firstPage, PageSize = BookConstants.MaximalItemsPerPage },
 
             new StringContent(JsonSerializer.Serialize(
                 new
