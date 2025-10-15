@@ -155,7 +155,7 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
                 }))
         };
 
-        // 3 - Final page with max page size -- NOT WORKING
+        // 3 - Final page with max page size
         var thirdPage = 3;
         yield return new object[]
         {
