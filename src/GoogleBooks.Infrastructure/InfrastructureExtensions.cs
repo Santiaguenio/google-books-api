@@ -1,5 +1,5 @@
-﻿using GoogleBooks.Infrastructure.Mappers;
-using GoogleBooks.Infrastructure.Services;
+﻿using GoogleBooks.Infrastructure.Books.Mappers;
+using GoogleBooks.Infrastructure.Books.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -20,7 +20,7 @@ public static class InfrastructureExtensions
         IServiceCollection services,
         IConfiguration configuration)
     {
-        services.AddHttpClient(ServicesConstants.GoogleClientName)
+        services.AddHttpClient(ServicesConstants.GOOGLE_CLIENT_NAME)
             .ConfigureHttpClient(_ => _.BaseAddress = new(configuration.GetValue<string>("GoogleBooks:BaseUrl")!))
             .AddStandardResilienceHandler();
     }

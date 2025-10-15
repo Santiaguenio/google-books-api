@@ -1,4 +1,4 @@
-﻿using GoogleBooks.Infrastructure.Services;
+﻿using GoogleBooks.Infrastructure.Books.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
@@ -37,7 +37,7 @@ public class TestFactory : WebApplicationFactory<Program>
         };
 
         MockedHttpClientFactory
-            .Setup(_ => _.CreateClient(ServicesConstants.GoogleClientName))
+            .Setup(_ => _.CreateClient(ServicesConstants.GOOGLE_CLIENT_NAME))
             .Returns(httpClient);
     }
 }

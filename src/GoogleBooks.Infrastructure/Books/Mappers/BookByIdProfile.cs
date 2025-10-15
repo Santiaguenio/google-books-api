@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using Google.Apis.Books.v1.Data;
-using GoogleBooks.Contracts.Responses;
+using GoogleBooks.Contracts.Responses.Books;
 
-namespace GoogleBooks.Infrastructure.Mappers;
+namespace GoogleBooks.Infrastructure.Books.Mappers;
 
-internal class BookFullProfile : Profile
+internal class BookByIdProfile : Profile
 {
-    public BookFullProfile()
+    public BookByIdProfile()
     {
         CreateMap<Volume, BookFullDto>();
         CreateMap<Volume.VolumeInfoData, VolumeInfo>();

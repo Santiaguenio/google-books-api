@@ -1,4 +1,4 @@
-using GoogleBooks.Contracts.Responses;
+using GoogleBooks.Contracts.Responses.Books;
 using Moq;
 using Moq.Protected;
 using System.Net;

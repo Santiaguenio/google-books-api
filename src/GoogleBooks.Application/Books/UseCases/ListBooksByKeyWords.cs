@@ -1,14 +1,14 @@
 ﻿using GoogleBooks.Application.Common.UseCases;
 using GoogleBooks.Contracts.Requests;
-using GoogleBooks.Contracts.Responses;
+using GoogleBooks.Contracts.Responses.Books;
 using GoogleBooks.Domain.Books;
 using GoogleBooks.Domain.Exceptions;
 
 namespace GoogleBooks.Application.Books.UseCases;
 
-internal class ListByKeyWords<TRequest>(IBookService bookService) : IListByCriteria<PageParams> where TRequest : PageParams
+internal class ListBooksByKeyWords(IBookService bookService) : IListByCriteria<PageParams>
 {
-    public async Task<BooksByKeyWordsDto> DoAsync(PageParams request, CancellationToken cancellationToken)
+    public async Task<IGoogleBooksResponse> DoAsync(PageParams request, CancellationToken cancellationToken)
     {
         if (string.IsNullOrWhiteSpace(request.KeyWords))
         {

@@ -1,5 +1,6 @@
-﻿using GoogleBooks.Contracts.Requests;
-using GoogleBooks.Contracts.Responses;
+﻿using GoogleBooks.Contracts;
+using GoogleBooks.Contracts.Requests;
+using GoogleBooks.Contracts.Responses.Books;
 using GoogleBooks.Domain.Books;
 using Moq;
 using Moq.Protected;
@@ -59,8 +60,8 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
         // assert
         Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
         Assert.Equivalent(
-            await expectedHttpResult.Content.ReadFromJsonAsync<BooksByKeyWordsDto>(TestContext.Current.CancellationToken),
-            await actualHttpResult.Content.ReadFromJsonAsync<BooksByKeyWordsDto>(TestContext.Current.CancellationToken));
+            await expectedHttpResult.Content.ReadFromJsonAsync<EntitiesByCriteriaDto<BookFullDto>>(TestContext.Current.CancellationToken),
+            await actualHttpResult.Content.ReadFromJsonAsync<EntitiesByCriteriaDto<BookFullDto>>(TestContext.Current.CancellationToken));
 
         testFactory.MockedHttpMessageHandler
             .Protected().Verify(
@@ -108,14 +109,14 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
         var firstPage = 1;
         yield return new object[]
         {
-            new PageParams { KeyWords = "federer", Page = firstPage * BookConstants.MaximalItemsPerPage, PageSize = BookConstants.MaximalItemsPerPage },
+            new PageParams { KeyWords = "federer", Page = firstPage, PageSize = BookConstants.MaximalItemsPerPage },
 
             new StringContent(JsonSerializer.Serialize(
                 new
                 {
                     totalItems = mockedTotalItems,
                     items =  mockedExpectedItems.EnumerateArray()
-                        .Skip(firstPage * BookConstants.MaximalItemsPerPage)
+                        .Skip((firstPage - 1) * BookConstants.MaximalItemsPerPage)
                         .Take(BookConstants.MaximalItemsPerPage)
                 })),
 
@@ -124,7 +125,7 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
                 {
                     totalItems = expectedTotalItems,
                     items =  expectedItemsResult.EnumerateArray()
-                        .Skip(firstPage * BookConstants.MaximalItemsPerPage)
+                        .Skip((firstPage - 1) * BookConstants.MaximalItemsPerPage)
                         .Take(BookConstants.MaximalItemsPerPage)
                 }))
         };
@@ -140,7 +141,7 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
                 {
                     totalItems = mockedTotalItems,
                     items =  mockedExpectedItems.EnumerateArray()
-                        .Skip(secondPage * BookConstants.MaximalItemsPerPage)
+                        .Skip((secondPage - 1) * BookConstants.MaximalItemsPerPage)
                         .Take(BookConstants.MaximalItemsPerPage)
                 })),
 
@@ -149,7 +150,7 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
                 {
                     totalItems = expectedTotalItems,
                     items =  expectedItemsResult.EnumerateArray()
-                        .Skip(secondPage * BookConstants.MaximalItemsPerPage)
+                        .Skip((secondPage - 1) * BookConstants.MaximalItemsPerPage)
                         .Take(BookConstants.MaximalItemsPerPage)
                 }))
         };
@@ -165,7 +166,7 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
                 {
                     totalItems = mockedTotalItems,
                     items =  mockedExpectedItems.EnumerateArray()
-                        .Skip(thirdPage * BookConstants.MaximalItemsPerPage)
+                        .Skip((thirdPage - 1) * BookConstants.MaximalItemsPerPage)
                         .Take(BookConstants.MaximalItemsPerPage)
                 })),
 
@@ -174,12 +175,12 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
                 {
                     totalItems = expectedTotalItems,
                     items =  expectedItemsResult.EnumerateArray()
-                        .Skip(thirdPage * BookConstants.MaximalItemsPerPage)
+                        .Skip((thirdPage - 1) * BookConstants.MaximalItemsPerPage)
                         .Take(BookConstants.MaximalItemsPerPage)
                 }))
         };
 
-        // 3 - In between page with smaller size
+        // 4 - In between page with smaller size
         var intermediatePage = 5;
         var pageSize = 2;
         yield return new object[]
@@ -191,7 +192,7 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
                 {
                     totalItems = mockedTotalItems,
                     items =  mockedExpectedItems.EnumerateArray()
-                        .Skip(intermediatePage * pageSize)
+                        .Skip((intermediatePage - 1) * pageSize)
                         .Take(pageSize)
                 })),
 
@@ -200,7 +201,7 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
                 {
                     totalItems = expectedTotalItems,
                     items =  expectedItemsResult.EnumerateArray()
-                        .Skip(intermediatePage * pageSize)
+                        .Skip((intermediatePage - 1) * pageSize)
                         .Take(pageSize)
                 }))
         };
