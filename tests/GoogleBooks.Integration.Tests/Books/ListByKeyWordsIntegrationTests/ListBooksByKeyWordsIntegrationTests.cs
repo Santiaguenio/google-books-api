@@ -1,5 +1,5 @@
 ﻿using GoogleBooks.Contracts;
-using GoogleBooks.Contracts.Requests;
+using GoogleBooks.Contracts.Requests.Books;
 using GoogleBooks.Contracts.Responses.Books;
 using GoogleBooks.Domain.Books;
 using Moq;
@@ -55,7 +55,7 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
         };
 
         // act
-        var actualHttpResult = await _client.GetAsync($"books?keyWords={pageParams.KeyWords}&page={pageParams.Page}&pageSize={pageParams.PageSize}", TestContext.Current.CancellationToken);
+        var actualHttpResult = await _client.GetAsync($"api/books?keyWords={pageParams.KeyWords}&page={pageParams.Page}&pageSize={pageParams.PageSize}", TestContext.Current.CancellationToken);
 
         // assert
         Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
@@ -79,7 +79,7 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
         var expectedHttpResult = new HttpResponseMessage(HttpStatusCode.BadRequest);
 
         // act
-        var actualHttpResult = await _client.GetAsync($"books?keyWords={string.Empty}", TestContext.Current.CancellationToken);
+        var actualHttpResult = await _client.GetAsync($"api/books?keyWords={string.Empty}", TestContext.Current.CancellationToken);
 
         // assert
         Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);

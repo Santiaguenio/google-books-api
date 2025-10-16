@@ -47,7 +47,7 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
             });
 
         // act
-        var actualHttpResult = await _client.GetAsync($"books/{bookId}", TestContext.Current.CancellationToken);
+        var actualHttpResult = await _client.GetAsync($"api/books/{bookId}", TestContext.Current.CancellationToken);
 
         // assert
         Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
@@ -69,7 +69,7 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
         var expectedHttpResult = new HttpResponseMessage(HttpStatusCode.BadRequest);
 
         // act
-        var actualHttpResult = await _client.GetAsync($"books/{string.Empty}", TestContext.Current.CancellationToken);
+        var actualHttpResult = await _client.GetAsync($"api/books/{string.Empty}", TestContext.Current.CancellationToken);
 
         // assert
         Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
@@ -108,7 +108,7 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
             });
 
         // act
-        var actualHttpResult = await _client.GetAsync($"books/{bookId}", TestContext.Current.CancellationToken);
+        var actualHttpResult = await _client.GetAsync($"api/books/{bookId}", TestContext.Current.CancellationToken);
 
         // assert
         Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
@@ -146,7 +146,7 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
         _client.Timeout = TimeSpan.FromMilliseconds(1500);
 
         // act
-        var actualHttpResult = await _client.GetAsync($"books/{bookId}", TestContext.Current.CancellationToken);
+        var actualHttpResult = await _client.GetAsync($"api/books/{bookId}", TestContext.Current.CancellationToken);
 
         // assert
         Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
@@ -182,7 +182,7 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
             .ThrowsAsync(new Exception("This is a mocked exception message"));
 
         // act
-        var actualHttpResult = await _client.GetAsync($"books/{bookId}", TestContext.Current.CancellationToken);
+        var actualHttpResult = await _client.GetAsync($"api/books/{bookId}", TestContext.Current.CancellationToken);
 
         // assert
         Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
@@ -222,7 +222,7 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
             });
 
         // act
-        var actualHttpResult = await _client.GetAsync($"books/{unknownId}", TestContext.Current.CancellationToken);
+        var actualHttpResult = await _client.GetAsync($"api/books/{unknownId}", TestContext.Current.CancellationToken);
 
         // assert
         Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);

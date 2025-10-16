@@ -1,4 +1,6 @@
 ﻿using GoogleBooks.Application.Books;
+using GoogleBooks.Application.Common;
+using GoogleBooks.Application.Readers;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GoogleBooks.Application
@@ -7,7 +9,9 @@ namespace GoogleBooks.Application
     {
         public static void RegisterApplicationServices(this IServiceCollection services)
         {
-            services.RegisterBooksUseCases();
+            services.RegisterBookDependencies();
+            services.RegisterCommonDependencies();
+            services.RegisterReaderDependencies();
         }
     }
 }
