@@ -3,9 +3,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace GoogleBooks.Infrastructure.Books.Services;
 
-internal static class ServicesExtensions
+internal static class ServiceExtensions
 {
-    internal static void RegisterServices(this IServiceCollection services)
+    internal static void RegisterBookServices(this IServiceCollection services)
     {
         services.AddScoped<IBookService, BookService>();
     }

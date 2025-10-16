@@ -2,7 +2,7 @@
 using Google.Apis.Books.v1.Data;
 using GoogleBooks.Application.Books;
 using GoogleBooks.Contracts;
-using GoogleBooks.Contracts.Requests;
+using GoogleBooks.Contracts.Requests.Books;
 using GoogleBooks.Contracts.Responses.Books;
 using System.Net.Http.Json;
 

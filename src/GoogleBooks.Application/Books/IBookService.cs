@@ -1,11 +1,11 @@
-﻿using GoogleBooks.Contracts;
-using GoogleBooks.Contracts.Requests;
+﻿using GoogleBooks.Application.Common.Services;
+using GoogleBooks.Contracts;
+using GoogleBooks.Contracts.Requests.Books;
 using GoogleBooks.Contracts.Responses.Books;
 
 namespace GoogleBooks.Application.Books;
 
-public interface IBookService
+public interface IBookService : IService<BookFullDto>
 {
-    Task<BookFullDto> GetByIdAsync<TKey>(TKey id, CancellationToken cancellationToken);
     Task<EntitiesByCriteriaDto<BookFullDto>> ListByKeyWordsAsync(PageParams request, CancellationToken cancellationToken);
 }

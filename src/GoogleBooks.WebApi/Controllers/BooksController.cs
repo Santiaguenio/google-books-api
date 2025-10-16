@@ -1,6 +1,6 @@
 using GoogleBooks.Application.Common.UseCases;
 using GoogleBooks.Contracts;
-using GoogleBooks.Contracts.Requests;
+using GoogleBooks.Contracts.Requests.Books;
 using GoogleBooks.Contracts.Responses.Books;
 using Microsoft.AspNetCore.Mvc;
 

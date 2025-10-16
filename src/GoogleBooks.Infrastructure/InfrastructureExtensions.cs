@@ -1,7 +1,10 @@
 ﻿using GoogleBooks.Infrastructure.Books.Mappers;
 using GoogleBooks.Infrastructure.Books.Services;
+using GoogleBooks.Infrastructure.Readers.MongoDbConfiguration;
+using GoogleBooks.Infrastructure.Readers.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MongoDB.Driver;
 
 namespace GoogleBooks.Infrastructure;
 
@@ -11,9 +14,25 @@ public static class InfrastructureExtensions
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        RegisterHttpClient(services, configuration);
         services.RegisterMappings();
-        services.RegisterServices();
+        services.RegisterBookServices();
+        services.RegisterCommonDependencies();
+        services.RegisterReaderServices();
+
+        RegisterHttpClient(services, configuration);
+        RegisterMongoDb(services, configuration);
+    }
+
+    private static void RegisterMongoDb(
+            IServiceCollection services,
+            IConfiguration configuration)
+    {
+        // Register MongoDB client and database in the DI container
+        services.AddSingleton(_ => MongoDbConfiguration.CreateClient(configuration.GetConnectionString("MongoDb")!));
+
+        services.AddSingleton(sp => sp.GetRequiredService<IMongoClient>().GetDatabase(configuration.GetSection("MongoDbName").Value));
+
+        services.AddHostedService<ReaderConfiguration>();
     }
 
     private static void RegisterHttpClient(
