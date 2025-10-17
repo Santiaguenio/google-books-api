@@ -10,35 +10,38 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Books\GetByIdIntegrationTests\ExpectedGetBookByIdContent.json" />
-    <None Remove="Books\GetByIdIntegrationTests\ExpectedServiceUnavailableContent.json" />
-    <None Remove="Books\GetByIdIntegrationTests\MockedGoogleBooksServiceUnavailableContent.json" />
-    <None Remove="Books\ListByKeyWordsIntegrationTests\Should\ExpectedListBooksByKeyWordsResult.json" />
+    <None Remove="Books\GetBookByIdIntegrationTests\ExpectedGetBookByIdContent.json" />
+    <None Remove="Books\GetBookByIdIntegrationTests\ExpectedServiceUnavailableContent.json" />
+    <None Remove="Books\GetBookByIdIntegrationTests\MockedGoogleBooksServiceUnavailableContent.json" />
+    <None Remove="Books\ListBooksByKeyWordsIntegrationTests\Should\ExpectedListBooksByKeyWordsResult.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Books\GetByIdIntegrationTests\ExternalServerError\ExpectedExternalServerErrorResult.json">
+    <Content Include="Books\GetBookByIdIntegrationTests\ExpectedExternalServerErrorResult.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Books\GetByIdIntegrationTests\InternalServerError\ExpectedInternalServerErrorResult.json">
+    <Content Include="ExpectedInternalServerErrorResult.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Books\GetByIdIntegrationTests\Should\ExpectedGetBookByIdContent.json">
+    <Content Include="Books\GetBookByIdIntegrationTests\Should\ExpectedGetBookByIdContent.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Books\GetByIdIntegrationTests\ServiceUnavailable\ExpectedServiceUnavailableContent.json">
+    <Content Include="Books\GetBookByIdIntegrationTests\ServiceUnavailable\ExpectedServiceUnavailableContent.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Books\GetByIdIntegrationTests\Should\MockedGetBookByIdResponse.json">
+    <Content Include="Books\GetBookByIdIntegrationTests\Should\MockedGetBookByIdResponse.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Books\GetByIdIntegrationTests\ServiceUnavailable\MockedUnavailableContent.json">
+    <Content Include="Books\GetBookByIdIntegrationTests\ServiceUnavailable\MockedUnavailableContent.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Books\ListByKeyWordsIntegrationTests\Should\ExpectedListBooksByKeyWordsResult.json">
+    <Content Include="Books\ListBooksByKeyWordsIntegrationTests\Should\ExpectedListBooksByKeyWordsResult.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Books\ListByKeyWordsIntegrationTests\Should\MockedListBooksByKeyWordsResponse.json">
+    <Content Include="Books\ListBooksByKeyWordsIntegrationTests\Should\MockedListBooksByKeyWordsResponse.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Readers\GetReaderByIdIntegrationTests\ExpectedNotFoundErrorResult.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

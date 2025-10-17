@@ -5,9 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Net;
 using System.Net.Http.Json;
 
-namespace GoogleBooks.Integration.Tests.Readers
+namespace GoogleBooks.Integration.Tests.Readers.CreateReaderIntegrationTests
 {
-    [Collection("Integration tests")]
+    [Collection("Integration tests collection")]
     public class CreateReaderIntegrationTests(TestFactory testFactory) : IAsyncLifetime
     {
         private readonly HttpClient _client = testFactory.CreateClient();
@@ -21,7 +21,7 @@ namespace GoogleBooks.Integration.Tests.Readers
         async ValueTask IAsyncDisposable.DisposeAsync()
         {
             GC.SuppressFinalize(this);
-            await Task.CompletedTask;
+            await testFactory.ClearDatabaseAsync();
         }
 
         [Fact]
@@ -31,7 +31,7 @@ namespace GoogleBooks.Integration.Tests.Readers
             var expectedHttpResult = new HttpResponseMessage(HttpStatusCode.Created);
 
             var address = "666 Evergreen Terrace";
-            var birthDate = new DateTime(1990, 10, 15, 0, 0, 0, DateTimeKind.Utc);
+            var birthDate = new DateOnly(1985, 10, 10);
             var city = "Springfield";
             var email = "johndoe@gmail.com";
             var name = "John";
@@ -75,6 +75,54 @@ namespace GoogleBooks.Integration.Tests.Readers
                 actualCreatedReader,
                 _ => _.CreationDate,
                 _ => _.LastUpdate);
+        }
+
+        [Fact]
+        public async Task Should_ReturnConflictError_WhenDuplicateEmail()
+        {
+            // arrange
+            var existingReaderId = 1;
+            var address = "666 Evergreen Terrace";
+            var birthdate = new DateOnly(1985, 10, 10);
+            var city = "Springfield";
+            var email = "johndoe@gmail.com";
+            var name = "John";
+            var lastName = "Doe";
+            var zipCode = "65619";
+
+            await _readerService.AddAsync(new Reader
+            {
+                Id = existingReaderId,
+                Address = address,
+                Birthdate = birthdate,
+                City = city,
+                Email = email,
+                Name = name,
+                LastName = lastName,
+                ZipCode = zipCode
+            }, TestContext.Current.CancellationToken);
+
+            var readerCreationDto = new ReaderCreationDto
+            {
+                Address = "another address",
+                Birthdate = new DateOnly(1995, 10, 05),
+                City = "another city",
+                Email = email, // same email address
+                Name = "Jane",
+                LastName = "Doe",
+                ZipCode = "91656"
+            };
+
+            var expectedHttpResult = new HttpResponseMessage(HttpStatusCode.Conflict)
+            {
+                
+            };
+
+            // act
+            var actualHttpResult = await _client.PostAsync($"/api/readers/", JsonContent.Create(readerCreationDto), TestContext.Current.CancellationToken);
+
+            // assert
+            Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
         }
     }
 }

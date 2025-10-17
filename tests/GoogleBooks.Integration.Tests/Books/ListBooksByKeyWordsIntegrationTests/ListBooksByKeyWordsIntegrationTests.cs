@@ -8,9 +8,9 @@ using System.Net;
 using System.Net.Http.Json;
 using System.Text.Json;
 
-namespace GoogleBooks.Integration.Tests.Books.ListByKeyWordsIntegrationTests;
+namespace GoogleBooks.Integration.Tests.Books.ListBooksByKeyWordsIntegrationTests;
 
-[Collection("Integration tests")]
+[Collection("Integration tests collection")]
 public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsyncLifetime
 {
     private readonly HttpClient _client = testFactory.CreateClient();

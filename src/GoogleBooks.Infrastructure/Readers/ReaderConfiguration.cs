@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Hosting;
 using MongoDB.Driver;
 
-namespace GoogleBooks.Infrastructure.Readers.MongoDbConfiguration;
+namespace GoogleBooks.Infrastructure.Readers;
 
 public class ReaderConfiguration(IMongoDatabase database) : IHostedService
 {
@@ -17,6 +17,9 @@ public class ReaderConfiguration(IMongoDatabase database) : IHostedService
         var collection = database.GetCollection<Reader>(nameof(Reader));
         var birthdayIndex = Builders<Reader>.IndexKeys.Ascending(x => x.Birthdate);
         await collection.Indexes.CreateOneAsync(new CreateIndexModel<Reader>(birthdayIndex), cancellationToken: cancellationToken);
+
+        var keys = Builders<Reader>.IndexKeys.Ascending(x => x.Email);
+        await collection.Indexes.CreateOneAsync(new CreateIndexModel<Reader>(keys, new CreateIndexOptions { Unique = true }), cancellationToken: cancellationToken);
     }
 
     public Task StopAsync(CancellationToken cancellationToken) => Task.CompletedTask;

@@ -1,6 +1,7 @@
 ﻿using GoogleBooks.Application.Common.UseCases;
 using GoogleBooks.Contracts.Responses.Books;
 using GoogleBooks.Contracts.Responses.Readers;
+using GoogleBooks.Domain.Exceptions;
 
 namespace GoogleBooks.Application.Readers.UseCases
 {
@@ -9,6 +10,10 @@ namespace GoogleBooks.Application.Readers.UseCases
         public async Task<IGoogleBooksResponse> DoAsync(int id, CancellationToken cancellationToken)
         {
             var reader = await readerService.GetByIdAsync(id, cancellationToken);
+            if (reader is null)
+            {
+                throw new EntityNotFoundException($"The Reader with Id: {id} was not found");
+            }
 
             return new ReaderDto
             {
@@ -16,6 +21,7 @@ namespace GoogleBooks.Application.Readers.UseCases
                 Birthdate = reader.Birthdate,
                 City = reader.City,
                 Email = reader.Email,
+                Id = reader.Id,
                 LastName = reader.LastName,
                 Name = reader.Name,
                 ZipCode = reader.ZipCode

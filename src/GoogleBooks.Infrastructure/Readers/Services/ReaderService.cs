@@ -21,6 +21,6 @@ internal class ReaderService(
 
     public async Task<Reader> GetByIdAsync<TKey>(TKey id, CancellationToken cancellationToken)
     {
-        return await (await _collection.FindAsync(_ => _.Id!.Equals(id), cancellationToken: cancellationToken)).FirstOrDefaultAsync(cancellationToken);
+        return await (await _collection.FindAsync(_ => _.Id.Equals(id), cancellationToken: cancellationToken)).FirstOrDefaultAsync(cancellationToken);
     }
 }

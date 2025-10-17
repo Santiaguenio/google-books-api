@@ -1,4 +1,4 @@
-﻿namespace GoogleBooks.Domain.Readers.Entities
+﻿namespace GoogleBooks.Domain
 {
     public class EntityBase<TKey>
     {
