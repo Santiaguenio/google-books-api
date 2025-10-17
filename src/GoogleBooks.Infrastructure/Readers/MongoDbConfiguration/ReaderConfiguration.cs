@@ -1,7 +1,6 @@
 ﻿using GoogleBooks.Domain.Readers.Entities;
 using Microsoft.Extensions.Hosting;
 using MongoDB.Driver;
-using System.Collections;
 
 namespace GoogleBooks.Infrastructure.Readers.MongoDbConfiguration;
 

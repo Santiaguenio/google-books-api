@@ -14,6 +14,8 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
     async ValueTask IAsyncDisposable.DisposeAsync()
     {
         testFactory.ResetMocks();
+        GC.SuppressFinalize(this);
+
         await Task.CompletedTask;
     }
 
