@@ -73,7 +73,7 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
     }
 
     [Fact]
-    public async Task Should_ReturnBadRequest_When_KeyWordsIsNullOrWhiteSpace()
+    public async Task Should_ReturnBadRequest_When_KeyWordsFieldsIsNullOrWhiteSpace()
     {
         // arrange
         var expectedHttpResult = new HttpResponseMessage(HttpStatusCode.BadRequest);
@@ -96,12 +96,12 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
     public static IEnumerable<object[]> GetEntryDataAndExpectedResult()
     {
         // Google client response
-        using var mockedListBooksByKeyWordsResponse = JsonDocument.Parse(File.ReadAllText("Books/ListByKeyWordsIntegrationTests/Should/MockedListBooksByKeyWordsResponse.json"));
+        using var mockedListBooksByKeyWordsResponse = JsonDocument.Parse(File.ReadAllText("Books/ListBooksByKeyWordsIntegrationTests/Should/MockedListBooksByKeyWordsResponse.json"));
         int mockedTotalItems = mockedListBooksByKeyWordsResponse.RootElement.GetProperty("totalItems").GetInt32();
         var mockedExpectedItems = mockedListBooksByKeyWordsResponse.RootElement.GetProperty("items");
 
         // Expected result
-        using var listBooksByKeyWordsExpectedJsonResult = JsonDocument.Parse(File.ReadAllText("Books/ListByKeyWordsIntegrationTests/Should/ExpectedListBooksByKeyWordsResult.json"));
+        using var listBooksByKeyWordsExpectedJsonResult = JsonDocument.Parse(File.ReadAllText("Books/ListBooksByKeyWordsIntegrationTests/Should/ExpectedListBooksByKeyWordsResult.json"));
         int expectedTotalItems = listBooksByKeyWordsExpectedJsonResult.RootElement.GetProperty("totalItems").GetInt32();
         var expectedItemsResult = listBooksByKeyWordsExpectedJsonResult.RootElement.GetProperty("items");
 
