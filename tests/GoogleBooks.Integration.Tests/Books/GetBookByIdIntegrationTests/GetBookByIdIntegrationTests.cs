@@ -5,7 +5,7 @@ using Moq.Protected;
 using System.Net;
 using System.Net.Http.Json;
 
-namespace GoogleBooks.Integration.Tests.Books.GetBooksByIdIntegrationTests;
+namespace GoogleBooks.Integration.Tests.Books.GetBookByIdIntegrationTests;
 
 [Collection("Integration tests collection")]
 public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifetime

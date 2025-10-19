@@ -1,9 +1,11 @@
 ﻿using GoogleBooks.Application.Readers;
 using GoogleBooks.Contracts.Requests.Readers;
 using GoogleBooks.Domain.Readers.Entities;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using System.Net;
 using System.Net.Http.Json;
+using System.Text.Json;
 
 namespace GoogleBooks.Integration.Tests.Readers.CreateReaderIntegrationTests
 {
@@ -78,7 +80,7 @@ namespace GoogleBooks.Integration.Tests.Readers.CreateReaderIntegrationTests
         }
 
         [Fact]
-        public async Task Should_ReturnConflictError_WhenDuplicateEmail()
+        public async Task Should_ReturnConflictError_When_DuplicateEmail()
         {
             // arrange
             var existingReaderId = 1;
@@ -115,14 +117,24 @@ namespace GoogleBooks.Integration.Tests.Readers.CreateReaderIntegrationTests
 
             var expectedHttpResult = new HttpResponseMessage(HttpStatusCode.Conflict)
             {
-                
+                Content = new StringContent(JsonSerializer.Serialize(
+                    new ProblemDetails
+                    {
+                        Title = "A write operation resulted in an error. WriteError: { Category : \"DuplicateKey\", Code : 11000, Message : \"E11000 duplicate key error collection: google-books.Reader index: email_1 dup key: { email: \"johndoe@gmail.com\" }\" }.",
+                        Status = (int)HttpStatusCode.Conflict
+                    }    
+                ))
             };
 
             // act
-            var actualHttpResult = await _client.PostAsync($"/api/readers/", JsonContent.Create(readerCreationDto), TestContext.Current.CancellationToken);
+            var actualHttpResult = await _client.PostAsync($"/api/readers", JsonContent.Create(readerCreationDto), TestContext.Current.CancellationToken);
 
             // assert
             Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
+
+            var actualResult = await actualHttpResult.Content.ReadFromJsonAsync<ProblemDetails>(TestContext.Current.CancellationToken);
+            var expectedResult = await expectedHttpResult.Content.ReadFromJsonAsync<ProblemDetails>(TestContext.Current.CancellationToken);
+            Assert.Equivalent(expectedResult, actualResult);
         }
     }
 }
