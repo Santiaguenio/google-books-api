@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using System.Net;
 using System.Net.Http.Json;
-using System.Text.Json;
 
 namespace GoogleBooks.Integration.Tests.Readers.CreateReaderIntegrationTests
 {
@@ -117,13 +116,13 @@ namespace GoogleBooks.Integration.Tests.Readers.CreateReaderIntegrationTests
 
             var expectedHttpResult = new HttpResponseMessage(HttpStatusCode.Conflict)
             {
-                Content = new StringContent(JsonSerializer.Serialize(
+                Content = JsonContent.Create(
                     new ProblemDetails
                     {
                         Title = "A write operation resulted in an error. WriteError: { Category : \"DuplicateKey\", Code : 11000, Message : \"E11000 duplicate key error collection: google-books.Reader index: email_1 dup key: { email: \"johndoe@gmail.com\" }\" }.",
                         Status = (int)HttpStatusCode.Conflict
-                    }    
-                ))
+                    }
+                )
             };
 
             // act

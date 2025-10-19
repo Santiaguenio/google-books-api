@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using System.Net;
 using System.Net.Http.Json;
-using System.Text.Json;
 
 namespace GoogleBooks.Integration.Tests.Readers.GetReaderByIdIntegrationTests
 {
@@ -53,17 +52,19 @@ namespace GoogleBooks.Integration.Tests.Readers.GetReaderByIdIntegrationTests
 
             var expectedHttpResult = new HttpResponseMessage(HttpStatusCode.OK)
             {
-                Content = new StringContent(JsonSerializer.Serialize(new ReaderDto
-                {
-                    Id = expectedReaderId,
-                    Address = address,
-                    Birthdate = birthdate,
-                    City = city,
-                    Email = email,
-                    Name = name,
-                    LastName = lastName,
-                    ZipCode = zipCode
-                }))
+                Content = JsonContent.Create(
+                    new ReaderDto
+                    {
+                        Id = expectedReaderId,
+                        Address = address,
+                        Birthdate = birthdate,
+                        City = city,
+                        Email = email,
+                        Name = name,
+                        LastName = lastName,
+                        ZipCode = zipCode
+                    }
+                )
             };
 
             // act
