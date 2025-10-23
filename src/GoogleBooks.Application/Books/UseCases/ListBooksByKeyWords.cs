@@ -12,7 +12,7 @@ internal class ListBooksByKeyWords(IBookService bookService) : IListByCriteria<P
     {
         if (string.IsNullOrWhiteSpace(request.KeyWords))
         {
-            throw new BadRequestException("Provided keywords can't be null or empty");
+            throw new BadRequestException(new Dictionary<string, string[]> { { nameof(PageParams.KeyWords), [$"{nameof(PageParams.KeyWords)} is mandatory"] } });
         }
 
         if (request.PageSize is null || request.PageSize > BookConstants.MaximalItemsPerPage)
