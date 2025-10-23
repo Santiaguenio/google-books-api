@@ -2,7 +2,7 @@
 
 public class Reader : EntityBase<int>
 {
-    public string Address { get; set; } = default!;
+    public string? Address { get; set; }
     public string? City { get; set; }
     public string Email { get; set; } = default!;
     public string Name { get; set; } = default!;

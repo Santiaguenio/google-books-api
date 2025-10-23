@@ -4,7 +4,7 @@ namespace GoogleBooks.Contracts.Requests.Readers;
 
 public record ReaderCreationDto : IGoogleBooksRequest
 {
-    public string Address { get; set; } = default!;
+    public string? Address { get; set; }
     public string? City { get; set; }
 
     [EmailAddress]

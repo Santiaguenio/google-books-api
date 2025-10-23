@@ -1,17 +1,24 @@
-﻿using GoogleBooks.Application.Common.Services;
+﻿using FluentValidation;
+using GoogleBooks.Application.Common.Services;
 using GoogleBooks.Application.Common.UseCases;
 using GoogleBooks.Contracts.Requests.Readers;
+using GoogleBooks.Domain.Exceptions;
 using GoogleBooks.Domain.Readers.Entities;
 
 namespace GoogleBooks.Application.Readers.UseCases;
 
 internal class CreateReader(
+    IValidator<ReaderCreationDto> validator,
     IDateTimeProvider dateTimeProvider,
     IReaderService readerService) : ICreate<ReaderCreationDto, int>
 {
     public async Task<int> DoAsync(ReaderCreationDto readerCreation, CancellationToken cancellationToken)
     {
-        // TODO: Validate entry data
+        var validationResult = await validator.ValidateAsync(readerCreation, cancellationToken);
+        if (!validationResult.IsValid)
+        {
+            throw new BadRequestException(validationResult.Errors.ToDictionary());
+        }
 
         var now = dateTimeProvider.UtcNow();
         var createdReader = await readerService.AddAsync(new Reader
