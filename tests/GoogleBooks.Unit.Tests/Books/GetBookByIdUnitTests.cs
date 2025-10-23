@@ -5,13 +5,14 @@ using Moq;
 
 namespace GoogleBooks.Unit.Tests.Books;
 
-[Collection("Unit tests collection")]
 public class GetBookByIdUnitTests()
 {
     private readonly Mock<IBookService> _mockedBookService = new();
 
-    [Fact]
-    public async Task Should_ThrowBadRequestException_When_IdIsNullOrEmpty()
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    public async Task Should_ThrowBadRequestException_When_IdIsNullOrEmpty(string? id)
     {
         // arrange
         var expectedException = new BadRequestException(new Dictionary<string, string[]> { { "Id", ["Id is mandatory"] } });
@@ -19,7 +20,7 @@ public class GetBookByIdUnitTests()
         var sut = new GetBookById(_mockedBookService.Object);
 
         // act
-        var actualException = await Assert.ThrowsAsync<BadRequestException>(async () => await sut.DoAsync(string.Empty, TestContext.Current.CancellationToken));
+        var actualException = await Assert.ThrowsAsync<BadRequestException>(async () => await sut.DoAsync(id!, TestContext.Current.CancellationToken));
 
         // assert
         Assert.Equivalent(expectedException.Errors, actualException.Errors);
