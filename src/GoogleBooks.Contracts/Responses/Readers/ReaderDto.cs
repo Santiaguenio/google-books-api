@@ -4,6 +4,8 @@ namespace GoogleBooks.Contracts.Responses.Readers
 {
     public record ReaderDto : IGoogleBooksResponse
     {
+        public int Id { get; set; }
+
         public string Address { get; set; } = default!;
         public string? City { get; set; }
         public string Email { get; set; } = default!;
@@ -11,6 +13,6 @@ namespace GoogleBooks.Contracts.Responses.Readers
         public string LastName { get; set; } = default!;
         public string? ZipCode { get; set; }
 
-        public DateTime Birthdate { get; set; }
+        public DateOnly Birthdate { get; set; }
     }
 }

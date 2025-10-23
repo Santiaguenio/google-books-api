@@ -7,14 +7,14 @@ namespace GoogleBooks.Application.Readers.UseCases;
 
 internal class CreateReader(
     IDateTimeProvider dateTimeProvider,
-    IReaderService repository) : ICreate<ReaderCreationDto, int>
+    IReaderService readerService) : ICreate<ReaderCreationDto, int>
 {
     public async Task<int> DoAsync(ReaderCreationDto readerCreation, CancellationToken cancellationToken)
     {
         // TODO: Validate entry data
 
         var now = dateTimeProvider.UtcNow();
-        var createdReader = await repository.AddAsync(new Reader
+        var createdReader = await readerService.AddAsync(new Reader
         {
             Address = readerCreation.Address,
             Birthdate = readerCreation.Birthdate,

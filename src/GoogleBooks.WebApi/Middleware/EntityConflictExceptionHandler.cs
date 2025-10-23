@@ -1,17 +1,17 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
+﻿using GoogleBooks.Domain.Exceptions;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
 
 namespace GoogleBooks.WebApi.Middleware;
 
-internal class ExternalServerExceptionHandler(ILogger<ExternalServerExceptionHandler> logger) : ExceptionHandlerBase<ExternalServerExceptionHandler>(logger), IExceptionHandler
+internal class EntityConflictExceptionHandler(ILogger<EntityConflictExceptionHandler> logger) : ExceptionHandlerBase<EntityConflictExceptionHandler>(logger), IExceptionHandler
 {
     public async ValueTask<bool> TryHandleAsync(
         HttpContext httpContext,
         Exception exception,
         CancellationToken cancellationToken)
     {
-        if (exception is not HttpRequestException hre || (hre.StatusCode is not HttpStatusCode.InternalServerError || exception is OperationCanceledException))
+        if (exception is not EntityConflictException)
         {
             return false;
         }
@@ -20,8 +20,8 @@ internal class ExternalServerExceptionHandler(ILogger<ExternalServerExceptionHan
 
         var problemDetails = new ProblemDetails
         {
-            Status = StatusCodes.Status500InternalServerError,
-            Title = "GoogleBooks service threw an exception, please try again later"
+            Status = StatusCodes.Status409Conflict,
+            Title = exception.Message
         };
 
         httpContext.Response.StatusCode = problemDetails.Status.Value;

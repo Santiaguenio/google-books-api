@@ -13,5 +13,5 @@ public record ReaderCreationDto : IGoogleBooksRequest
     public string LastName { get; set; } = default!;
     public string? ZipCode { get; set; }
 
-    public DateTime Birthdate { get; set; }
+    public DateOnly Birthdate { get; set; }
 }
