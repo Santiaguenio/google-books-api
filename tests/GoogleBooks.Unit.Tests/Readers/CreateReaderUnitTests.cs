@@ -46,7 +46,7 @@ public class CreateReaderUnitTests(TestFactory testFactory)
                 Birthdate = new DateOnly(1989, 10, 10),
                 City = null,
                 Email = "  ",
-                LastName = null,
+                LastName = null!,
                 Name = string.Empty,
                 ZipCode = null
             },
