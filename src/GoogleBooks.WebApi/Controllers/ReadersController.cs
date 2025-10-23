@@ -20,7 +20,8 @@ public class ReadersController : ControllerBase
         ReaderCreationDto readerCreation,
         CancellationToken cancellationToken)
     {
-        return Created($"/api/{nameof(RouteData)}", await createReader.DoAsync(readerCreation, cancellationToken));
+        var createdReaderId = await createReader.DoAsync(readerCreation, cancellationToken);
+        return Created($"/api/readers/{createdReaderId}", createdReaderId);
     }
 
     [HttpGet("{id}")]

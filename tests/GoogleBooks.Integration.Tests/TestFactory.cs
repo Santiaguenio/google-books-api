@@ -1,5 +1,4 @@
-﻿using GoogleBooks.Domain;
-using GoogleBooks.Infrastructure.Books.Services;
+﻿using GoogleBooks.Infrastructure.Books.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
@@ -61,17 +60,6 @@ public class TestFactory : WebApplicationFactory<Program>, IAsyncLifetime
     internal void ResetMocks()
     {
         MockedHttpMessageHandler.Reset();
-    }
-
-    internal async Task<TEntity[]> SeedDataAsync<TEntity, Tkey>(TEntity[] entities) where TEntity : EntityBase<Tkey>
-    {
-        var seededEntities = Array.Empty<TEntity>();
-        foreach (var entity in entities)
-        {
-            await _database.GetCollection<TEntity>(typeof(TEntity).Name).InsertOneAsync(entity);
-        }
-
-        return seededEntities;
     }
 
     internal void SetMockedHttpClientFactory(string url = "https://default-test-url.com")

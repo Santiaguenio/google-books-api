@@ -1,6 +1,6 @@
 ﻿namespace GoogleBooks.Application.Common.Services;
 
-internal interface IDateTimeProvider
+public interface IDateTimeProvider
 {
     DateTime UtcNow();
 }
