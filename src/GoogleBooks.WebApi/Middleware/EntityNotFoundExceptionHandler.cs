@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GoogleBooks.WebApi.Middleware;
 
-public class EntityNotFoundExceptionHandler(ILogger<EntityNotFoundExceptionHandler> logger) : IExceptionHandler
+internal class EntityNotFoundExceptionHandler(ILogger<EntityNotFoundExceptionHandler> logger) : ExceptionHandlerBase<EntityNotFoundExceptionHandler>(logger), IExceptionHandler
 {
     public async ValueTask<bool> TryHandleAsync(
         HttpContext httpContext,
@@ -16,7 +16,7 @@ public class EntityNotFoundExceptionHandler(ILogger<EntityNotFoundExceptionHandl
             return false;
         }
 
-        logger.LogError("[GoogleBooksApi Error] - EndPoint = {EndPoint}, Section = {Section}, ErrorMessage = {ErrorMessage}", $"{httpContext.Request} - Failure", exception.StackTrace, exception.Message);
+        Log(exception, httpContext);
 
         var problemDetails = new ProblemDetails
         {

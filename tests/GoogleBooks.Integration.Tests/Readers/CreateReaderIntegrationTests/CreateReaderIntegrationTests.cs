@@ -63,7 +63,7 @@ namespace GoogleBooks.Integration.Tests.Readers.CreateReaderIntegrationTests
             };
 
             // act
-            var actualHttpResult = await _client.PostAsync("api/readers", JsonContent.Create(readerCreationDto), TestContext.Current.CancellationToken);
+            var actualHttpResult = await _client.PostAsJsonAsync("api/readers", readerCreationDto, TestContext.Current.CancellationToken);
 
             // assert
             Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
@@ -126,14 +126,14 @@ namespace GoogleBooks.Integration.Tests.Readers.CreateReaderIntegrationTests
             };
 
             // act
-            var actualHttpResult = await _client.PostAsync($"/api/readers", JsonContent.Create(readerCreationDto), TestContext.Current.CancellationToken);
+            var actualHttpResult = await _client.PostAsJsonAsync("api/readers", readerCreationDto, TestContext.Current.CancellationToken);
 
             // assert
             Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
 
-            var actualResult = await actualHttpResult.Content.ReadFromJsonAsync<ProblemDetails>(TestContext.Current.CancellationToken);
-            var expectedResult = await expectedHttpResult.Content.ReadFromJsonAsync<ProblemDetails>(TestContext.Current.CancellationToken);
-            Assert.Equivalent(expectedResult, actualResult);
+            Assert.Equivalent(
+                await expectedHttpResult.Content.ReadFromJsonAsync<ProblemDetails>(TestContext.Current.CancellationToken),
+                await actualHttpResult.Content.ReadFromJsonAsync<ProblemDetails>(TestContext.Current.CancellationToken));
         }
     }
 }

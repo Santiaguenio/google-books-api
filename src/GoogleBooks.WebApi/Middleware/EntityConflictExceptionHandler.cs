@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GoogleBooks.WebApi.Middleware;
 
-internal class EntityConflictExceptionHandler(ILogger<EntityConflictExceptionHandler> logger) : IExceptionHandler
+internal class EntityConflictExceptionHandler(ILogger<EntityConflictExceptionHandler> logger) : ExceptionHandlerBase<EntityConflictExceptionHandler>(logger), IExceptionHandler
 {
     public async ValueTask<bool> TryHandleAsync(
         HttpContext httpContext,
@@ -16,7 +16,7 @@ internal class EntityConflictExceptionHandler(ILogger<EntityConflictExceptionHan
             return false;
         }
 
-        logger.LogError("[GoogleBooksApi Error] - EndPoint = {EndPoint}, Section = {Section}, ErrorMessage = {ErrorMessage}", $"{httpContext.Request} - Failure", exception.StackTrace, exception.Message);
+        Log(exception, httpContext);
 
         var problemDetails = new ProblemDetails
         {

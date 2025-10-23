@@ -73,9 +73,9 @@ namespace GoogleBooks.Integration.Tests.Readers.GetReaderByIdIntegrationTests
             // assert
             Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
 
-            var expectedResult = await expectedHttpResult.Content.ReadFromJsonAsync<ReaderDto>(TestContext.Current.CancellationToken);
-            var actualResult = await actualHttpResult.Content.ReadFromJsonAsync<ReaderDto>(TestContext.Current.CancellationToken);
-            Assert.Equal(expectedResult, actualResult);
+            Assert.Equal(
+                await expectedHttpResult.Content.ReadFromJsonAsync<ReaderDto>(TestContext.Current.CancellationToken),
+                await actualHttpResult.Content.ReadFromJsonAsync<ReaderDto>(TestContext.Current.CancellationToken));
         }
 
         [Fact]

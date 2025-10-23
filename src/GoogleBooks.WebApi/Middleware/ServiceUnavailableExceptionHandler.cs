@@ -4,7 +4,7 @@ using System.Net;
 
 namespace GoogleBooks.WebApi.Middleware;
 
-internal class ServiceUnavailableExceptionHandler(ILogger<ServiceUnavailableExceptionHandler> logger) : IExceptionHandler
+internal class ServiceUnavailableExceptionHandler(ILogger<ServiceUnavailableExceptionHandler> logger) : ExceptionHandlerBase<ServiceUnavailableExceptionHandler>(logger), IExceptionHandler
 {
     public async ValueTask<bool> TryHandleAsync(
         HttpContext httpContext, 
@@ -16,7 +16,7 @@ internal class ServiceUnavailableExceptionHandler(ILogger<ServiceUnavailableExce
             return false;
         }
 
-        logger.LogError("[GoogleBooksApi Error] - EndPoint = {EndPoint}, Section = {Section}, ErrorMessage = {ErrorMessage}", $"{httpContext.Request} - Failure", exception.StackTrace, exception.Message);
+        Log(exception, httpContext);
 
         var problemDetails = new ProblemDetails
         {
