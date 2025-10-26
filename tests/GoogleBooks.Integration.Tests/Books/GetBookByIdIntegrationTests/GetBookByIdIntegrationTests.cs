@@ -135,7 +135,7 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
                 new Exception("This is an external server error"),
                 HttpStatusCode.InternalServerError));
 
-        var mockedLogger = new Mock<ILogger<EntityConflictExceptionHandler>>();
+        var mockedLogger = new Mock<ILogger<ExternalServerExceptionHandler>>();
         using var factory = testFactory.WithWebHostBuilder(_ =>
         {
             _.ConfigureTestServices(_ =>
