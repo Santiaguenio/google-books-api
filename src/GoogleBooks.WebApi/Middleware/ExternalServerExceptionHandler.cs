@@ -4,7 +4,7 @@ using System.Net;
 
 namespace GoogleBooks.WebApi.Middleware;
 
-internal class ExternalServerExceptionHandler(ILogger<ExternalServerExceptionHandler> logger) : ExceptionHandlerBase<ExternalServerExceptionHandler>(logger), IExceptionHandler
+public class ExternalServerExceptionHandler(ILogger<ExternalServerExceptionHandler> logger) : ExceptionHandlerBase<ExternalServerExceptionHandler>(logger), IExceptionHandler
 {
     public async ValueTask<bool> TryHandleAsync(
         HttpContext httpContext,

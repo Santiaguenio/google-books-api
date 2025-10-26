@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GoogleBooks.WebApi.Middleware;
 
-internal class EntityConflictExceptionHandler(ILogger<EntityConflictExceptionHandler> logger) : ExceptionHandlerBase<EntityConflictExceptionHandler>(logger), IExceptionHandler
+public class EntityConflictExceptionHandler(ILogger<EntityConflictExceptionHandler> logger) : ExceptionHandlerBase<EntityConflictExceptionHandler>(logger), IExceptionHandler
 {
     public async ValueTask<bool> TryHandleAsync(
         HttpContext httpContext,
