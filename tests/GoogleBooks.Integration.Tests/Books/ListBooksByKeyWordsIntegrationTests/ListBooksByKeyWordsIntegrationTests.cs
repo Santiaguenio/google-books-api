@@ -2,6 +2,10 @@
 using GoogleBooks.Contracts.Requests.Books;
 using GoogleBooks.Contracts.Responses.Books;
 using GoogleBooks.Domain.Books;
+using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Logging;
 using Moq;
 using Moq.Protected;
 using System.Net;
@@ -54,8 +58,18 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
             Content = expectedResult
         };
 
+        var mockedLogger = new Mock<ILogger>();
+        using var factory = testFactory.WithWebHostBuilder(_ =>
+        {
+            _.ConfigureTestServices(_ =>
+            {
+                _.RemoveAll(typeof(ILogger));
+                _.AddSingleton(mockedLogger.Object);
+            });
+        });
+
         // act
-        var actualHttpResult = await _client.GetAsync($"api/books?keyWords={pageParams.KeyWords}&page={pageParams.Page}&pageSize={pageParams.PageSize}", TestContext.Current.CancellationToken);
+        var actualHttpResult = await factory.CreateClient().GetAsync($"api/books?keyWords={pageParams.KeyWords}&page={pageParams.Page}&pageSize={pageParams.PageSize}", TestContext.Current.CancellationToken);
 
         // assert
         Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
@@ -70,6 +84,15 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
                 ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes?q={pageParams.KeyWords}&maxResults={pageParams.PageSize}&startIndex={(pageParams.Page - 1) * pageParams.PageSize}")),
                 ItExpr.IsAny<CancellationToken>()
             );
+
+        mockedLogger.Verify(_ =>
+           _.Log(
+               LogLevel.Error,
+               It.IsAny<EventId>(),
+               It.Is<It.IsAnyType>((state, _) => true),
+               It.IsAny<Exception?>(),
+               (Func<It.IsAnyType, Exception?, string>)It.IsAny<object>()),
+           Times.Never);
     }
 
     [Fact]
@@ -78,8 +101,18 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
         // arrange
         var expectedHttpResult = new HttpResponseMessage(HttpStatusCode.BadRequest);
 
+        var mockedLogger = new Mock<ILogger>();
+        using var factory = testFactory.WithWebHostBuilder(_ =>
+        {
+            _.ConfigureTestServices(_ =>
+            {
+                _.RemoveAll(typeof(ILogger));
+                _.AddSingleton(mockedLogger.Object);
+            });
+        });
+
         // act
-        var actualHttpResult = await _client.GetAsync($"api/books?keyWords={string.Empty}", TestContext.Current.CancellationToken);
+        var actualHttpResult = await factory.CreateClient().GetAsync($"api/books?keyWords={string.Empty}", TestContext.Current.CancellationToken);
 
         // assert
         Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
@@ -91,6 +124,15 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
                 ItExpr.Is<HttpRequestMessage>(_ => _.Method == It.IsAny<HttpMethod>() && _.RequestUri!.AbsoluteUri.Equals(It.IsAny<string>())),
                 ItExpr.IsAny<CancellationToken>()
             );
+
+        mockedLogger.Verify(_ => // Handled by AspNet middleware
+          _.Log(
+              LogLevel.Error,
+              It.IsAny<EventId>(),
+              It.Is<It.IsAnyType>((state, _) => true),
+              It.IsAny<Exception?>(),
+              (Func<It.IsAnyType, Exception?, string>)It.IsAny<object>()),
+          Times.Never);
     }
 
     public static IEnumerable<object[]> GetEntryDataAndExpectedResult()

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GoogleBooks.WebApi.Middleware;
 
-internal class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger) : ExceptionHandlerBase<GlobalExceptionHandler>(logger), IExceptionHandler
+public class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger) : ExceptionHandlerBase<GlobalExceptionHandler>(logger), IExceptionHandler
 {
     public async ValueTask<bool> TryHandleAsync(
         HttpContext httpContext,

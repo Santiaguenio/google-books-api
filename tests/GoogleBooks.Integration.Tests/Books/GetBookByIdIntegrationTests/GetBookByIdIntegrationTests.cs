@@ -1,5 +1,10 @@
 using GoogleBooks.Contracts.Responses.Books;
+using GoogleBooks.WebApi.Middleware;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Logging;
 using Moq;
 using Moq.Protected;
 using System.Net;
@@ -49,8 +54,18 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
                 Content = new StringContent(await File.ReadAllTextAsync("Books/GetBookByIdIntegrationTests/Should/MockedGetBookByIdResponse.json", TestContext.Current.CancellationToken))
             });
 
+        var mockedLogger = new Mock<ILogger>();
+        using var factory = testFactory.WithWebHostBuilder(_ =>
+        {
+            _.ConfigureTestServices(_ =>
+            {
+                _.RemoveAll(typeof(ILogger));
+                _.AddSingleton(mockedLogger.Object);
+            });
+        });
+
         // act
-        var actualHttpResult = await _client.GetAsync($"api/books/{bookId}", TestContext.Current.CancellationToken);
+        var actualHttpResult = await factory.CreateClient().GetAsync($"api/books/{bookId}", TestContext.Current.CancellationToken);
 
         // assert
         Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
@@ -65,6 +80,15 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
                 ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes/{bookId}")),
                 ItExpr.IsAny<CancellationToken>()
             );
+
+        mockedLogger.Verify(_ =>
+            _.Log(
+                LogLevel.Error,
+                It.IsAny<EventId>(),
+                It.Is<It.IsAnyType>((state, _) => true),
+                It.IsAny<Exception?>(),
+                (Func<It.IsAnyType, Exception?, string>)It.IsAny<object>()),
+            Times.Never);
     }
 
     [Fact]
@@ -111,8 +135,18 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
                 new Exception("This is an external server error"),
                 HttpStatusCode.InternalServerError));
 
+        var mockedLogger = new Mock<ILogger<ExternalServerExceptionHandler>>();
+        using var factory = testFactory.WithWebHostBuilder(_ =>
+        {
+            _.ConfigureTestServices(_ =>
+            {
+                _.RemoveAll(typeof(ILogger<ExternalServerExceptionHandler>));
+                _.AddSingleton(mockedLogger.Object);
+            });
+        });
+
         // act
-        var actualHttpResult = await _client.GetAsync($"api/books/{bookId}", TestContext.Current.CancellationToken);
+        var actualHttpResult = await factory.CreateClient().GetAsync($"api/books/{bookId}", TestContext.Current.CancellationToken);
 
         // assert
         Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
@@ -127,6 +161,15 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
                 ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes/{bookId}")),
                 ItExpr.IsAny<CancellationToken>()
             );
+
+        mockedLogger.Verify(_ =>
+            _.Log(
+                LogLevel.Error,
+                It.IsAny<EventId>(),
+                It.Is<It.IsAnyType>((state, _) => true),
+                It.IsAny<Exception?>(),
+                (Func<It.IsAnyType, Exception?, string>)It.IsAny<object>()),
+            Times.Once);
     }
 
     [Fact]
@@ -149,8 +192,18 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
                 ItExpr.IsAny<CancellationToken>())
             .ThrowsAsync(new Exception("This is a mocked exception message"));
 
+        var mockedLogger = new Mock<ILogger<GlobalExceptionHandler>>();
+        using var factory = testFactory.WithWebHostBuilder(_ =>
+        {
+            _.ConfigureTestServices(_ =>
+            {
+                _.RemoveAll(typeof(ILogger<GlobalExceptionHandler>));
+                _.AddSingleton(mockedLogger.Object);
+            });
+        });
+
         // act
-        var actualHttpResult = await _client.GetAsync($"api/books/{bookId}", TestContext.Current.CancellationToken);
+        var actualHttpResult = await factory.CreateClient().GetAsync($"api/books/{bookId}", TestContext.Current.CancellationToken);
 
         // assert
         Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
@@ -165,6 +218,15 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
                 ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes/{bookId}")),
                 ItExpr.IsAny<CancellationToken>()
             );
+
+        mockedLogger.Verify(_ =>
+            _.Log(
+                LogLevel.Error,
+                It.IsAny<EventId>(),
+                It.Is<It.IsAnyType>((state, _) => true),
+                It.IsAny<Exception?>(),
+                (Func<It.IsAnyType, Exception?, string>)It.IsAny<object>()),
+            Times.Once);
     }
 
     [Fact]
@@ -190,8 +252,18 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
                 new Exception("Response status code does not indicate success: 503 (Service Unavailable)."),
                 HttpStatusCode.ServiceUnavailable));
 
+        var mockedLogger = new Mock<ILogger<ServiceUnavailableExceptionHandler>>();
+        using var factory = testFactory.WithWebHostBuilder(_ =>
+        {
+            _.ConfigureTestServices(_ =>
+            {
+                _.RemoveAll(typeof(ILogger<ServiceUnavailableExceptionHandler>));
+                _.AddSingleton(mockedLogger.Object);
+            });
+        });
+
         // act
-        var actualHttpResult = await _client.GetAsync($"api/books/{unknownId}", TestContext.Current.CancellationToken);
+        var actualHttpResult = await factory.CreateClient().GetAsync($"api/books/{unknownId}", TestContext.Current.CancellationToken);
 
         // assert
         Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
@@ -206,5 +278,14 @@ public class GetBookByIdIntegrationTests(TestFactory testFactory) : IAsyncLifeti
                 ItExpr.Is<HttpRequestMessage>(_ => _.Method == HttpMethod.Get && _.RequestUri!.AbsoluteUri.Equals($"{testFactory.GoogleBooksUrl}volumes/{unknownId}")),
                 ItExpr.IsAny<CancellationToken>()
             );
+
+        mockedLogger.Verify(_ =>
+           _.Log(
+               LogLevel.Error,
+               It.IsAny<EventId>(),
+               It.Is<It.IsAnyType>((state, _) => true),
+               It.IsAny<Exception?>(),
+               (Func<It.IsAnyType, Exception?, string>)It.IsAny<object>()),
+           Times.Once);
     }
 }

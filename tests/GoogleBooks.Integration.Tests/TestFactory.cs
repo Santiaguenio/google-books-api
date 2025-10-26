@@ -59,6 +59,7 @@ public class TestFactory : WebApplicationFactory<Program>, IAsyncLifetime
 
     internal void ResetMocks()
     {
+        MockedHttpClientFactory.Reset();
         MockedHttpMessageHandler.Reset();
     }
 

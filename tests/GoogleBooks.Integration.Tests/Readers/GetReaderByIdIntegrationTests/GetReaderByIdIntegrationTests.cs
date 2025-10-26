@@ -1,8 +1,13 @@
 ﻿using GoogleBooks.Application.Readers;
 using GoogleBooks.Contracts.Responses.Readers;
 using GoogleBooks.Domain.Readers.Entities;
+using GoogleBooks.WebApi.Middleware;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Logging;
+using Moq;
 using System.Net;
 using System.Net.Http.Json;
 
@@ -67,8 +72,18 @@ namespace GoogleBooks.Integration.Tests.Readers.GetReaderByIdIntegrationTests
                 )
             };
 
+            var mockedLogger = new Mock<ILogger>();
+            using var factory = testFactory.WithWebHostBuilder(_ =>
+            {
+                _.ConfigureTestServices(_ =>
+                {
+                    _.RemoveAll(typeof(ILogger));
+                    _.AddSingleton(mockedLogger.Object);
+                });
+            });
+
             // act
-            var actualHttpResult = await _client.GetAsync($"/api/readers/{expectedReaderId}", TestContext.Current.CancellationToken);
+            var actualHttpResult = await factory.CreateClient().GetAsync($"/api/readers/{expectedReaderId}", TestContext.Current.CancellationToken);
 
             // assert
             Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
@@ -76,6 +91,15 @@ namespace GoogleBooks.Integration.Tests.Readers.GetReaderByIdIntegrationTests
             Assert.Equal(
                 await expectedHttpResult.Content.ReadFromJsonAsync<ReaderDto>(TestContext.Current.CancellationToken),
                 await actualHttpResult.Content.ReadFromJsonAsync<ReaderDto>(TestContext.Current.CancellationToken));
+
+            mockedLogger.Verify(_ =>
+               _.Log(
+                   LogLevel.Error,
+                   It.IsAny<EventId>(),
+                   It.Is<It.IsAnyType>((state, _) => true),
+                   It.IsAny<Exception?>(),
+                   (Func<It.IsAnyType, Exception?, string>)It.IsAny<object>()),
+               Times.Never);
         }
 
         [Fact]
@@ -88,8 +112,18 @@ namespace GoogleBooks.Integration.Tests.Readers.GetReaderByIdIntegrationTests
                 Content = new StringContent(await File.ReadAllTextAsync("Readers/GetReaderByIdIntegrationTests/ExpectedNotFoundErrorResult.json", TestContext.Current.CancellationToken))
             };
 
+            var mockedLogger = new Mock<ILogger<EntityNotFoundExceptionHandler>>();
+            using var factory = testFactory.WithWebHostBuilder(_ =>
+            {
+                _.ConfigureTestServices(_ =>
+                {
+                    _.RemoveAll(typeof(ILogger<EntityNotFoundExceptionHandler>));
+                    _.AddSingleton(mockedLogger.Object);
+                });
+            });
+
             // act
-            var actualHttpResult = await _client.GetAsync($"/api/readers/{unknownReaderId}", TestContext.Current.CancellationToken);
+            var actualHttpResult = await factory.CreateClient().GetAsync($"/api/readers/{unknownReaderId}", TestContext.Current.CancellationToken);
 
             // assert
             Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
@@ -97,6 +131,15 @@ namespace GoogleBooks.Integration.Tests.Readers.GetReaderByIdIntegrationTests
             var expectedResult = await expectedHttpResult.Content.ReadFromJsonAsync<ProblemDetails>(TestContext.Current.CancellationToken);
             var actualResult = await actualHttpResult.Content.ReadFromJsonAsync<ProblemDetails>(TestContext.Current.CancellationToken);
             Assert.Equivalent(expectedResult, actualResult);
+
+            mockedLogger.Verify(_ =>
+                _.Log(
+                    LogLevel.Error,
+                    It.IsAny<EventId>(),
+                    It.Is<It.IsAnyType>((state, _) => true),
+                    It.IsAny<Exception?>(),
+                    (Func<It.IsAnyType, Exception?, string>)It.IsAny<object>()),
+                Times.Once);
         }
     }
 }
