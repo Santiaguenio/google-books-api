@@ -1,6 +1,5 @@
 ﻿using GoogleBooks.Application.Readers;
 using GoogleBooks.Contracts.Requests.Readers;
-using GoogleBooks.Domain.Exceptions;
 using GoogleBooks.Domain.Readers.Entities;
 using GoogleBooks.WebApi.Middleware;
 using Microsoft.AspNetCore.Mvc;
