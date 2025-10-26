@@ -1,7 +1,6 @@
-﻿using GoogleBooks.Infrastructure.Common;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace GoogleBooks.Infrastructure.Books.Services;
+namespace GoogleBooks.Infrastructure.Common;
 
 internal static class CommonExtensions
 {

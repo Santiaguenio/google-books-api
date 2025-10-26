@@ -15,12 +15,13 @@ internal class CreateReader(
     public async Task<int> DoAsync(ReaderCreationDto readerCreation, CancellationToken cancellationToken)
     {
         var validationResult = await validator.ValidateAsync(readerCreation, cancellationToken);
-        if (!validationResult.IsValid)
+        if (validationResult.IsValid is false)
         {
             throw new BadRequestException(validationResult.Errors.ToDictionary());
         }
 
         var now = dateTimeProvider.UtcNow();
+
         var createdReader = await readerService.AddAsync(new Reader
         {
             Address = readerCreation.Address,

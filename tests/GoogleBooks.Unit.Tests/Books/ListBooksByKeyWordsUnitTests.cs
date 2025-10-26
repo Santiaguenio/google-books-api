@@ -10,6 +10,56 @@ public class ListBooksByKeyWordsUnitTests
 {
     private readonly Mock<IBookService> _mockedBookService = new();
 
+    [Fact]
+    public async Task Should_ThrowException_When_BookServiceIsNotCorrectlyInjected()
+    {
+        // arrange
+        var expectedException = new NullReferenceException("Object reference not set to an instance of an object.");
+
+        var requestParams = new PageParams
+        {
+            KeyWords = "these are key words",
+            Page = 1,
+            PageSize = 10
+        };
+
+        var sut = new ListBooksByKeyWords(null!);
+
+        // act
+        var actualException = await Assert.ThrowsAsync<NullReferenceException>(async () => await sut.DoAsync(requestParams, TestContext.Current.CancellationToken));
+
+        // assert
+        Assert.Equivalent(expectedException.Message, actualException.Message);
+        _mockedBookService.Verify(_ => _.ListByKeyWordsAsync(requestParams, TestContext.Current.CancellationToken), Times.Never);
+    }
+
+    [Fact]
+    public async Task Should_ThrowException_When_CallingBookService()
+    {
+        // arrange
+        var expectedException = new Exception("This is an unhandled exception on the BookService");
+
+        var requestParams = new PageParams
+        {
+            KeyWords = "these are key words",
+            Page = 1,
+            PageSize = 10
+        };
+
+        _mockedBookService
+            .Setup(_ => _.ListByKeyWordsAsync(requestParams, TestContext.Current.CancellationToken))
+            .ThrowsAsync(new Exception("This is an unhandled exception on the BookService"));
+
+        var sut = new ListBooksByKeyWords(_mockedBookService.Object);
+
+        // act
+        var actualException = await Assert.ThrowsAsync<Exception>(async () => await sut.DoAsync(requestParams, TestContext.Current.CancellationToken));
+
+        // assert
+        Assert.Equivalent(expectedException.Message, actualException.Message);
+        _mockedBookService.Verify(_ => _.ListByKeyWordsAsync(requestParams, TestContext.Current.CancellationToken), Times.Once);
+    }
+
     [Theory]
     [InlineData(null)]
     [InlineData("")]
