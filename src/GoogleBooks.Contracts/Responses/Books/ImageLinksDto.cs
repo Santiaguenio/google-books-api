@@ -1,6 +1,6 @@
 ﻿namespace GoogleBooks.Contracts.Responses.Books
 {
-    public record ImageLinks
+    public record ImageLinksDto
     {
         public string? ExtraLarge { get; set; }
         public string? Medium { get; set; }

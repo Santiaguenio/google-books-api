@@ -15,9 +15,11 @@ public static class InfrastructureExtensions
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        services.RegisterMappings();
+        services.RegisterBookMappings();
         services.RegisterBookServices();
+
         services.RegisterCommonDependencies();
+
         services.RegisterReaderServices();
 
         RegisterHttpClient(services, configuration);

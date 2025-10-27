@@ -1,6 +1,6 @@
 ﻿namespace GoogleBooks.Contracts.Responses.Books
 {
-    public record SaleInfo
+    public record SaleInfoDto
     {
         public string? BuyLink { get; set; }
         public string? Country { get; set; }

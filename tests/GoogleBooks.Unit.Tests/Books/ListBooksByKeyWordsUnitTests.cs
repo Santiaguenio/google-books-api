@@ -1,4 +1,5 @@
-﻿using GoogleBooks.Application.Books;
+﻿using AutoMapper;
+using GoogleBooks.Application.Books;
 using GoogleBooks.Application.Books.Models;
 using GoogleBooks.Application.Books.UseCases;
 using GoogleBooks.Contracts.Requests.Books;
@@ -10,6 +11,7 @@ namespace GoogleBooks.Unit.Tests.Books;
 public class ListBooksByKeyWordsUnitTests
 {
     private readonly Mock<IBookService> _mockedBookService = new();
+    private readonly Mock<IMapper> _mockedMapper = new();
 
     [Fact]
     public async Task Should_ThrowException_When_BookServiceIsNotCorrectlyInjected()
@@ -24,7 +26,7 @@ public class ListBooksByKeyWordsUnitTests
 
         var expectedException = new NullReferenceException("Object reference not set to an instance of an object.");
 
-        var sut = new ListBooksByKeyWords(null!);
+        var sut = new ListBooksByKeyWords(null!, null!);
 
         // act
         var actualException = await Assert.ThrowsAsync<NullReferenceException>(async () => await sut.DoAsync(pageParams, TestContext.Current.CancellationToken));
@@ -44,7 +46,6 @@ public class ListBooksByKeyWordsUnitTests
     public async Task Should_ThrowException_When_CallingBookService()
     {
         // arrange
-
         var keyWords = "these are key words";
         var page = 1;
         var pageSize = 10;
@@ -63,7 +64,7 @@ public class ListBooksByKeyWordsUnitTests
                 TestContext.Current.CancellationToken))
             .ThrowsAsync(expectedException);
 
-        var sut = new ListBooksByKeyWords(_mockedBookService.Object);
+        var sut = new ListBooksByKeyWords(_mockedBookService.Object, _mockedMapper.Object);
 
         // act
         var actualException = await Assert.ThrowsAsync<Exception>(async () => await sut.DoAsync(pageParams, TestContext.Current.CancellationToken));
@@ -87,7 +88,7 @@ public class ListBooksByKeyWordsUnitTests
         // arrange
         var expectedException = new BadRequestException(new Dictionary<string, string[]> { { nameof(PageParamsDto.KeyWords), [$"{nameof(PageParamsDto.KeyWords)} is mandatory"] } });
 
-        var sut = new ListBooksByKeyWords(_mockedBookService.Object);
+        var sut = new ListBooksByKeyWords(_mockedBookService.Object, _mockedMapper.Object);
         var requestParams = new PageParamsDto
         {
             KeyWords = keyWords!,

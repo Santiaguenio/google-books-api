@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Google.Apis.Books.v1.Data;
-using GoogleBooks.Contracts;
-using GoogleBooks.Contracts.Responses.Books;
+using GoogleBooks.Application.Books.Models;
+using GoogleBooks.Application.Common.Models;
 
 namespace GoogleBooks.Infrastructure.Books.Mappers;
 
@@ -9,6 +9,6 @@ internal class BooksByKeyWordsProfile : Profile
 {
     public BooksByKeyWordsProfile()
     {
-        CreateMap<Volumes, EntitiesByCriteriaDto<BookFullDto>>();
+        CreateMap<Volumes, EntitiesByCriteria<BookFull>>();
     }
 }

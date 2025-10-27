@@ -1,6 +1,6 @@
 ﻿namespace GoogleBooks.Contracts.Responses.Books
 {
-    public record VolumeInfo
+    public record VolumeInfoDto
     {
         public string? CanonicalVolumeLink { get; set; }
         public string? Description { get; set; }
@@ -16,6 +16,6 @@
 
         public string[]? Authors { get; set; } = default!;
 
-        public ImageLinks ImageLinks { get; set; } = default!;
+        public ImageLinksDto ImageLinks { get; set; } = default!;
     }
 }
