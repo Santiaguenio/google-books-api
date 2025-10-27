@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Google.Apis.Books.v1.Data;
 using GoogleBooks.Application.Books;
+using GoogleBooks.Application.Books.Models;
 using GoogleBooks.Contracts;
-using GoogleBooks.Contracts.Requests.Books;
 using GoogleBooks.Contracts.Responses.Books;
 using System.Net.Http.Json;
 
@@ -19,12 +19,12 @@ internal class BookService(
         return mapper.Map<BookFullDto>(await httpClient.GetFromJsonAsync<Volume>($"volumes/{id}", cancellationToken));
     }
 
-    public async Task<EntitiesByCriteriaDto<BookFullDto>> ListByKeyWordsAsync(PageParams pageParams, CancellationToken cancellationToken)
+    public async Task<EntitiesByCriteriaDto<BookFullDto>> ListByKeyWordsAsync(ListByKeyWordsParams request, CancellationToken cancellationToken)
     {
         return mapper.Map<EntitiesByCriteriaDto<BookFullDto>>(await httpClient.GetFromJsonAsync<Volumes>($"volumes?" +
-                 $"q={pageParams.KeyWords}" +
-                 $"&maxResults={pageParams.PageSize}" +
-                 $"&startIndex={(pageParams.Page - 1) * pageParams.PageSize}",
+                 $"q={request.KeyWords}" +
+                 $"&maxResults={request.PageSize}" +
+                 $"&startIndex={(request.Page - 1) * request.PageSize}",
              cancellationToken));
     }
 }

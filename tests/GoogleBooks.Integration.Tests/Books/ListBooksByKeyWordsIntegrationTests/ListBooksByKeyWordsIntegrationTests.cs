@@ -17,8 +17,6 @@ namespace GoogleBooks.Integration.Tests.Books.ListBooksByKeyWordsIntegrationTest
 [Collection("Integration tests collection")]
 public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsyncLifetime
 {
-    private readonly HttpClient _client = testFactory.CreateClient();
-
     async ValueTask IAsyncLifetime.InitializeAsync()
     {
         await Task.CompletedTask;
@@ -35,7 +33,7 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
     [Theory]
     [MemberData(nameof(GetEntryDataAndExpectedResult))]
     public async Task Should(
-        PageParams pageParams,
+        PageParamsDto pageParams,
         StringContent expectedGoogleClientResponse,
         StringContent expectedResult)
     {
@@ -151,7 +149,7 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
         var firstPage = 1;
         yield return new object[]
         {
-            new PageParams { KeyWords = "federer", Page = firstPage, PageSize = BookConstants.MaximalItemsPerPage },
+            new PageParamsDto { KeyWords = "federer", Page = firstPage, PageSize = BookConstants.MaximalItemsPerPage },
 
             new StringContent(JsonSerializer.Serialize(
                 new
@@ -176,7 +174,7 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
         var secondPage = 2;
         yield return new object[]
         {
-            new PageParams { KeyWords = "federer", Page = secondPage, PageSize = BookConstants.MaximalItemsPerPage },
+            new PageParamsDto { KeyWords = "federer", Page = secondPage, PageSize = BookConstants.MaximalItemsPerPage },
 
             new StringContent(JsonSerializer.Serialize(
                 new
@@ -201,7 +199,7 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
         var thirdPage = 3;
         yield return new object[]
         {
-            new PageParams { KeyWords = "federer", Page = thirdPage, PageSize = BookConstants.MaximalItemsPerPage },
+            new PageParamsDto { KeyWords = "federer", Page = thirdPage, PageSize = BookConstants.MaximalItemsPerPage },
 
             new StringContent(JsonSerializer.Serialize(
                 new
@@ -227,7 +225,7 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
         var pageSize = 2;
         yield return new object[]
         {
-            new PageParams { KeyWords = "federer", Page = intermediatePage, PageSize = pageSize },
+            new PageParamsDto { KeyWords = "federer", Page = intermediatePage, PageSize = pageSize },
 
             new StringContent(JsonSerializer.Serialize(
                 new

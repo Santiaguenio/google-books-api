@@ -1,25 +1,19 @@
-﻿using GoogleBooks.Application.Common.UseCases;
+﻿using GoogleBooks.Application.Books.Models;
+using GoogleBooks.Application.Common.UseCases;
 using GoogleBooks.Contracts.Requests.Books;
 using GoogleBooks.Contracts.Responses.Books;
-using GoogleBooks.Domain.Books;
-using GoogleBooks.Domain.Exceptions;
 
 namespace GoogleBooks.Application.Books.UseCases;
 
-internal class ListBooksByKeyWords(IBookService bookService) : IListByCriteria<PageParams>
+internal class ListBooksByKeyWords(IBookService bookService) : IListByCriteria<PageParamsDto>
 {
-    public async Task<IGoogleBooksResponse> DoAsync(PageParams request, CancellationToken cancellationToken)
+    public async Task<IGoogleBooksResponse> DoAsync(PageParamsDto request, CancellationToken cancellationToken)
     {
-        if (string.IsNullOrWhiteSpace(request.KeyWords))
-        {
-            throw new BadRequestException(new Dictionary<string, string[]> { { nameof(PageParams.KeyWords), [$"{nameof(PageParams.KeyWords)} is mandatory"] } });
-        }
-
-        if (request.PageSize is null || request.PageSize > BookConstants.MaximalItemsPerPage)
-        {
-            request.PageSize = BookConstants.MaximalItemsPerPage;
-        }
-
-        return await bookService.ListByKeyWordsAsync(request, cancellationToken);
+        return await bookService.ListByKeyWordsAsync(
+            new ListByKeyWordsParams(
+                request.Page,
+                request.PageSize,
+                request.KeyWords),
+            cancellationToken);
     }
 }

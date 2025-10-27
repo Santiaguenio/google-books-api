@@ -1,6 +1,6 @@
 ﻿namespace GoogleBooks.Contracts.Requests.Books;
 
-public record PageParams : IGoogleBooksRequest
+public record PageParamsDto : IGoogleBooksRequest
 {
     public string KeyWords { get; set; } = default!;
 
