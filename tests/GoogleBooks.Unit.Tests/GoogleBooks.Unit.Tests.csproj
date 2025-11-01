@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\GoogleBooks.Application\GoogleBooks.Application.csproj" />
+    <ProjectReference Include="..\..\src\GoogleBooks.Infrastructure\GoogleBooks.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

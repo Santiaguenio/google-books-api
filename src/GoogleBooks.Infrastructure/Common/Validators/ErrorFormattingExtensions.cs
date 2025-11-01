@@ -1,10 +1,11 @@
 ﻿using FluentValidation.Results;
+using GoogleBooks.Infrastructure.Common.Validators;
 
-namespace GoogleBooks.Application.Common.Services;
+namespace GoogleBooks.Infrastructure.Common.Validators;
 
 public static class ErrorFormattingExtensions
 {
-    public static IReadOnlyDictionary<string, string[]> ToDictionary(this IEnumerable<ValidationFailure> failures) =>
+    public static Dictionary<string, string[]> ToDictionary(this IEnumerable<ValidationFailure> failures) =>
         failures
             .GroupBy(f => f.PropertyName)
             .ToDictionary(g => g.Key, g => g.Select(f => f.ErrorMessage).ToArray());

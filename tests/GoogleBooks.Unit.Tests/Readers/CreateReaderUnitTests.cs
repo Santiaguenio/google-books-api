@@ -1,5 +1,5 @@
-﻿using FluentValidation;
-using GoogleBooks.Application.Common.Services;
+﻿using GoogleBooks.Application.Common.Services;
+using GoogleBooks.Application.Common.Validators;
 using GoogleBooks.Application.Readers;
 using GoogleBooks.Application.Readers.UseCases;
 using GoogleBooks.Contracts.Requests.Readers;
@@ -12,7 +12,7 @@ namespace GoogleBooks.Unit.Tests.Readers;
 [Collection("Unit tests collection")]
 public class CreateReaderUnitTests(TestFactory testFactory)
 {
-    private readonly Mock<IValidator<ReaderCreationDto>> _mockedValidatorService = new();
+    private readonly Mock<IGoogleBooksValidator<ReaderCreationDto>> _mockedValidatorService = new();
     private readonly Mock<IDateTimeProvider> _mockedDateTimeProvider = new();
     private readonly Mock<IReaderService> _mockedReaderService = new();
 
@@ -41,7 +41,7 @@ public class CreateReaderUnitTests(TestFactory testFactory)
 
         _mockedValidatorService
             .Setup(_ => _.ValidateAsync(readerCreation, TestContext.Current.CancellationToken))
-            .ReturnsAsync(new FluentValidation.Results.ValidationResult());
+            .ReturnsAsync(new GoogleBooksValidationResult());
 
         var expectedDatetime = new DateTime(2025, 10, 26, 22, 00, 00);
         _mockedDateTimeProvider
@@ -127,7 +127,7 @@ public class CreateReaderUnitTests(TestFactory testFactory)
     {
         // arrange
         var sut = new CreateReader(
-            testFactory.GetRequiredService<IValidator<ReaderCreationDto>>(),
+            testFactory.GetRequiredService<IGoogleBooksValidator<ReaderCreationDto>>(),
             _mockedDateTimeProvider.Object,
             _mockedReaderService.Object);
 
@@ -152,7 +152,7 @@ public class CreateReaderUnitTests(TestFactory testFactory)
                 _.ValidateAsync(
                     It.IsAny<ReaderCreationDto>(),
                     TestContext.Current.CancellationToken))
-            .ReturnsAsync(new FluentValidation.Results.ValidationResult());
+            .ReturnsAsync(new GoogleBooksValidationResult());
 
         _mockedReaderService
             .Setup(_ => _.AddAsync(It.IsAny<Reader>(), TestContext.Current.CancellationToken))

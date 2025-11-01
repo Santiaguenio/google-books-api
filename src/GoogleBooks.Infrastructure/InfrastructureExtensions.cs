@@ -1,6 +1,7 @@
 ﻿using GoogleBooks.Infrastructure.Books.Mappers;
 using GoogleBooks.Infrastructure.Books.Services;
 using GoogleBooks.Infrastructure.Common;
+using GoogleBooks.Infrastructure.Common.Validators;
 using GoogleBooks.Infrastructure.Readers;
 using GoogleBooks.Infrastructure.Readers.Services;
 using Microsoft.Extensions.Configuration;
@@ -22,13 +23,15 @@ public static class InfrastructureExtensions
 
         services.RegisterReaderServices();
 
+        services.RegisterValidators();
+
         RegisterHttpClient(services, configuration);
         RegisterMongoDb(services, configuration);
     }
 
     private static void RegisterMongoDb(
-            IServiceCollection services,
-            IConfiguration configuration)
+        IServiceCollection services,
+        IConfiguration configuration)
     {
         // Register MongoDB client and database in the DI container
         services.AddSingleton(_ => MongoDbConfiguration.CreateClient(configuration.GetConnectionString("MongoDb")!));
