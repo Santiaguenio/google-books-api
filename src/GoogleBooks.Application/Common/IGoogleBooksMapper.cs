@@ -2,6 +2,6 @@
 {
     public interface IGoogleBooksMapper
     {
-        TEntity Map<TEntity>(object targetedEntity);
+        TTargetedEntity Map<TTargetedEntity>(object sourceEntity);
     }
 }
