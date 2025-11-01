@@ -1,5 +1,4 @@
-﻿using GoogleBooks.Application.Books.Mappers;
-using GoogleBooks.Application.Books.UseCases;
+﻿using GoogleBooks.Application.Books.UseCases;
 using GoogleBooks.Application.Common.UseCases;
 using GoogleBooks.Contracts.Requests.Books;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,6 +11,5 @@ internal static class BooksExtensions
     {
         services.AddScoped<IGetById<string>, GetBookById>();
         services.AddScoped<IListByCriteria<PageParamsDto>, ListBooksByKeyWords>();
-        services.RegisterMappings();
     }
 }

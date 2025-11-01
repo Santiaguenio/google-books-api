@@ -1,5 +1,5 @@
-﻿using AutoMapper;
-using GoogleBooks.Application.Books.Models;
+﻿using GoogleBooks.Application.Books.Models;
+using GoogleBooks.Application.Common;
 using GoogleBooks.Application.Common.UseCases;
 using GoogleBooks.Contracts;
 using GoogleBooks.Contracts.Requests.Books;
@@ -9,7 +9,7 @@ namespace GoogleBooks.Application.Books.UseCases;
 
 internal class ListBooksByKeyWords(
     IBookService bookService,
-    IMapper mapper) : IListByCriteria<PageParamsDto>
+    IGoogleBooksMapper mapper) : IListByCriteria<PageParamsDto>
 {
     public async Task<IGoogleBooksResponse> DoAsync(PageParamsDto request, CancellationToken cancellationToken)
     {

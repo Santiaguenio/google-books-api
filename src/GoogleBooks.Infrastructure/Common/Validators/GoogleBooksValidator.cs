@@ -1,8 +1,9 @@
-﻿using GoogleBooks.Application.Common.Validators;
+﻿using FluentValidation;
+using GoogleBooks.Application.Common.Validators;
 
 namespace GoogleBooks.Infrastructure.Common.Validators;
 
-internal class Validator<TTEntity>(FluentValidation.IValidator<TTEntity> validator) : IGoogleBooksValidator<TTEntity>
+internal class GoogleBooksValidator<TTEntity>(IValidator<TTEntity> validator) : IGoogleBooksValidator<TTEntity>
 {
     public async Task<GoogleBooksValidationResult> ValidateAsync(TTEntity entity, CancellationToken cancellationToken)
     {

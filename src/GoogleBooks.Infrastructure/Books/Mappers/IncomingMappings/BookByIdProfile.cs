@@ -2,7 +2,7 @@
 using Google.Apis.Books.v1.Data;
 using GoogleBooks.Application.Books.Models;
 
-namespace GoogleBooks.Infrastructure.Books.Mappers;
+namespace GoogleBooks.Infrastructure.Books.Mappers.IncomingMappings;
 
 internal class BookByIdProfile : Profile
 {

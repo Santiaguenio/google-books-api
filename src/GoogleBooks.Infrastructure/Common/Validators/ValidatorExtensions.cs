@@ -10,6 +10,6 @@ internal static class ValidatorExtensions
     {
         services.AddValidatorsFromAssemblyContaining(typeof(ReaderCreationValidator));
 
-        services.AddScoped(typeof(Application.Common.Validators.IGoogleBooksValidator<>), typeof(Validator<>));
+        services.AddScoped(typeof(Application.Common.Validators.IGoogleBooksValidator<>), typeof(GoogleBooksValidator<>));
     }
 }

@@ -2,7 +2,7 @@
 using GoogleBooks.Application.Books.Models;
 using GoogleBooks.Contracts.Responses.Books;
 
-namespace GoogleBooks.Application.Books.Mappers;
+namespace GoogleBooks.Infrastructure.Books.Mappers.OutgoingMappings;
 
 internal class BooksByKeyWordsProfile : Profile
 {

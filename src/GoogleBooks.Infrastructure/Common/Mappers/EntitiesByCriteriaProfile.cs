@@ -2,7 +2,7 @@
 using GoogleBooks.Application.Common.Models;
 using GoogleBooks.Contracts;
 
-namespace GoogleBooks.Application.Common.Mappers;
+namespace GoogleBooks.Infrastructure.Common.Mappers;
 
 internal class EntitiesByCriteriaProfile : Profile
 {
