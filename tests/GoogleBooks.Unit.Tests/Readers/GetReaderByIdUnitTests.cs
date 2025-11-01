@@ -89,4 +89,31 @@ public class GetReaderByIdUnitTests()
                     TestContext.Current.CancellationToken),
                 Times.Once);
     }
+
+    [Fact]
+    public async Task Should_ThrowException_When_CallingReaderService()
+    {
+        // arrange
+        var id = 1;
+
+        var expectedException = new Exception("This is an unhandled exception on the BookService");
+
+        _mockedReaderService
+            .Setup(_ => _.GetByIdAsync(id, TestContext.Current.CancellationToken))
+            .ThrowsAsync(expectedException);
+
+        var sut = new GetReaderById(_mockedReaderService.Object);
+
+        // act
+        var actualException = await Assert.ThrowsAsync<Exception>(async () => await sut.DoAsync(id, TestContext.Current.CancellationToken));
+
+        // assert
+        Assert.Equivalent(expectedException.Message, actualException.Message);
+
+        _mockedReaderService.Verify(_ =>
+            _.GetByIdAsync(
+                    id,
+                    TestContext.Current.CancellationToken),
+                Times.Once);
+    }
 }

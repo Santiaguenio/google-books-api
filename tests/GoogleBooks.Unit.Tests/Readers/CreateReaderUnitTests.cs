@@ -191,6 +191,7 @@ public class CreateReaderUnitTests(TestFactory testFactory)
 
         // assert
         Assert.Equivalent(expectedException.Message, actualException.Message);
+        
         _mockedReaderService.Verify(_ =>
             _.AddAsync(It.Is<Reader>(_ =>
                 _.Address == address &&
