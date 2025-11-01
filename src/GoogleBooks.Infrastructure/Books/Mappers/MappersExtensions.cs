@@ -1,10 +1,11 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using GoogleBooks.Infrastructure.Books.Mappers.OutgoingMappings;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace GoogleBooks.Infrastructure.Books.Mappers;
 
 internal static class MappersExtensions
 {
-    internal static void RegisterBookMappings(this IServiceCollection services)
+    internal static void RegisterMappings(this IServiceCollection services)
     {
         services.AddAutoMapper(typeof(BookByIdProfile));
     }

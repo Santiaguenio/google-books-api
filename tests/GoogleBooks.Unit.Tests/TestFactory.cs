@@ -13,7 +13,7 @@ public class TestFactory
     {
         var serviceCollection = new ServiceCollection()
             .AddValidatorsFromAssemblyContaining<ReaderCreationValidator>()
-            .AddScoped(typeof(Application.Common.Validators.IGoogleBooksValidator<>), typeof(Validator<>));
+            .AddScoped(typeof(Application.Common.Validators.IGoogleBooksValidator<>), typeof(GoogleBooksValidator<>));
 
         _serviceProvider = serviceCollection.BuildServiceProvider();
     }

@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using GoogleBooks.Application.Books;
+﻿using GoogleBooks.Application.Books;
 using GoogleBooks.Application.Books.UseCases;
+using GoogleBooks.Application.Common;
 using GoogleBooks.Domain.Exceptions;
 using Moq;
 
@@ -9,7 +9,7 @@ namespace GoogleBooks.Unit.Tests.Books;
 public class GetBookByIdUnitTests()
 {
     private readonly Mock<IBookService> _mockedBookService = new();
-    private readonly Mock<IMapper> _mockedMapper = new();
+    private readonly Mock<IGoogleBooksMapper> _mockedMapper = new();
 
     [Fact]
     public async Task Should_ThrowException_When_BookServiceIsNotCorrectlyInjected()

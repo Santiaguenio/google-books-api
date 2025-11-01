@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace GoogleBooks.Application.Books.Mappers;
+namespace GoogleBooks.Infrastructure.Books.Mappers.IncomingMappings;
 
 internal static class MappersExtensions
 {
-    internal static void RegisterMappings(this IServiceCollection services)
+    internal static void RegisterBookMappings(this IServiceCollection services)
     {
         services.AddAutoMapper(typeof(BookByIdProfile));
     }

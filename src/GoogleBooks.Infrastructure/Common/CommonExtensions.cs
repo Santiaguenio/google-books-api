@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using GoogleBooks.Infrastructure.Common.Mappers;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace GoogleBooks.Infrastructure.Common;
 
@@ -7,5 +8,7 @@ internal static class CommonExtensions
     internal static void RegisterCommonDependencies(this IServiceCollection services)
     {
         services.AddScoped<IdGeneratorHelper>();
+
+        services.RegisterMappings();
     }
 }

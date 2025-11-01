@@ -1,4 +1,4 @@
-﻿using GoogleBooks.Infrastructure.Books.Mappers;
+﻿using GoogleBooks.Infrastructure.Books.Mappers.IncomingMappings;
 using GoogleBooks.Infrastructure.Books.Services;
 using GoogleBooks.Infrastructure.Common;
 using GoogleBooks.Infrastructure.Common.Validators;

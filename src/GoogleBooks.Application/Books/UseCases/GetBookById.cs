@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿using GoogleBooks.Application.Common;
 using GoogleBooks.Application.Common.UseCases;
 using GoogleBooks.Contracts.Responses.Books;
 using GoogleBooks.Domain.Exceptions;
@@ -7,7 +7,7 @@ namespace GoogleBooks.Application.Books.UseCases;
 
 internal class GetBookById(
     IBookService bookService,
-    IMapper mapper) : IGetById<string>
+    IGoogleBooksMapper mapper) : IGetById<string>
 {
     public async Task<IGoogleBooksResponse> DoAsync(string id, CancellationToken cancellationToken)
     {
