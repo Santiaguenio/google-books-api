@@ -3,7 +3,7 @@ using GoogleBooks.Infrastructure.Common.Validators;
 
 namespace GoogleBooks.Infrastructure.Common.Validators;
 
-public static class ErrorFormattingExtensions
+public static class ErrorFormattingHelper
 {
     public static Dictionary<string, string[]> ToDictionary(this IEnumerable<ValidationFailure> failures) =>
         failures

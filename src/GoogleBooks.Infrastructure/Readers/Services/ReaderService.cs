@@ -1,4 +1,7 @@
-﻿using GoogleBooks.Application.Readers;
+﻿using GoogleBooks.Application.Common.Models;
+using GoogleBooks.Application.Readers;
+using GoogleBooks.Application.Readers.Models;
+using GoogleBooks.Contracts.Requests.Readers;
 using GoogleBooks.Domain.Exceptions;
 using GoogleBooks.Domain.Readers.Entities;
 using GoogleBooks.Infrastructure.Common;
@@ -32,5 +35,10 @@ internal class ReaderService(
     public async Task<Reader> GetByIdAsync<TKey>(TKey id, CancellationToken cancellationToken)
     {
         return await (await _collection.FindAsync(_ => _.Id.Equals(id), cancellationToken: cancellationToken)).FirstOrDefaultAsync(cancellationToken);
+    }
+
+    public Task<EntitiesByCriteria<ReaderFull>> ListByCriteriaAsync(ReadersSearchCriteriaDto request, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
     }
 }

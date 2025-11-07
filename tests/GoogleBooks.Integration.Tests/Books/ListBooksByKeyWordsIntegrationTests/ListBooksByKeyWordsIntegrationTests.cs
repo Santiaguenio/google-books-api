@@ -33,7 +33,7 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
     [Theory]
     [MemberData(nameof(GetEntryDataAndExpectedResult))]
     public async Task Should(
-        PageParamsDto pageParams,
+        BooksSearchCriteria pageParams,
         StringContent expectedGoogleClientResponse,
         StringContent expectedResult)
     {
@@ -149,15 +149,15 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
         var firstPage = 1;
         yield return new object[]
         {
-            new PageParamsDto { KeyWords = "federer", Page = firstPage, PageSize = BookConstants.MaximalItemsPerPage },
+            new BooksSearchCriteria { KeyWords = "federer", Page = firstPage, PageSize = BookConstants.MAXIMAL_ITEMS_PER_PAGE },
 
             new StringContent(JsonSerializer.Serialize(
                 new
                 {
                     totalItems = mockedTotalItems,
                     items =  mockedExpectedItems.EnumerateArray()
-                        .Skip((firstPage - 1) * BookConstants.MaximalItemsPerPage)
-                        .Take(BookConstants.MaximalItemsPerPage)
+                        .Skip((firstPage - 1) * BookConstants.MAXIMAL_ITEMS_PER_PAGE)
+                        .Take(BookConstants.MAXIMAL_ITEMS_PER_PAGE)
                 })),
 
             new StringContent(JsonSerializer.Serialize(
@@ -165,8 +165,8 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
                 {
                     totalItems = expectedTotalItems,
                     items =  expectedItemsResult.EnumerateArray()
-                        .Skip((firstPage - 1) * BookConstants.MaximalItemsPerPage)
-                        .Take(BookConstants.MaximalItemsPerPage)
+                        .Skip((firstPage - 1) * BookConstants.MAXIMAL_ITEMS_PER_PAGE)
+                        .Take(BookConstants.MAXIMAL_ITEMS_PER_PAGE)
                 }))
         };
 
@@ -174,15 +174,15 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
         var secondPage = 2;
         yield return new object[]
         {
-            new PageParamsDto { KeyWords = "federer", Page = secondPage, PageSize = BookConstants.MaximalItemsPerPage },
+            new BooksSearchCriteria { KeyWords = "federer", Page = secondPage, PageSize = BookConstants.MAXIMAL_ITEMS_PER_PAGE },
 
             new StringContent(JsonSerializer.Serialize(
                 new
                 {
                     totalItems = mockedTotalItems,
                     items =  mockedExpectedItems.EnumerateArray()
-                        .Skip((secondPage - 1) * BookConstants.MaximalItemsPerPage)
-                        .Take(BookConstants.MaximalItemsPerPage)
+                        .Skip((secondPage - 1) * BookConstants.MAXIMAL_ITEMS_PER_PAGE)
+                        .Take(BookConstants.MAXIMAL_ITEMS_PER_PAGE)
                 })),
 
             new StringContent(JsonSerializer.Serialize(
@@ -190,8 +190,8 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
                 {
                     totalItems = expectedTotalItems,
                     items =  expectedItemsResult.EnumerateArray()
-                        .Skip((secondPage - 1) * BookConstants.MaximalItemsPerPage)
-                        .Take(BookConstants.MaximalItemsPerPage)
+                        .Skip((secondPage - 1) * BookConstants.MAXIMAL_ITEMS_PER_PAGE)
+                        .Take(BookConstants.MAXIMAL_ITEMS_PER_PAGE)
                 }))
         };
 
@@ -199,15 +199,15 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
         var thirdPage = 3;
         yield return new object[]
         {
-            new PageParamsDto { KeyWords = "federer", Page = thirdPage, PageSize = BookConstants.MaximalItemsPerPage },
+            new BooksSearchCriteria { KeyWords = "federer", Page = thirdPage, PageSize = BookConstants.MAXIMAL_ITEMS_PER_PAGE },
 
             new StringContent(JsonSerializer.Serialize(
                 new
                 {
                     totalItems = mockedTotalItems,
                     items =  mockedExpectedItems.EnumerateArray()
-                        .Skip((thirdPage - 1) * BookConstants.MaximalItemsPerPage)
-                        .Take(BookConstants.MaximalItemsPerPage)
+                        .Skip((thirdPage - 1) * BookConstants.MAXIMAL_ITEMS_PER_PAGE)
+                        .Take(BookConstants.MAXIMAL_ITEMS_PER_PAGE)
                 })),
 
             new StringContent(JsonSerializer.Serialize(
@@ -215,8 +215,8 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
                 {
                     totalItems = expectedTotalItems,
                     items =  expectedItemsResult.EnumerateArray()
-                        .Skip((thirdPage - 1) * BookConstants.MaximalItemsPerPage)
-                        .Take(BookConstants.MaximalItemsPerPage)
+                        .Skip((thirdPage - 1) * BookConstants.MAXIMAL_ITEMS_PER_PAGE)
+                        .Take(BookConstants.MAXIMAL_ITEMS_PER_PAGE)
                 }))
         };
 
@@ -225,7 +225,7 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
         var pageSize = 2;
         yield return new object[]
         {
-            new PageParamsDto { KeyWords = "federer", Page = intermediatePage, PageSize = pageSize },
+            new BooksSearchCriteria { KeyWords = "federer", Page = intermediatePage, PageSize = pageSize },
 
             new StringContent(JsonSerializer.Serialize(
                 new

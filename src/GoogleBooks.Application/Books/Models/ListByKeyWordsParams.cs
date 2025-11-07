@@ -1,15 +1,13 @@
-﻿using GoogleBooks.Contracts.Requests.Books;
+﻿using GoogleBooks.Application.Common.Models;
+using GoogleBooks.Contracts.Requests.Books;
 using GoogleBooks.Domain.Books;
 using GoogleBooks.Domain.Exceptions;
 
 namespace GoogleBooks.Application.Books.Models;
 
-public class ListByKeyWordsParams
+public class ListByKeyWordsParams : PaginationBase
 {
     public string KeyWords { get; private set; }
-
-    public int? Page { get; private set; }
-    public int? PageSize { get; private set; }
 
     public ListByKeyWordsParams(
         int? page,
@@ -18,12 +16,12 @@ public class ListByKeyWordsParams
     {
         if (string.IsNullOrWhiteSpace(keyWords))
         {
-            throw new BadRequestException(new Dictionary<string, string[]> { { nameof(PageParamsDto.KeyWords), [$"{nameof(PageParamsDto.KeyWords)} is mandatory"] } });
+            throw new BadRequestException(new Dictionary<string, string[]> { { nameof(BooksSearchCriteria.KeyWords), [$"{nameof(BooksSearchCriteria.KeyWords)} is mandatory"] } });
         }
 
-        if (pageSize is null || pageSize > BookConstants.MaximalItemsPerPage)
+        if (pageSize is null || pageSize > BookConstants.MAXIMAL_ITEMS_PER_PAGE)
         {
-            pageSize = BookConstants.MaximalItemsPerPage;
+            pageSize = BookConstants.MAXIMAL_ITEMS_PER_PAGE;
         }
 
         KeyWords = keyWords;

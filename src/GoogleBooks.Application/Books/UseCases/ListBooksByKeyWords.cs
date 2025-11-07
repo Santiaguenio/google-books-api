@@ -9,9 +9,9 @@ namespace GoogleBooks.Application.Books.UseCases;
 
 internal class ListBooksByKeyWords(
     IBookService bookService,
-    IGoogleBooksMapper mapper) : IListByCriteria<PageParamsDto>
+    IGoogleBooksMapper mapper) : IListByCriteria<BooksSearchCriteria>
 {
-    public async Task<IGoogleBooksResponse> DoAsync(PageParamsDto request, CancellationToken cancellationToken)
+    public async Task<IGoogleBooksResponse> DoAsync(BooksSearchCriteria request, CancellationToken cancellationToken)
     {
         return mapper.Map<EntitiesByCriteriaDto<BookFullDto>>(await bookService.ListByKeyWordsAsync(
             new ListByKeyWordsParams(

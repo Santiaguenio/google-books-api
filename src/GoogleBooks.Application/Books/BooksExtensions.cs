@@ -10,6 +10,6 @@ internal static class BooksExtensions
     internal static void RegisterBookDependencies(this IServiceCollection services)
     {
         services.AddScoped<IGetById<string>, GetBookById>();
-        services.AddScoped<IListByCriteria<PageParamsDto>, ListBooksByKeyWords>();
+        services.AddScoped<IListByCriteria<BooksSearchCriteria>, ListBooksByKeyWords>();
     }
 }

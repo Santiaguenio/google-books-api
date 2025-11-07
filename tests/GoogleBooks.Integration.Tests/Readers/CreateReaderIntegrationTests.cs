@@ -11,7 +11,7 @@ using Moq;
 using System.Net;
 using System.Net.Http.Json;
 
-namespace GoogleBooks.Integration.Tests.Readers.CreateReaderIntegrationTests
+namespace GoogleBooks.Integration.Tests.Readers
 {
     [Collection("Integration tests collection")]
     public class CreateReaderIntegrationTests(TestFactory testFactory) : IAsyncLifetime

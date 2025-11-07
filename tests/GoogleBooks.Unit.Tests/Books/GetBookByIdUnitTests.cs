@@ -45,7 +45,12 @@ public class GetBookByIdUnitTests()
 
         // assert
         Assert.Equivalent(expectedException.Message, actualException.Message);
-        _mockedBookService.Verify(_ => _.GetByIdAsync(id, TestContext.Current.CancellationToken), Times.Once);
+
+        _mockedBookService.Verify(_ =>
+            _.GetByIdAsync(
+                id,
+                TestContext.Current.CancellationToken),
+            Times.Once);
     }
 
     [Theory]
@@ -63,6 +68,11 @@ public class GetBookByIdUnitTests()
 
         // assert
         Assert.Equivalent(expectedException.Errors, actualException.Errors);
-        _mockedBookService.Verify(_ => _.GetByIdAsync(It.IsAny<string>(), TestContext.Current.CancellationToken), Times.Never);
+
+        _mockedBookService.Verify(_ =>
+            _.GetByIdAsync(
+                It.IsAny<string>(),
+                TestContext.Current.CancellationToken),
+            Times.Never);
     }
 }

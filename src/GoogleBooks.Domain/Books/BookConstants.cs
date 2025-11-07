@@ -2,6 +2,6 @@
 {
     public class BookConstants
     {
-        public const int MaximalItemsPerPage = 40;
+        public const int MAXIMAL_ITEMS_PER_PAGE = 40;
     }
 }

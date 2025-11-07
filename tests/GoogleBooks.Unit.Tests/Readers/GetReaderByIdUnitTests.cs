@@ -63,9 +63,9 @@ public class GetReaderByIdUnitTests()
 
         _mockedReaderService.Verify(_ =>
             _.GetByIdAsync(
-                    id,
-                    TestContext.Current.CancellationToken),
-                Times.Once);
+                id,
+                TestContext.Current.CancellationToken),
+            Times.Once);
     }
 
     [Fact]
@@ -85,9 +85,9 @@ public class GetReaderByIdUnitTests()
 
         _mockedReaderService.Verify(_ =>
             _.GetByIdAsync(
-                    id,
-                    TestContext.Current.CancellationToken),
-                Times.Once);
+                id,
+                TestContext.Current.CancellationToken),
+            Times.Once);
     }
 
     [Fact]
@@ -96,7 +96,7 @@ public class GetReaderByIdUnitTests()
         // arrange
         var id = 1;
 
-        var expectedException = new Exception("This is an unhandled exception on the BookService");
+        var expectedException = new Exception("This is an unhandled exception on the ReaderService");
 
         _mockedReaderService
             .Setup(_ => _.GetByIdAsync(id, TestContext.Current.CancellationToken))
@@ -112,8 +112,8 @@ public class GetReaderByIdUnitTests()
 
         _mockedReaderService.Verify(_ =>
             _.GetByIdAsync(
-                    id,
-                    TestContext.Current.CancellationToken),
-                Times.Once);
+                id,
+                TestContext.Current.CancellationToken),
+            Times.Once);
     }
 }

@@ -1,8 +1,9 @@
-﻿using GoogleBooks.Infrastructure.Books.Mappers.IncomingMappings;
+﻿using GoogleBooks.Infrastructure.Books.Mappers;
 using GoogleBooks.Infrastructure.Books.Services;
 using GoogleBooks.Infrastructure.Common;
 using GoogleBooks.Infrastructure.Common.Validators;
 using GoogleBooks.Infrastructure.Readers;
+using GoogleBooks.Infrastructure.Readers.Mappers;
 using GoogleBooks.Infrastructure.Readers.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,6 +23,7 @@ public static class InfrastructureExtensions
         services.RegisterCommonDependencies();
 
         services.RegisterReaderServices();
+        services.RegisterReaderMappings();
 
         services.RegisterValidators();
 

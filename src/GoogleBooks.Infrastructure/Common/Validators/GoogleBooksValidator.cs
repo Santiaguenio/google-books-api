@@ -11,7 +11,7 @@ internal class GoogleBooksValidator<TTEntity>(IValidator<TTEntity> validator) : 
 
         return new GoogleBooksValidationResult
         {
-            Errors = fluentValidationResult.Errors.ToDictionary(),
+            Errors = fluentValidationResult.Errors.ToDictionary()
         };
     }
 }

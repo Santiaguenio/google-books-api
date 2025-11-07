@@ -21,7 +21,7 @@ public class ListBooksByKeyWordsUnitTests
         var page = 1;
         var pageSize = 10;
 
-        var pageParams = new PageParamsDto { KeyWords = keyWords, Page = page, PageSize = pageSize };
+        var pageParams = new BooksSearchCriteria { KeyWords = keyWords, Page = page, PageSize = pageSize };
         var listByKeyWordsParams = new ListByKeyWordsParams(1, 10, keyWords);
 
         var expectedException = new NullReferenceException("Object reference not set to an instance of an object.");
@@ -33,7 +33,9 @@ public class ListBooksByKeyWordsUnitTests
 
         // assert
         Assert.Equivalent(expectedException.Message, actualException.Message);
-        _mockedBookService.Verify(_ => _.ListByKeyWordsAsync(
+
+        _mockedBookService.Verify(_ =>
+            _.ListByKeyWordsAsync(
                 It.Is<ListByKeyWordsParams>(_ =>
                     _.KeyWords == keyWords
                     && _.Page == page
@@ -50,7 +52,7 @@ public class ListBooksByKeyWordsUnitTests
         var page = 1;
         var pageSize = 10;
 
-        var pageParams = new PageParamsDto { KeyWords = keyWords, Page = page, PageSize = pageSize };
+        var pageParams = new BooksSearchCriteria { KeyWords = keyWords, Page = page, PageSize = pageSize };
         var listByKeyWordsParams = new ListByKeyWordsParams(1, 10, keyWords);
 
         var expectedException = new Exception("This is an unhandled exception on the BookService");
@@ -71,7 +73,9 @@ public class ListBooksByKeyWordsUnitTests
 
         // assert
         Assert.Equivalent(expectedException.Message, actualException.Message);
-        _mockedBookService.Verify(_ => _.ListByKeyWordsAsync(
+
+        _mockedBookService.Verify(_ =>
+            _.ListByKeyWordsAsync(
                 It.Is<ListByKeyWordsParams>(_ =>
                     _.KeyWords == keyWords
                     && _.Page == page
@@ -86,10 +90,10 @@ public class ListBooksByKeyWordsUnitTests
     public async Task Should_ThrowBadRequestException_When_KeyWordsFieldIsNullOrEmpty(string? keyWords)
     {
         // arrange
-        var expectedException = new BadRequestException(new Dictionary<string, string[]> { { nameof(PageParamsDto.KeyWords), [$"{nameof(PageParamsDto.KeyWords)} is mandatory"] } });
+        var expectedException = new BadRequestException(new Dictionary<string, string[]> { { nameof(BooksSearchCriteria.KeyWords), [$"{nameof(BooksSearchCriteria.KeyWords)} is mandatory"] } });
 
         var sut = new ListBooksByKeyWords(_mockedBookService.Object, _mockedMapper.Object);
-        var requestParams = new PageParamsDto
+        var requestParams = new BooksSearchCriteria
         {
             KeyWords = keyWords!,
             Page = 1,
@@ -101,6 +105,11 @@ public class ListBooksByKeyWordsUnitTests
 
         // assert
         Assert.Equivalent(expectedException.Errors, actualException.Errors);
-        _mockedBookService.Verify(_ => _.ListByKeyWordsAsync(It.IsAny<ListByKeyWordsParams>(), TestContext.Current.CancellationToken), Times.Never);
+
+        _mockedBookService.Verify(_ =>
+            _.ListByKeyWordsAsync(
+                It.IsAny<ListByKeyWordsParams>(),
+                TestContext.Current.CancellationToken),
+            Times.Never);
     }
 }

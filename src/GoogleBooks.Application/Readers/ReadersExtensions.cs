@@ -16,5 +16,6 @@ internal static class ReadersExtensions
     {
         services.AddScoped<ICreate<ReaderCreationDto, int>, CreateReader>();
         services.AddScoped<IGetById<int>, GetReaderById>();
+        services.AddScoped<IListByCriteria<ReadersSearchCriteriaDto>, ListReadersByCriteria>();
     }
 }
