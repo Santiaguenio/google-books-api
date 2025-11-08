@@ -1,18 +1,7 @@
 ﻿namespace GoogleBooks.Domain.Exceptions
 {
     [Serializable]
-    public class EntityNotFoundException : Exception
+    public class EntityNotFoundException(string? message) : Exception(message)
     {
-        public EntityNotFoundException()
-        {
-        }
-
-        public EntityNotFoundException(string? message) : base(message)
-        {
-        }
-
-        public EntityNotFoundException(string? message, Exception? innerException) : base(message, innerException)
-        {
-        }
     }
 }

@@ -2,7 +2,7 @@
 using GoogleBooks.Application.Common.Validators;
 using GoogleBooks.Application.Readers;
 using GoogleBooks.Application.Readers.UseCases;
-using GoogleBooks.Contracts.Requests.Readers;
+using GoogleBooks.Contracts.Readers.Requests;
 using GoogleBooks.Domain.Exceptions;
 using GoogleBooks.Domain.Readers.Entities;
 using Moq;
@@ -102,8 +102,14 @@ public class CreateReaderUnitTests(TestFactory testFactory)
         // assert
         Assert.Equal(expectedResult, actualResult);
 
-        _mockedValidatorService.Verify(_ => _.ValidateAsync(readerCreation, TestContext.Current.CancellationToken), Times.Once);
+        _mockedValidatorService.Verify(_ =>
+            _.ValidateAsync(
+                readerCreation,
+                TestContext.Current.CancellationToken),
+            Times.Once);
+
         _mockedDateTimeProvider.Verify(_ => _.UtcNow(), Times.Once);
+
         _mockedReaderService.Verify(_ =>
             _.AddAsync(It.Is<Reader>(_ =>
                 _.Address == address &&
@@ -138,7 +144,11 @@ public class CreateReaderUnitTests(TestFactory testFactory)
         Assert.Equivalent(expectedException.Errors, actualException.Errors);
 
         _mockedDateTimeProvider.Verify(_ => _.UtcNow(), Times.Never);
-        _mockedReaderService.Verify(_ => _.AddAsync(It.IsAny<Reader>(), It.IsAny<CancellationToken>()), Times.Never);
+        _mockedReaderService.Verify(_ =>
+            _.AddAsync(
+                It.IsAny<Reader>(),
+                It.IsAny<CancellationToken>()),
+            Times.Never);
     }
 
     [Fact]
@@ -191,7 +201,7 @@ public class CreateReaderUnitTests(TestFactory testFactory)
 
         // assert
         Assert.Equivalent(expectedException.Message, actualException.Message);
-        
+
         _mockedReaderService.Verify(_ =>
             _.AddAsync(It.Is<Reader>(_ =>
                 _.Address == address &&

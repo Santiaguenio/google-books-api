@@ -18,7 +18,7 @@ internal class BookService(
         return mapper.Map<BookFull>(await httpClient.GetFromJsonAsync<Volume>($"volumes/{id}", cancellationToken));
     }
 
-    public async Task<EntitiesByCriteria<BookFull>> ListByKeyWordsAsync(ListByKeyWordsParams request, CancellationToken cancellationToken)
+    public async Task<EntitiesByCriteria<BookFull>> ListByKeyWordsAsync(BooksSearchCriteria request, CancellationToken cancellationToken)
     {
         return mapper.Map<EntitiesByCriteria<BookFull>>(await httpClient.GetFromJsonAsync<Volumes>($"volumes?" +
                  $"q={request.KeyWords}" +

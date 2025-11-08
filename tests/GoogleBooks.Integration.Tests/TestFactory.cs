@@ -8,7 +8,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using Moq;
 using Testcontainers.MongoDb;
-using MongoDbConfiguration = GoogleBooks.Infrastructure.MongoDbConfiguration;
+using MongoDbConfiguration = GoogleBooks.Infrastructure.Persistence.MongoDbConfiguration;
 
 namespace GoogleBooks.Integration.Tests;
 

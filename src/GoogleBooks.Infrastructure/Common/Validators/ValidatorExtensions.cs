@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
-using GoogleBooks.Infrastructure.Readers;
+using GoogleBooks.Application.Common.Validators;
+using GoogleBooks.Infrastructure.Readers.Validators;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GoogleBooks.Infrastructure.Common.Validators;
@@ -10,6 +11,6 @@ internal static class ValidatorExtensions
     {
         services.AddValidatorsFromAssemblyContaining(typeof(ReaderCreationValidator));
 
-        services.AddScoped(typeof(Application.Common.Validators.IGoogleBooksValidator<>), typeof(GoogleBooksValidator<>));
+        services.AddScoped(typeof(IGoogleBooksValidator<>), typeof(GoogleBooksValidator<>));
     }
 }

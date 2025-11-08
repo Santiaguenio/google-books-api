@@ -1,7 +1,7 @@
 ﻿using GoogleBooks.Application.Common.Services;
 using GoogleBooks.Application.Common.UseCases;
 using GoogleBooks.Application.Common.Validators;
-using GoogleBooks.Contracts.Requests.Readers;
+using GoogleBooks.Contracts.Readers.Requests;
 using GoogleBooks.Domain.Exceptions;
 using GoogleBooks.Domain.Readers.Entities;
 

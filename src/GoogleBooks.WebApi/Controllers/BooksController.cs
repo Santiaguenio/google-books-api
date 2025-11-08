@@ -1,7 +1,7 @@
 using GoogleBooks.Application.Common.UseCases;
-using GoogleBooks.Contracts;
-using GoogleBooks.Contracts.Requests.Books;
-using GoogleBooks.Contracts.Responses.Books;
+using GoogleBooks.Contracts.Books.Requests;
+using GoogleBooks.Contracts.Books.Responses;
+using GoogleBooks.Contracts.Common;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GoogleBooks.WebApi.Controllers;
@@ -29,8 +29,8 @@ public class BooksController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> ListByKeyWordsAsync(
-        [FromServices] IListByCriteria<PageParamsDto> listByCriteria,
-        [FromQuery] PageParamsDto pageParams,
+        [FromServices] IListByCriteria<BooksSearchCriteriaDto> listByCriteria,
+        [FromQuery] BooksSearchCriteriaDto pageParams,
         CancellationToken cancellationToken)
     {
         return Ok(await listByCriteria.DoAsync(pageParams, cancellationToken));

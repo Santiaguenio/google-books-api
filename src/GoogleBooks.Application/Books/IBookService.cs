@@ -6,5 +6,5 @@ namespace GoogleBooks.Application.Books;
 
 public interface IBookService : IService<BookFull>
 {
-    Task<EntitiesByCriteria<BookFull>> ListByKeyWordsAsync(ListByKeyWordsParams request, CancellationToken cancellationToken);
+    Task<EntitiesByCriteria<BookFull>> ListByKeyWordsAsync(BooksSearchCriteria request, CancellationToken cancellationToken);
 }

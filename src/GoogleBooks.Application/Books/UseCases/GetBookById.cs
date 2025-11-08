@@ -1,6 +1,7 @@
 ﻿using GoogleBooks.Application.Common;
 using GoogleBooks.Application.Common.UseCases;
-using GoogleBooks.Contracts.Responses.Books;
+using GoogleBooks.Contracts.Books.Responses;
+using GoogleBooks.Contracts.Common;
 using GoogleBooks.Domain.Exceptions;
 
 namespace GoogleBooks.Application.Books.UseCases;
