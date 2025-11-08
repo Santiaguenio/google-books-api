@@ -1,7 +1,6 @@
 ﻿using GoogleBooks.Application.Common;
 using GoogleBooks.Application.Common.UseCases;
 using GoogleBooks.Application.Readers.Models;
-using GoogleBooks.Contracts.Books.Responses;
 using GoogleBooks.Contracts.Common;
 using GoogleBooks.Contracts.Readers.Requests;
 using GoogleBooks.Contracts.Readers.Responses;

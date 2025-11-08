@@ -10,6 +10,7 @@ public record ReaderCreationDto : IGoogleBooksRequest
 
     [EmailAddress]
     public string Email { get; set; } = default!;
+   
     public string Name { get; set; } = default!;
     public string LastName { get; set; } = default!;
     public string? ZipCode { get; set; }

@@ -1,8 +1,6 @@
-﻿using GoogleBooks.Contracts.Books.Responses;
+﻿namespace GoogleBooks.Contracts.Common;
 
-namespace GoogleBooks.Contracts.Common;
-
-public class EntitiesByCriteriaDto<TEntities> : IGoogleBooksResponse
+public record EntitiesByCriteriaDto<TEntities> : IGoogleBooksResponse
 {
     public int TotalItems { get; set; }
 

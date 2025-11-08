@@ -1,4 +1,6 @@
-﻿namespace GoogleBooks.Contracts.Books.Responses;
+﻿using GoogleBooks.Contracts.Common;
+
+namespace GoogleBooks.Contracts.Books.Responses;
 
 public record BookFullDto : IGoogleBooksResponse
 {
