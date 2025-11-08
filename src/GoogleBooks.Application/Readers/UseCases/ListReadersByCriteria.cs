@@ -18,6 +18,7 @@ internal class ListReadersByCriteria(
                 request.Page,
                 request.PageSize,
                 request.City,
+                request.Email,
                 request.Name,
                 request.LastName,
                 request.ZipCode,

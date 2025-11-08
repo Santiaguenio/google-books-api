@@ -10,6 +10,7 @@ public class ListByCriteriaParams : PaginationBase
         int? page,
         int? pageSize,
         string? city,
+        string? email,
         string? name,
         string? lastName,
         string? zipCode,
@@ -19,16 +20,18 @@ public class ListByCriteriaParams : PaginationBase
         PageSize = pageSize is null || pageSize > MAXIMAL_PAGE_SIZE ? MAXIMAL_PAGE_SIZE : pageSize.Value;
 
         City = city?.Trim();
+        Email = email?.Trim();
         Name = name?.Trim();
         LastName = lastName?.Trim();
         ZipCode = zipCode?.Trim();
         BirthDate = birthDate;
     }
 
-    public string? City { get; set; }
-    public string? Name { get; set; } = default!;
-    public string? LastName { get; set; } = default!;
-    public string? ZipCode { get; set; }
+    public string? City { get; private set; }
+    public string? Email { get; private set; }
+    public string? Name { get; private set; }
+    public string? LastName { get; private set; }
+    public string? ZipCode { get; private set; }
 
-    public DateOnly? BirthDate { get; set; }
+    public DateOnly? BirthDate { get; private set; }
 }

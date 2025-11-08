@@ -43,6 +43,7 @@ internal class ReaderService(
         var filterBuilder = Builders<Reader>.Filter;
         var filter = filterBuilder.And(
             request.City is not null ? filterBuilder.Eq(_ => _.City, request.City) : filterBuilder.Empty,
+            request.Email is not null ? filterBuilder.Eq(_ => _.Email, request.Email) : filterBuilder.Empty,
             request.Name is not null ? filterBuilder.Eq(_ => _.Name, request.Name) : filterBuilder.Empty,
             request.LastName is not null ? filterBuilder.Eq(_ => _.LastName, request.LastName) : filterBuilder.Empty,
             request.ZipCode is not null ? filterBuilder.Eq(_ => _.ZipCode, request.ZipCode) : filterBuilder.Empty,
