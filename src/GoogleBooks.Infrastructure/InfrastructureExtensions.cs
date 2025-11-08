@@ -22,8 +22,8 @@ public static class InfrastructureExtensions
 
         services.RegisterCommonDependencies();
 
-        services.RegisterReaderServices();
         services.RegisterReaderMappings();
+        services.RegisterReaderServices();
 
         services.RegisterValidators();
 

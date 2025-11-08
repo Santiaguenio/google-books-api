@@ -1,7 +1,7 @@
-﻿using GoogleBooks.Application.Common.Models;
+﻿using AutoMapper;
+using GoogleBooks.Application.Common.Models;
 using GoogleBooks.Application.Readers;
 using GoogleBooks.Application.Readers.Models;
-using GoogleBooks.Contracts.Requests.Readers;
 using GoogleBooks.Domain.Exceptions;
 using GoogleBooks.Domain.Readers.Entities;
 using GoogleBooks.Infrastructure.Common;
@@ -11,7 +11,8 @@ namespace GoogleBooks.Infrastructure.Readers.Services;
 
 internal class ReaderService(
     IdGeneratorHelper idGeneratorHelper,
-    IMongoDatabase database) : IReaderService
+    IMongoDatabase database,
+    IMapper mapper) : IReaderService
 {
     private readonly string _duplicatePattern = "duplicate key error";
     private readonly IMongoCollection<Reader> _collection = database.GetCollection<Reader>(nameof(Reader));
@@ -37,8 +38,26 @@ internal class ReaderService(
         return await (await _collection.FindAsync(_ => _.Id.Equals(id), cancellationToken: cancellationToken)).FirstOrDefaultAsync(cancellationToken);
     }
 
-    public Task<EntitiesByCriteria<ReaderFull>> ListByCriteriaAsync(ReadersSearchCriteriaDto request, CancellationToken cancellationToken)
+    public async Task<EntitiesByCriteria<ReaderFull>> ListByCriteriaAsync(ListByCriteriaParams request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var filterBuilder = Builders<Reader>.Filter;
+        var filter = filterBuilder.And(
+            request.City is not null ? filterBuilder.Eq(_ => _.City, request.City) : filterBuilder.Empty,
+            request.Name is not null ? filterBuilder.Eq(_ => _.Name, request.Name) : filterBuilder.Empty,
+            request.LastName is not null ? filterBuilder.Eq(_ => _.LastName, request.LastName) : filterBuilder.Empty,
+            request.ZipCode is not null ? filterBuilder.Eq(_ => _.ZipCode, request.ZipCode) : filterBuilder.Empty,
+            request.BirthDate is not null ? filterBuilder.Eq(_ => _.Birthdate, request.BirthDate) : filterBuilder.Empty
+        );
+
+        var readers = (await (await _collection.FindAsync(filter, cancellationToken: cancellationToken))
+            .ToListAsync(cancellationToken: cancellationToken))
+            .Skip((request.Page - 1) * request.PageSize)
+            .Take(request.PageSize);
+
+        return new EntitiesByCriteria<ReaderFull>
+        {
+            Items = mapper.Map<ReaderFull[]>(readers),
+            TotalItems = readers.Count()
+        };
     }
 }

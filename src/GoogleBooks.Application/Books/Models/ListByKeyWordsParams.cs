@@ -25,7 +25,7 @@ public class ListByKeyWordsParams : PaginationBase
         }
 
         KeyWords = keyWords;
-        Page = page;
-        PageSize = pageSize;
+        Page = page is null ? 0 : page.Value;
+        PageSize = pageSize.Value;
     }
 }
