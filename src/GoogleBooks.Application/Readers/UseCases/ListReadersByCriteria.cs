@@ -1,10 +1,10 @@
 ﻿using GoogleBooks.Application.Common;
 using GoogleBooks.Application.Common.UseCases;
 using GoogleBooks.Application.Readers.Models;
-using GoogleBooks.Contracts;
-using GoogleBooks.Contracts.Requests.Readers;
-using GoogleBooks.Contracts.Responses.Books;
-using GoogleBooks.Contracts.Responses.Readers;
+using GoogleBooks.Contracts.Books.Responses;
+using GoogleBooks.Contracts.Common;
+using GoogleBooks.Contracts.Readers.Requests;
+using GoogleBooks.Contracts.Readers.Responses;
 
 namespace GoogleBooks.Application.Readers.UseCases;
 

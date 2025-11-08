@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using GoogleBooks.Contracts.Requests.Readers;
+using GoogleBooks.Contracts.Readers.Requests;
 
 namespace GoogleBooks.Infrastructure.Readers;
 

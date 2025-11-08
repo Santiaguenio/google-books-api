@@ -1,4 +1,6 @@
-﻿namespace GoogleBooks.Contracts.Requests.Books;
+﻿using GoogleBooks.Contracts.Common;
+
+namespace GoogleBooks.Contracts.Books.Requests;
 
 public record BooksSearchCriteria : PagedQueryBase, IGoogleBooksRequest
 {

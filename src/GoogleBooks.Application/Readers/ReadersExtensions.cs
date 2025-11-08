@@ -1,6 +1,6 @@
 ﻿using GoogleBooks.Application.Common.UseCases;
 using GoogleBooks.Application.Readers.UseCases;
-using GoogleBooks.Contracts.Requests.Readers;
+using GoogleBooks.Contracts.Readers.Requests;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GoogleBooks.Application.Readers;

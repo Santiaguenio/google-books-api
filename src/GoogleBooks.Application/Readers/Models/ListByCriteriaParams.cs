@@ -4,6 +4,8 @@ namespace GoogleBooks.Application.Readers.Models;
 
 public class ListByCriteriaParams : PaginationBase
 {
+    private const int MAXIMAL_PAGE_SIZE = 50;
+
     public ListByCriteriaParams(
         int? page,
         int? pageSize,
@@ -14,12 +16,12 @@ public class ListByCriteriaParams : PaginationBase
         DateOnly? birthDate)
     {
         Page = page is null ? 0 : page.Value;
-        PageSize = pageSize is null ? 50 : pageSize.Value;
+        PageSize = pageSize is null || pageSize > MAXIMAL_PAGE_SIZE ? MAXIMAL_PAGE_SIZE : pageSize.Value;
 
-        City = city;
-        Name = name;
-        LastName = lastName;
-        ZipCode = zipCode;
+        City = city?.Trim();
+        Name = name?.Trim();
+        LastName = lastName?.Trim();
+        ZipCode = zipCode?.Trim();
         BirthDate = birthDate;
     }
 

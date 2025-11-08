@@ -1,7 +1,7 @@
 ﻿using Bogus;
-using GoogleBooks.Contracts;
-using GoogleBooks.Contracts.Requests.Readers;
-using GoogleBooks.Contracts.Responses.Readers;
+using GoogleBooks.Contracts.Common;
+using GoogleBooks.Contracts.Readers.Requests;
+using GoogleBooks.Contracts.Readers.Responses;
 using GoogleBooks.Domain.Books;
 using GoogleBooks.Domain.Readers.Entities;
 using Microsoft.AspNetCore.TestHost;

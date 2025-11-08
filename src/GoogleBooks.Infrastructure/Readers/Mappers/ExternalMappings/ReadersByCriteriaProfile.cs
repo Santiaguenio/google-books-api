@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using GoogleBooks.Application.Readers.Models;
-using GoogleBooks.Contracts.Responses.Readers;
+using GoogleBooks.Contracts.Readers.Responses;
 
 namespace GoogleBooks.Infrastructure.Readers.Mappers.ExternalMappings;
 

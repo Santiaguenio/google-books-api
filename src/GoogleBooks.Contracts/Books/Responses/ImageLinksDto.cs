@@ -1,4 +1,4 @@
-﻿namespace GoogleBooks.Contracts.Responses.Books
+﻿namespace GoogleBooks.Contracts.Books.Responses
 {
     public record ImageLinksDto
     {

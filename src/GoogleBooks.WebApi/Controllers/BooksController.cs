@@ -1,7 +1,7 @@
 using GoogleBooks.Application.Common.UseCases;
-using GoogleBooks.Contracts;
-using GoogleBooks.Contracts.Requests.Books;
-using GoogleBooks.Contracts.Responses.Books;
+using GoogleBooks.Contracts.Books.Requests;
+using GoogleBooks.Contracts.Books.Responses;
+using GoogleBooks.Contracts.Common;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GoogleBooks.WebApi.Controllers;

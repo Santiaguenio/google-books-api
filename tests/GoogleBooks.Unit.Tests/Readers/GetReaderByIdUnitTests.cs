@@ -1,6 +1,6 @@
 ﻿using GoogleBooks.Application.Readers;
 using GoogleBooks.Application.Readers.UseCases;
-using GoogleBooks.Contracts.Responses.Readers;
+using GoogleBooks.Contracts.Readers.Responses;
 using GoogleBooks.Domain.Exceptions;
 using GoogleBooks.Domain.Readers.Entities;
 using Moq;

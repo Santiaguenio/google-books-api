@@ -1,4 +1,4 @@
-﻿namespace GoogleBooks.Contracts;
+﻿namespace GoogleBooks.Contracts.Common;
 
 public abstract record PagedQueryBase
 {

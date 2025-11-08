@@ -1,5 +1,5 @@
 ﻿using GoogleBooks.Application.Common.Models;
-using GoogleBooks.Contracts.Requests.Books;
+using GoogleBooks.Contracts.Books.Requests;
 using GoogleBooks.Domain.Books;
 using GoogleBooks.Domain.Exceptions;
 

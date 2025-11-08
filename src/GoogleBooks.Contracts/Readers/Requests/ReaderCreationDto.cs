@@ -1,6 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using GoogleBooks.Contracts.Common;
+using System.ComponentModel.DataAnnotations;
 
-namespace GoogleBooks.Contracts.Requests.Readers;
+namespace GoogleBooks.Contracts.Readers.Requests;
 
 public record ReaderCreationDto : IGoogleBooksRequest
 {

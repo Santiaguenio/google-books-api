@@ -1,5 +1,5 @@
 ﻿using GoogleBooks.Application.Readers;
-using GoogleBooks.Contracts.Responses.Readers;
+using GoogleBooks.Contracts.Readers.Responses;
 using GoogleBooks.Domain.Readers.Entities;
 using GoogleBooks.WebApi.Middleware;
 using Microsoft.AspNetCore.Mvc;

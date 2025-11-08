@@ -1,6 +1,6 @@
-﻿using GoogleBooks.Contracts.Responses.Books;
+﻿using GoogleBooks.Contracts.Books.Responses;
 
-namespace GoogleBooks.Contracts.Responses.Readers
+namespace GoogleBooks.Contracts.Readers.Responses
 {
     public record ReaderDto : IGoogleBooksResponse
     {

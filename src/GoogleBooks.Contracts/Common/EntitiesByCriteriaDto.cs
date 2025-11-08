@@ -1,6 +1,6 @@
-﻿using GoogleBooks.Contracts.Responses.Books;
+﻿using GoogleBooks.Contracts.Books.Responses;
 
-namespace GoogleBooks.Contracts;
+namespace GoogleBooks.Contracts.Common;
 
 public class EntitiesByCriteriaDto<TEntities> : IGoogleBooksResponse
 {

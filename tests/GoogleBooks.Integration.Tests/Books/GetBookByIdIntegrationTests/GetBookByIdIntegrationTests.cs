@@ -1,4 +1,4 @@
-using GoogleBooks.Contracts.Responses.Books;
+using GoogleBooks.Contracts.Books.Responses;
 using GoogleBooks.WebApi.Middleware;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.TestHost;

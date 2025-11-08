@@ -1,4 +1,4 @@
-﻿using GoogleBooks.Contracts.Responses.Books;
+﻿using GoogleBooks.Contracts.Books.Responses;
 
 namespace GoogleBooks.Application.Common.UseCases;
 
