@@ -16,7 +16,7 @@ public class ListByCriteriaParams : PaginationBase
         string? zipCode,
         DateOnly? birthDate)
     {
-        Page = page is null ? 0 : page.Value;
+        Page = page ?? 0;
         PageSize = pageSize is null || pageSize > MAXIMAL_PAGE_SIZE ? MAXIMAL_PAGE_SIZE : pageSize.Value;
 
         City = city?.Trim();

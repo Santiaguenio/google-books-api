@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using GoogleBooks.Contracts.Readers.Requests;
 
-namespace GoogleBooks.Infrastructure.Readers;
+namespace GoogleBooks.Infrastructure.Readers.Validators;
 
 public class ReaderCreationValidator : AbstractValidator<ReaderCreationDto>
 {

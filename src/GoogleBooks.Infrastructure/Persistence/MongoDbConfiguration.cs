@@ -4,7 +4,7 @@ using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
 
-namespace GoogleBooks.Infrastructure;
+namespace GoogleBooks.Infrastructure.Persistence;
 
 public static class MongoDbConfiguration
 {

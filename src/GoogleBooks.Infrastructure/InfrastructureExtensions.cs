@@ -2,6 +2,7 @@
 using GoogleBooks.Infrastructure.Books.Services;
 using GoogleBooks.Infrastructure.Common;
 using GoogleBooks.Infrastructure.Common.Validators;
+using GoogleBooks.Infrastructure.Persistence;
 using GoogleBooks.Infrastructure.Readers;
 using GoogleBooks.Infrastructure.Readers.Mappers;
 using GoogleBooks.Infrastructure.Readers.Services;

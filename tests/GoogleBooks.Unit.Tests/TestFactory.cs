@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using GoogleBooks.Infrastructure.Common.Validators;
-using GoogleBooks.Infrastructure.Readers;
+using GoogleBooks.Infrastructure.Readers.Validators;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GoogleBooks.Unit.Tests;

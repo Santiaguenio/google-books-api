@@ -43,7 +43,7 @@ public class ReadersController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(EntitiesByCriteriaDto<ReaderDto>))]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
-    public async Task<IActionResult> ListByKeyCriteriaAsync(
+    public async Task<IActionResult> ListByCriteriaAsync(
         [FromServices] IListByCriteria<ReadersSearchCriteriaDto> listByCriteria,
         [FromQuery] ReadersSearchCriteriaDto pageParams,
         CancellationToken cancellationToken)
