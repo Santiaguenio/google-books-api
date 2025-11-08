@@ -2,7 +2,7 @@
 
 namespace GoogleBooks.Contracts.Books.Requests;
 
-public record BooksSearchCriteria : PagedQueryBase, IGoogleBooksRequest
+public record BooksSearchCriteriaDto : PagedQueryBase, IGoogleBooksRequest
 {
     public string KeyWords { get; set; } = default!;
 }

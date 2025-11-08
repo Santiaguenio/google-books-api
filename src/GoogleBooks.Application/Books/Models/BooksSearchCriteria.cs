@@ -5,18 +5,18 @@ using GoogleBooks.Domain.Exceptions;
 
 namespace GoogleBooks.Application.Books.Models;
 
-public class ListByKeyWordsParams : PaginationBase
+public class BooksSearchCriteria : PaginationBase
 {
     public string KeyWords { get; private set; }
 
-    public ListByKeyWordsParams(
+    public BooksSearchCriteria(
         int? page,
         int? pageSize,
         string keyWords)
     {
         if (string.IsNullOrWhiteSpace(keyWords))
         {
-            throw new BadRequestException(new Dictionary<string, string[]> { { nameof(BooksSearchCriteria.KeyWords), [$"{nameof(BooksSearchCriteria.KeyWords)} is mandatory"] } });
+            throw new BadRequestException(new Dictionary<string, string[]> { { nameof(BooksSearchCriteriaDto.KeyWords), [$"{nameof(BooksSearchCriteriaDto.KeyWords)} is mandatory"] } });
         }
 
         if (pageSize is null || pageSize > BookConstants.MAXIMAL_ITEMS_PER_PAGE)

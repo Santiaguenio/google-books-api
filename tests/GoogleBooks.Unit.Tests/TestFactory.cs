@@ -1,4 +1,7 @@
 ﻿using FluentValidation;
+using GoogleBooks.Application.Common;
+using GoogleBooks.Application.Common.Validators;
+using GoogleBooks.Infrastructure.Common.Mappers;
 using GoogleBooks.Infrastructure.Common.Validators;
 using GoogleBooks.Infrastructure.Readers.Validators;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,7 +16,10 @@ public class TestFactory
     {
         var serviceCollection = new ServiceCollection()
             .AddValidatorsFromAssemblyContaining<ReaderCreationValidator>()
-            .AddScoped(typeof(Application.Common.Validators.IGoogleBooksValidator<>), typeof(GoogleBooksValidator<>));
+            .AddScoped(typeof(IGoogleBooksValidator<>), typeof(GoogleBooksValidator<>))
+
+            .AddAutoMapper(typeof(EntitiesByCriteriaProfile))
+            .AddScoped<IGoogleBooksMapper, GoogleBooksMapper>();
 
         _serviceProvider = serviceCollection.BuildServiceProvider();
     }

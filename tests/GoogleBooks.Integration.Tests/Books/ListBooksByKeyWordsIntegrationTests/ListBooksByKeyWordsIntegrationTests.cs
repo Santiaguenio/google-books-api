@@ -33,7 +33,7 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
     [Theory]
     [MemberData(nameof(GetEntryDataAndExpectedResult))]
     public async Task Should(
-        BooksSearchCriteria pageParams,
+        BooksSearchCriteriaDto pageParams,
         StringContent expectedGoogleClientResponse,
         StringContent expectedResult)
     {
@@ -149,7 +149,7 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
         var firstPage = 1;
         yield return new object[]
         {
-            new BooksSearchCriteria { KeyWords = "federer", Page = firstPage, PageSize = BookConstants.MAXIMAL_ITEMS_PER_PAGE },
+            new BooksSearchCriteriaDto { KeyWords = "federer", Page = firstPage, PageSize = BookConstants.MAXIMAL_ITEMS_PER_PAGE },
 
             new StringContent(JsonSerializer.Serialize(
                 new
@@ -174,7 +174,7 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
         var secondPage = 2;
         yield return new object[]
         {
-            new BooksSearchCriteria { KeyWords = "federer", Page = secondPage, PageSize = BookConstants.MAXIMAL_ITEMS_PER_PAGE },
+            new BooksSearchCriteriaDto { KeyWords = "federer", Page = secondPage, PageSize = BookConstants.MAXIMAL_ITEMS_PER_PAGE },
 
             new StringContent(JsonSerializer.Serialize(
                 new
@@ -199,7 +199,7 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
         var thirdPage = 3;
         yield return new object[]
         {
-            new BooksSearchCriteria { KeyWords = "federer", Page = thirdPage, PageSize = BookConstants.MAXIMAL_ITEMS_PER_PAGE },
+            new BooksSearchCriteriaDto { KeyWords = "federer", Page = thirdPage, PageSize = BookConstants.MAXIMAL_ITEMS_PER_PAGE },
 
             new StringContent(JsonSerializer.Serialize(
                 new
@@ -225,7 +225,7 @@ public class ListBooksByKeyWordsIntegrationTests(TestFactory testFactory) : IAsy
         var pageSize = 2;
         yield return new object[]
         {
-            new BooksSearchCriteria { KeyWords = "federer", Page = intermediatePage, PageSize = pageSize },
+            new BooksSearchCriteriaDto { KeyWords = "federer", Page = intermediatePage, PageSize = pageSize },
 
             new StringContent(JsonSerializer.Serialize(
                 new

@@ -22,7 +22,7 @@ internal class ListReadersByCriteria(
             throw new BadRequestException(validationResult.Errors);
         }
 
-        var readers = await readerService.ListByCriteriaAsync(new ListByCriteriaParams(
+        var readers = await readerService.ListByCriteriaAsync(new ReadersSearchCriteria(
                 request.Page,
                 request.PageSize,
                 request.City,

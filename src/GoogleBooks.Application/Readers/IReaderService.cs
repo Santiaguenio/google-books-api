@@ -8,5 +8,5 @@ namespace GoogleBooks.Application.Readers;
 public interface IReaderService : IService<Reader>
 {
     Task<Reader> AddAsync(Reader reader, CancellationToken cancellationToken);
-    Task<EntitiesByCriteria<ReaderFull>> ListByCriteriaAsync(ListByCriteriaParams request, CancellationToken cancellationToken);
+    Task<EntitiesByCriteria<ReaderFull>> ListByCriteriaAsync(ReadersSearchCriteria request, CancellationToken cancellationToken);
 }

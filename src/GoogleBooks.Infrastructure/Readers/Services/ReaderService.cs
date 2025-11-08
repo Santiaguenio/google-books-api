@@ -38,7 +38,7 @@ internal class ReaderService(
         return await (await _collection.FindAsync(_ => _.Id.Equals(id), cancellationToken: cancellationToken)).FirstOrDefaultAsync(cancellationToken);
     }
 
-    public async Task<EntitiesByCriteria<ReaderFull>> ListByCriteriaAsync(ListByCriteriaParams request, CancellationToken cancellationToken)
+    public async Task<EntitiesByCriteria<ReaderFull>> ListByCriteriaAsync(ReadersSearchCriteria request, CancellationToken cancellationToken)
     {
         var filterBuilder = Builders<Reader>.Filter;
         var filter = filterBuilder.And(

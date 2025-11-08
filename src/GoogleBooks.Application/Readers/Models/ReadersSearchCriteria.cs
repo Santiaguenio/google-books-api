@@ -2,11 +2,11 @@
 
 namespace GoogleBooks.Application.Readers.Models;
 
-public class ListByCriteriaParams : PaginationBase
+public class ReadersSearchCriteria : PaginationBase
 {
     private const int MAXIMAL_PAGE_SIZE = 50;
 
-    public ListByCriteriaParams(
+    public ReadersSearchCriteria(
         int? page,
         int? pageSize,
         string? city,
