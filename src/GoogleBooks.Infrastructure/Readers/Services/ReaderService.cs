@@ -54,7 +54,8 @@ internal class ReaderService(
         var readers = await _collection.Find(filter, new FindOptions { Collation = ReaderListByCriteriaStrategy.GetStrategy() })
             .SortBy(_ => _.Id)
             .Skip((request.Page - 1) * request.PageSize)
-            .Limit(request.PageSize).ToListAsync(cancellationToken: cancellationToken);
+            .Limit(request.PageSize)
+            .ToListAsync(cancellationToken: cancellationToken);
 
         var readersCount = await _collection.CountDocumentsAsync(
             filter,
