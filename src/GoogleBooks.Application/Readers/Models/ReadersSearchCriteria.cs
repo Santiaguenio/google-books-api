@@ -16,7 +16,7 @@ public class ReadersSearchCriteria : PaginationBase
         string? zipCode,
         DateOnly? birthDate)
     {
-        Page = page ?? 0;
+        Page = page == 0 || page is null ? 1 : page.Value;
         PageSize = pageSize is null || pageSize > MAXIMAL_PAGE_SIZE ? MAXIMAL_PAGE_SIZE : pageSize.Value;
 
         City = city?.Trim();

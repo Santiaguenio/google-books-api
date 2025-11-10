@@ -5,6 +5,7 @@ using GoogleBooks.Application.Readers.Models;
 using GoogleBooks.Domain.Exceptions;
 using GoogleBooks.Domain.Readers.Entities;
 using GoogleBooks.Infrastructure.Common;
+using GoogleBooks.Infrastructure.Readers.Persistence;
 using MongoDB.Driver;
 
 namespace GoogleBooks.Infrastructure.Readers.Services;
@@ -35,7 +36,7 @@ internal class ReaderService(
 
     public async Task<Reader> GetByIdAsync<TKey>(TKey id, CancellationToken cancellationToken)
     {
-        return await (await _collection.FindAsync(_ => _.Id.Equals(id), cancellationToken: cancellationToken)).FirstOrDefaultAsync(cancellationToken);
+        return await _collection.Find(_ => _.Id.Equals(id)).FirstOrDefaultAsync(cancellationToken);
     }
 
     public async Task<EntitiesByCriteria<ReaderFull>> ListByCriteriaAsync(ReadersSearchCriteria request, CancellationToken cancellationToken)
@@ -50,15 +51,20 @@ internal class ReaderService(
             request.BirthDate is not null ? filterBuilder.Eq(_ => _.Birthdate, request.BirthDate) : filterBuilder.Empty
         );
 
-        var readers = (await (await _collection.FindAsync(filter, cancellationToken: cancellationToken))
-            .ToListAsync(cancellationToken: cancellationToken))
+        var readers = await _collection.Find(filter, new FindOptions { Collation = ReaderListByCriteriaStrategy.GetStrategy() })
+            .SortBy(_ => _.Id)
             .Skip((request.Page - 1) * request.PageSize)
-            .Take(request.PageSize);
+            .Limit(request.PageSize).ToListAsync(cancellationToken: cancellationToken);
+
+        var readersCount = await _collection.CountDocumentsAsync(
+            filter,
+            new CountOptions { Collation = ReaderListByCriteriaStrategy.GetStrategy() },
+            cancellationToken: cancellationToken);
 
         return new EntitiesByCriteria<ReaderFull>
         {
             Items = mapper.Map<ReaderFull[]>(readers),
-            TotalItems = readers.Count()
+            TotalItems = readersCount
         };
     }
 }

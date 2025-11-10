@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GoogleBooks.Contracts.Readers.Requests;
 
-public record ReadersSearchCriteriaDto : PagedQueryBase, IGoogleBooksRequest
+public record ReadersSearchCriteriaDto : PagedQueryBaseDto, IGoogleBooksRequest
 {
     public string? City { get; set; }
 
