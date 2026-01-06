@@ -8,7 +8,6 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using Moq;
 using Testcontainers.MongoDb;
-using MongoDbConfiguration = GoogleBooks.Infrastructure.Persistence.MongoDbConfiguration;
 
 namespace GoogleBooks.Integration.Tests;
 
@@ -23,15 +22,13 @@ public class TestFactory : WebApplicationFactory<Program>, IAsyncLifetime
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
+        builder.UseSetting("ConnectionStrings:MongoDb", _mongoContainer.GetConnectionString());
+
         builder.ConfigureTestServices(services =>
         {
             services.RemoveAll(typeof(IHttpClientFactory));
             services.AddSingleton(MockedHttpClientFactory.Object);
             services.AddSingleton(MockedHttpMessageHandler.Object);
-
-            services.RemoveAll(typeof(IMongoDatabase));
-            services.AddSingleton(_ => MongoDbConfiguration.CreateClient(_mongoContainer.GetConnectionString()!));
-            services.AddSingleton(sp => sp.GetRequiredService<IMongoClient>().GetDatabase("google-books"));
 
             _serviceProvider = services.BuildServiceProvider();
             _database = _serviceProvider.GetRequiredService<IMongoDatabase>();

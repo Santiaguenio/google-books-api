@@ -58,7 +58,7 @@ namespace GoogleBooks.Integration.Tests.Readers.GetReaderByIdIntegrationTests
             var expectedHttpResult = new HttpResponseMessage(HttpStatusCode.OK)
             {
                 Content = JsonContent.Create(
-                    new ReaderDto
+                    new ReaderFullDto
                     {
                         Id = expectedReaderId,
                         Address = address,
@@ -89,12 +89,12 @@ namespace GoogleBooks.Integration.Tests.Readers.GetReaderByIdIntegrationTests
             Assert.Equal(expectedHttpResult.StatusCode, actualHttpResult.StatusCode);
 
             Assert.Equal(
-                await expectedHttpResult.Content.ReadFromJsonAsync<ReaderDto>(TestContext.Current.CancellationToken),
-                await actualHttpResult.Content.ReadFromJsonAsync<ReaderDto>(TestContext.Current.CancellationToken));
+                await expectedHttpResult.Content.ReadFromJsonAsync<ReaderFullDto>(TestContext.Current.CancellationToken),
+                await actualHttpResult.Content.ReadFromJsonAsync<ReaderFullDto>(TestContext.Current.CancellationToken));
 
             mockedLogger.Verify(_ =>
                _.Log(
-                   LogLevel.Error,
+                   It.IsAny<LogLevel>(),
                    It.IsAny<EventId>(),
                    It.Is<It.IsAnyType>((state, _) => true),
                    It.IsAny<Exception?>(),

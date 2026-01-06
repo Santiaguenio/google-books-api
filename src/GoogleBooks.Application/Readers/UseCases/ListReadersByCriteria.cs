@@ -33,6 +33,6 @@ internal class ListReadersByCriteria(
                 request.BirthDate),
             cancellationToken);
 
-        return googleBooksMapper.Map<EntitiesByCriteriaDto<ReaderDto>>(readers);
+        return googleBooksMapper.Map<EntitiesByCriteriaDto<ReaderFullDto>>(readers);
     }
 }

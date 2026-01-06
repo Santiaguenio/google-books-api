@@ -11,16 +11,16 @@ internal class BookService(
     IHttpClientFactory httpClientFactory,
     IMapper mapper) : IBookService
 {
-    private readonly HttpClient httpClient = httpClientFactory.CreateClient(ServicesConstants.GOOGLE_CLIENT_NAME);
+    private readonly HttpClient _httpClient = httpClientFactory.CreateClient(ServicesConstants.GOOGLE_CLIENT_NAME);
 
     public async Task<BookFull> GetByIdAsync<TKey>(TKey id, CancellationToken cancellationToken)
     {
-        return mapper.Map<BookFull>(await httpClient.GetFromJsonAsync<Volume>($"volumes/{id}", cancellationToken));
+        return mapper.Map<BookFull>(await _httpClient.GetFromJsonAsync<Volume>($"volumes/{id}", cancellationToken));
     }
 
     public async Task<EntitiesByCriteria<BookFull>> ListByKeyWordsAsync(BooksSearchCriteria request, CancellationToken cancellationToken)
     {
-        return mapper.Map<EntitiesByCriteria<BookFull>>(await httpClient.GetFromJsonAsync<Volumes>($"volumes?" +
+        return mapper.Map<EntitiesByCriteria<BookFull>>(await _httpClient.GetFromJsonAsync<Volumes>($"volumes?" +
                  $"q={request.KeyWords}" +
                  $"&maxResults={request.PageSize}" +
                  $"&startIndex={(request.Page - 1) * request.PageSize}",

@@ -2,7 +2,7 @@
 
 namespace GoogleBooks.Contracts.Readers.Responses
 {
-    public record ReaderDto : IGoogleBooksResponse
+    public record ReaderFullDto : IGoogleBooksResponse
     {
         public int Id { get; set; }
 

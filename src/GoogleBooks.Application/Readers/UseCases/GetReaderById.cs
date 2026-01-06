@@ -15,7 +15,7 @@ internal class GetReaderById(IReaderService readerService) : IGetById<int>
             throw new EntityNotFoundException($"The Reader with Id: {id} was not found");
         }
 
-        return new ReaderDto
+        return new ReaderFullDto
         {
             Address = reader.Address,
             Birthdate = reader.Birthdate,

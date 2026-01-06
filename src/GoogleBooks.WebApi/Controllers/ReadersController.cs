@@ -27,7 +27,7 @@ public class ReadersController : ControllerBase
 
     [HttpGet("{id}")]
     [Produces("application/json")]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ReaderDto))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ReaderFullDto))]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> GetByIdAsync(
@@ -40,7 +40,7 @@ public class ReadersController : ControllerBase
 
     [HttpGet()]
     [Produces("application/json")]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(EntitiesByCriteriaDto<ReaderDto>))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(EntitiesByCriteriaDto<ReaderFullDto>))]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> ListByCriteriaAsync(
