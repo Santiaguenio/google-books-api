@@ -30,9 +30,9 @@ public class BooksController : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> ListByKeyWordsAsync(
         [FromServices] IListByCriteria<BooksSearchCriteriaDto> listByCriteria,
-        [FromQuery] BooksSearchCriteriaDto pageParams,
+        [FromQuery] BooksSearchCriteriaDto booksSearchCriteria,
         CancellationToken cancellationToken)
     {
-        return Ok(await listByCriteria.DoAsync(pageParams, cancellationToken));
+        return Ok(await listByCriteria.DoAsync(booksSearchCriteria, cancellationToken));
     }
 }

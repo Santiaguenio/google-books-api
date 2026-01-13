@@ -37,7 +37,7 @@ public class GetReaderByIdUnitTests()
             ZipCode = zipCode,
         };
 
-        var expectedResult = new ReaderDto
+        var expectedResult = new ReaderFullDto
         {
             Address = address,
             Birthdate = birthDate,

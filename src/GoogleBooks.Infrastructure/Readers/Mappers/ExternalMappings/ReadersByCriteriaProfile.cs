@@ -8,6 +8,6 @@ internal class ReadersByCriteriaProfile : Profile
 {
     public ReadersByCriteriaProfile()
     {
-        CreateMap<ReaderFull, ReaderDto>();
+        CreateMap<ReaderFull, ReaderFullDto>();
     }
 }

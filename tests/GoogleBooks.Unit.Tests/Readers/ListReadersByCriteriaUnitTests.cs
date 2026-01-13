@@ -45,9 +45,9 @@ namespace GoogleBooks.Unit.Tests.Readers
                 TotalItems = 1
             };
 
-            var expectedResult = new EntitiesByCriteriaDto<ReaderDto>
+            var expectedResult = new EntitiesByCriteriaDto<ReaderFullDto>
             {
-                Items = [new ReaderDto {
+                Items = [new ReaderFullDto {
                     Address = address,
                     Birthdate = birthDate,
                     City = city,

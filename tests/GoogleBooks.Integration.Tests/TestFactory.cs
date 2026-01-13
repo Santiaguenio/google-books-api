@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Logging;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using Moq;
 using Testcontainers.MongoDb;
-using MongoDbConfiguration = GoogleBooks.Infrastructure.Persistence.MongoDbConfiguration;
 
 namespace GoogleBooks.Integration.Tests;
 
@@ -19,19 +19,17 @@ public class TestFactory : WebApplicationFactory<Program>, IAsyncLifetime
         .Build();
 
     private IMongoDatabase _database = default!;
+    private readonly Mock<IHttpClientFactory> _mockedHttpClientFactory = new();
     private IServiceProvider _serviceProvider = default!;
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
+        builder.UseSetting("ConnectionStrings:MongoDb", _mongoContainer.GetConnectionString());
+
         builder.ConfigureTestServices(services =>
         {
             services.RemoveAll(typeof(IHttpClientFactory));
-            services.AddSingleton(MockedHttpClientFactory.Object);
-            services.AddSingleton(MockedHttpMessageHandler.Object);
-
-            services.RemoveAll(typeof(IMongoDatabase));
-            services.AddSingleton(_ => MongoDbConfiguration.CreateClient(_mongoContainer.GetConnectionString()!));
-            services.AddSingleton(sp => sp.GetRequiredService<IMongoClient>().GetDatabase("google-books"));
+            services.AddSingleton(_mockedHttpClientFactory.Object);
 
             _serviceProvider = services.BuildServiceProvider();
             _database = _serviceProvider.GetRequiredService<IMongoDatabase>();
@@ -42,7 +40,6 @@ public class TestFactory : WebApplicationFactory<Program>, IAsyncLifetime
 
     internal string GoogleBooksUrl = "https://www.googleapis.com/books/v1/";
 
-    internal Mock<IHttpClientFactory> MockedHttpClientFactory { get; private set; } = new();
     internal Mock<HttpMessageHandler> MockedHttpMessageHandler { get; private set; } = new();
 
     internal IServiceProvider ServiceProvider = default!;
@@ -59,7 +56,7 @@ public class TestFactory : WebApplicationFactory<Program>, IAsyncLifetime
 
     internal void ResetMocks()
     {
-        MockedHttpClientFactory.Reset();
+        _mockedHttpClientFactory.Reset();
         MockedHttpMessageHandler.Reset();
     }
 
@@ -70,7 +67,7 @@ public class TestFactory : WebApplicationFactory<Program>, IAsyncLifetime
             BaseAddress = new Uri(url)
         };
 
-        MockedHttpClientFactory
+        _mockedHttpClientFactory
             .Setup(_ => _.CreateClient(ServicesConstants.GOOGLE_CLIENT_NAME))
             .Returns(httpClient);
     }

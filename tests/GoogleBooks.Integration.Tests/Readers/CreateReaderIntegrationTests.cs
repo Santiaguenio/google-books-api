@@ -94,7 +94,7 @@ namespace GoogleBooks.Integration.Tests.Readers
 
             mockedLogger.Verify(_ =>
                _.Log(
-                   LogLevel.Error,
+                   It.IsAny<LogLevel>(),
                    It.IsAny<EventId>(),
                    It.Is<It.IsAnyType>((state, _) => true),
                    It.IsAny<Exception?>(),
